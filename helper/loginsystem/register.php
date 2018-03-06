@@ -9,14 +9,14 @@ $_SESSION['first_name'] = $_POST['firstname'];
 $_SESSION['last_name'] = $_POST['lastname'];
 
 // Escape all $_POST variables to protect against SQL injections
-$first_name = $mysqli->escape_string($_POST['firstname']);
-$last_name = $mysqli->escape_string($_POST['lastname']);
-$email = $mysqli->escape_string($_POST['email']);
-$password = $mysqli->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
-$hash = $mysqli->escape_string( md5( rand(0,1000) ) );
+$first_name = mysqli_real_escape_string($conn, $_POST['firstname']);
+$last_name = mysqli_real_escape_string($conn, $_POST['lastname']);
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$password = mysqli_real_escape_string($conn, password_hash($_POST['password'], PASSWORD_BCRYPT));
+$hash = mysqli_real_escape_string($conn, md5( rand(0,1000) ) );
 
 // Check if user with that email already exists
-$result = $mysqli->query("SELECT * FROM users WHERE user_email='$email'") or die($mysqli->error());
+$result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='$email'") or die($mysqli->error());
 
 // We know user email exists if the rows returned are more than 0
 if ( $result->num_rows > 0 ) {
@@ -32,7 +32,7 @@ else { // Email doesn't already exist in a database, proceed...
             . "VALUES ('$first_name','$last_name','$email','$password', '$hash')";
 
     // Add user to the database
-    if ( $mysqli->query($sql) ){
+    if (mysqli_query($conn, $sql) ){
 
         $_SESSION['active'] = 0; //0 until user activates their account with verify.php
         $_SESSION['logged_in'] = true; // So we know the user has logged in
