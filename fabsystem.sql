@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2018 at 11:31 AM
+-- Generation Time: Mar 06, 2018 at 05:42 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -25,27 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chicken_categories`
---
-
-CREATE TABLE `chicken_categories` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(50) NOT NULL,
-  `category_description` varchar(50) NOT NULL,
-  `category_price` decimal(6,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `chicken_categories`
---
-
-INSERT INTO `chicken_categories` (`category_id`, `category_name`, `category_description`, `category_price`) VALUES
-(1, 'Curry Chicken Rice', '咖喱鸡饭', '8.90'),
-(2, 'Mamee Chicken Rice', '妈蜜鸡丁饭', '8.90');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `customers`
 --
 
@@ -56,6 +35,28 @@ CREATE TABLE `customers` (
   `customer_contact` int(50) NOT NULL,
   `order_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foods`
+--
+
+CREATE TABLE `foods` (
+  `food_id` int(11) NOT NULL,
+  `food_name` varchar(50) NOT NULL,
+  `food_description` varchar(50) NOT NULL,
+  `food_price` decimal(6,2) NOT NULL,
+  `subcategory_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `foods`
+--
+
+INSERT INTO `foods` (`food_id`, `food_name`, `food_description`, `food_price`, `subcategory_id`) VALUES
+(1, 'Curry Chicken Rice', '咖喱鸡饭', '8.90', 1),
+(2, 'Mamee Chicken Rice', '妈蜜鸡丁饭', '8.90', 1);
 
 -- --------------------------------------------------------
 
@@ -83,6 +84,28 @@ INSERT INTO `food_categories` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `food_subcategories`
+--
+
+CREATE TABLE `food_subcategories` (
+  `subcategory_id` int(11) NOT NULL,
+  `subcategory_name` varchar(50) NOT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `food_subcategories`
+--
+
+INSERT INTO `food_subcategories` (`subcategory_id`, `subcategory_name`, `category_id`) VALUES
+(1, 'Chicken', 1),
+(2, 'Fish', 1),
+(3, 'Prawn', 1),
+(4, 'Sotong', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -96,27 +119,6 @@ CREATE TABLE `orders` (
   `order_delivery` decimal(6,2) NOT NULL,
   `rider_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rice_categories`
---
-
-CREATE TABLE `rice_categories` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `rice_categories`
---
-
-INSERT INTO `rice_categories` (`category_id`, `category_name`) VALUES
-(1, 'Chicken'),
-(2, 'Fish'),
-(3, 'Prawn'),
-(4, 'Sotong');
 
 -- --------------------------------------------------------
 
@@ -150,17 +152,18 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `chicken_categories`
---
-ALTER TABLE `chicken_categories`
-  ADD PRIMARY KEY (`category_id`);
-
---
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`customer_id`),
   ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `foods`
+--
+ALTER TABLE `foods`
+  ADD PRIMARY KEY (`food_id`),
+  ADD KEY `category_id` (`subcategory_id`);
 
 --
 -- Indexes for table `food_categories`
@@ -169,18 +172,19 @@ ALTER TABLE `food_categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `food_subcategories`
+--
+ALTER TABLE `food_subcategories`
+  ADD PRIMARY KEY (`subcategory_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `customer_id` (`customer_id`),
   ADD KEY `rider_id` (`rider_id`);
-
---
--- Indexes for table `rice_categories`
---
-ALTER TABLE `rice_categories`
-  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `riders`
@@ -200,16 +204,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `chicken_categories`
---
-ALTER TABLE `chicken_categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `foods`
+--
+ALTER TABLE `foods`
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food_categories`
@@ -218,16 +222,16 @@ ALTER TABLE `food_categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `food_subcategories`
+--
+ALTER TABLE `food_subcategories`
+  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rice_categories`
---
-ALTER TABLE `rice_categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `riders`
@@ -250,6 +254,18 @@ ALTER TABLE `users`
 --
 ALTER TABLE `customers`
   ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
+
+--
+-- Constraints for table `foods`
+--
+ALTER TABLE `foods`
+  ADD CONSTRAINT `foods_ibfk_1` FOREIGN KEY (`subcategory_id`) REFERENCES `food_subcategories` (`subcategory_id`);
+
+--
+-- Constraints for table `food_subcategories`
+--
+ALTER TABLE `food_subcategories`
+  ADD CONSTRAINT `food_subcategories_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `food_categories` (`category_id`);
 
 --
 -- Constraints for table `orders`
