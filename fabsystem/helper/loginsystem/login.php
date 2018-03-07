@@ -3,18 +3,19 @@
 require 'db.php';
 // Escape email to protect against SQL injections
 $email = mysqli_real_escape_string($conn, $_POST['email']);
+$password = mysqli_real_escape_string($conn, $_POST['password']);
 $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='$email'");
 $resultCheck = mysqli_num_rows($result);
 
-if ( $resultCheck < 1){ // User doesn't exist
+if ( $resultCheck == 0){ // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist! ";
     header("location: error.php");
 }
 else { // User exists
-    $user = $result->fetch_assoc();
+    $user = mysqli_fetch_assoc($result);
 
-    if ( password_verify($_POST['password'], $user['user_pwd']) ) {
-
+    if ( $resultCheck > 0) {
+        password_verify($_POST['password'], $user['user_pwd']);
         $_SESSION['email'] = $user['user_email'];
         $_SESSION['first_name'] = $user['user_first'];
         $_SESSION['last_name'] = $user['user_last'];
@@ -25,6 +26,7 @@ else { // User exists
 
         header("location: profile.php");
     }
+
     else {
         $_SESSION['message'] = "You have entered wrong password, try again!'$resultCheck''$email'";
         header("location: error.php");
