@@ -12,7 +12,7 @@ $_SESSION['last_name'] = $_POST['lastname'];
 $first_name = mysqli_real_escape_string($conn, $_POST['firstname']);
 $last_name = mysqli_real_escape_string($conn, $_POST['lastname']);
 $email = mysqli_real_escape_string($conn, $_POST['email']);
-$password = mysqli_real_escape_string($conn, password_hash($_POST['password'], PASSWORD_DEFAULT));
+$password = mysqli_real_escape_string($conn, password_hash($_POST['password'], PASSWORD_BCRYPT));
 $hash = mysqli_real_escape_string($conn, md5( rand(0,1000) ) );
 
 // Check if user with that email already exists
@@ -28,7 +28,7 @@ if ( $result->num_rows > 0 ) {
 else { // Email doesn't already exist in a database, proceed...
 
     // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, hash) "
+    $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, user_hash) "
             . "VALUES ('$first_name','$last_name','$email','$password', '$hash')";
 
     // Add user to the database
