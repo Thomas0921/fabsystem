@@ -12,12 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $new_password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
 
         // We get $_POST['email'] and $_POST['hash'] from the hidden input field of reset.php form
-        $email = $mysqli->escape_string($_POST['email']);
-        $hash = $mysqli->escape_string($_POST['hash']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $hash = mysqli_real_escape_string($conn, $_POST['hash']);
 
-        $sql = "UPDATE users SET user_password='$new_password', hash='$hash' WHERE user_email='$email'";
+        $sql = "UPDATE users SET user_pwd='$new_password', hash='$hash' WHERE user_email='$email'";
 
-        if ( $mysqli->query($sql) ) {
+        if ( mysqli_query($conn, $sql) ) {
 
         $_SESSION['message'] = "Your password has been reset successfully!";
         header("location: success.php");

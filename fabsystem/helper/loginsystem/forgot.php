@@ -6,8 +6,8 @@ session_start();
 // Check if form submitted with method="post"
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 {
-    $email = $mysqli->escape_string($_POST['email']);
-    $result = $mysqli->query("SELECT * FROM users WHERE user_email='$email'");
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='$email'");
 
     if ( $result->num_rows == 0 ) // User doesn't exist
     {
@@ -18,9 +18,9 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         $user = $result->fetch_assoc(); // $user becomes array with user data
 
-        $email = $user['email'];
+        $email = $user['user_email'];
         $hash = $user['hash'];
-        $first_name = $user['first_name'];
+        $first_name = $user['user_first'];
 
         // Session message to display on success.php
         $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
@@ -28,7 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         // Send registration confirmation link (reset.php)
         $to      = $email;
-        $subject = 'Password Reset Link ( clevertechie.com )';
+        $subject = 'Password Reset Link';
         $message_body = '
         Hello '.$first_name.',
 
@@ -36,7 +36,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         Please click this link to reset your password:
 
-        http://localhost/login-system/reset.php?email='.$email.'&hash='.$hash;
+        http://localhost/fabsystem/fabsystem/helper/loginsystem/reset.php?email='.$email.'&hash='.$hash;
 
         mail($to, $subject, $message_body);
 
