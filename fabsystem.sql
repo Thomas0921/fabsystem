@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2018 at 09:11 AM
+-- Generation Time: Mar 07, 2018 at 01:48 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -147,7 +147,7 @@ CREATE TABLE `users` (
   `user_last` varchar(50) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   `user_pwd` varchar(50) NOT NULL,
-  `user_hash` varchar(50) NOT NULL,
+  `hash` varchar(50) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -155,9 +155,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_first`, `user_last`, `user_email`, `user_pwd`, `user_hash`, `active`) VALUES
+INSERT INTO `users` (`user_id`, `user_first`, `user_last`, `user_email`, `user_pwd`, `hash`, `active`) VALUES
 (3, 'Kim', 'kaka', 'lalala@gmail.com', '$2y$10$/OCTwztehDIHFlgFxXNIpuXdwzVG3Rl6nxs/vW8fzoM', '3871bd64012152bfb53fdf04b401193f', 0),
-(14, 'Kenny', 'Ong', 'kenny961127@hotmail.co.uk', '$2y$10$dxVjPK.l95wFOOOzQJOcneYGDT0o7CZgcRZ8o8z1o5b', 'a8c88a0055f636e4a163a5e3d16adab7', 0);
+(14, 'Kenny', 'Ong', 'kenny961127@hotmail.co.uk', '$2y$10$dxVjPK.l95wFOOOzQJOcneYGDT0o7CZgcRZ8o8z1o5b', 'a8c88a0055f636e4a163a5e3d16adab7', 0),
+(15, 'Thomas', 'Kim', 'thomaskim092150@gmail.com', '$2y$10$Bm3xFnRD5dyH60exiOIVouvNJafKzUCr99UofHsdOlM', '59b90e1005a220e2ebc542eb9d950b1e', 1);
 
 --
 -- Indexes for dumped tables
@@ -255,7 +256,7 @@ ALTER TABLE `riders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
