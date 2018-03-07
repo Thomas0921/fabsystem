@@ -28,7 +28,7 @@ if ( $result->num_rows > 0 ) {
 else { // Email doesn't already exist in a database, proceed...
 
     // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, user_hash) "
+    $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, hash) "
             . "VALUES ('$first_name','$last_name','$email','$password', '$hash')";
 
     // Add user to the database
@@ -51,7 +51,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         Please click this link to activate your account:
 
-        http://localhost/fabsystem/fabsystem/helper/loginsystem/verify.php?email='.$email.'&hash='.$hash;
+        http://localhost/fabsystem/helper/loginsystem/verify.php?email='.$email.'&hash='.$hash;
 
         mail( $to, $subject, $message_body );
 

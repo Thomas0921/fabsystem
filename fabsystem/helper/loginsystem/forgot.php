@@ -6,7 +6,7 @@ session_start();
 // Check if form submitted with method="post"
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $email = mysqli_real_escape_string( $conn, $_POST['email']);
     $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='$email'");
 
     if ( $result->num_rows == 0 ) // User doesn't exist
@@ -28,7 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         // Send registration confirmation link (reset.php)
         $to      = $email;
-        $subject = 'Password Reset Link';
+        $subject = 'Password Reset Link ';
         $message_body = '
         Hello '.$first_name.',
 
@@ -36,7 +36,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         Please click this link to reset your password:
 
-        http://localhost/fabsystem/fabsystem/helper/loginsystem/reset.php?email='.$email.'&hash='.$hash;
+        http://localhost/fabsystem/helper/loginsystem/reset.php?email='.$email.'&hash='.$hash;
 
         mail($to, $subject, $message_body);
 

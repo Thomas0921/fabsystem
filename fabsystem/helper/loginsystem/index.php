@@ -8,7 +8,6 @@ session_start();
 <head>
   <title>Sign-Up/Login Form</title>
   <?php include 'css/css.html'; ?>
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <?php

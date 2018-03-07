@@ -1,13 +1,12 @@
 <?php
 /* User login process, checks if user exists and password is correct */
-require 'db.php';
+
 // Escape email to protect against SQL injections
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='$email'");
-$resultCheck = mysqli_num_rows($result);
 
-if ( $resultCheck < 1){ // User doesn't exist
-    $_SESSION['message'] = "User with that email doesn't exist! ";
+if ( $result->num_rows == 0 ){ // User doesn't exist
+    $_SESSION['message'] = "User with that email doesn't exist!";
     header("location: error.php");
 }
 else { // User exists
@@ -26,7 +25,7 @@ else { // User exists
         header("location: profile.php");
     }
     else {
-        $_SESSION['message'] = "You have entered wrong password, try again!'$resultCheck''$email'";
+        $_SESSION['message'] = "You have entered wrong password, try again!";
         header("location: error.php");
     }
 }
