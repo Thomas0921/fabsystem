@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2018 at 05:42 PM
+-- Generation Time: Mar 07, 2018 at 09:11 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -56,7 +56,9 @@ CREATE TABLE `foods` (
 
 INSERT INTO `foods` (`food_id`, `food_name`, `food_description`, `food_price`, `subcategory_id`) VALUES
 (1, 'Curry Chicken Rice', '咖喱鸡饭', '8.90', 1),
-(2, 'Mamee Chicken Rice', '妈蜜鸡丁饭', '8.90', 1);
+(2, 'Mamee Chicken Rice', '妈蜜鸡丁饭', '8.90', 1),
+(3, 'Mamee Fish Rice', '妈蜜鱼片饭', '8.90', 2),
+(4, 'Mamee Prawn Rice', '妈蜜虾仁饭', '9.90', 3);
 
 -- --------------------------------------------------------
 
@@ -144,8 +146,18 @@ CREATE TABLE `users` (
   `user_first` varchar(50) NOT NULL,
   `user_last` varchar(50) NOT NULL,
   `user_email` varchar(50) NOT NULL,
-  `user_pwd` varchar(50) NOT NULL
+  `user_pwd` varchar(50) NOT NULL,
+  `user_hash` varchar(50) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_first`, `user_last`, `user_email`, `user_pwd`, `user_hash`, `active`) VALUES
+(3, 'Kim', 'kaka', 'lalala@gmail.com', '$2y$10$/OCTwztehDIHFlgFxXNIpuXdwzVG3Rl6nxs/vW8fzoM', '3871bd64012152bfb53fdf04b401193f', 0),
+(14, 'Kenny', 'Ong', 'kenny961127@hotmail.co.uk', '$2y$10$dxVjPK.l95wFOOOzQJOcneYGDT0o7CZgcRZ8o8z1o5b', 'a8c88a0055f636e4a163a5e3d16adab7', 0);
 
 --
 -- Indexes for dumped tables
@@ -213,7 +225,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `food_categories`
@@ -243,7 +255,7 @@ ALTER TABLE `riders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
