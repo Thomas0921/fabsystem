@@ -13,39 +13,59 @@
     <script src="../../public/js/menu.js"></script>
   </head>
   <body>
+
     <div class="food-box" style="background-color: rgb(237, 236, 106);">
       <h1>Food Menu</h1>
       <div class="wrapper">
         <div class="tabs">
-          <button class="tab" onclick ="openMe('rice')" type="button" name="button">Rice</button>
-          <button class="tab" onclick ="openMe('indo')" type="button" name="button">Indo</button>
+          <?php
+            $sql = "SELECT * FROM food_categories";
+            $result = mysqli_query($conn, $sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                echo '<a href="menu.php?category_id='.$row['category_id'].'">'.$row['category_name'].'</a>';
+                echo ' ';
+              }
+            }
+           ?>
         </div>
-        <div id = "rice" class="sub-tabs">
-          <button class="tab" onclick ="openMe2('chicken')" type="button" name="button">Chicken</button>
-          <button class="tab" onclick ="openMe2('fish')" type="button" name="button">Fish</button>
-          <button class="tab" onclick ="openMe2('prawn')" type="button" name="button">Prawn</button>
-          <button class="tab" onclick ="openMe2('sotong')" type="button" name="button">Sotong  </button>
+        <div class="sub-tabs">
+          <?php
+          if(isset($_GET['category_id'])){
+
+            // Select all foods which belong to the selected category
+            $sub_sql = "SELECT food_subcategories.subcategory_id, food_subcategories.subcategory_name, food_categories.category_id, food_categories.category_name FROM food_subcategories JOIN food_categories ON food_subcategories.category_id = food_categories.category_id WHERE food_subcategories.category_id=".$_GET['category_id'];
+            $result = mysqli_query($conn, $sub_sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                echo '<a href="menu.php?category_id='.$row['category_id'].'&subcategory_id='.$row['subcategory_id'].'">'.$row['subcategory_name'].'</a>';
+                echo ' ';
+              }
+            }
+          }
+           ?>
         </div>
-        <div id = "indo" class="sub-tabs">
-          <button class="tab "type="button" name="button">Fried Rice</button>
-          <button class="tab "type="button" name="button">Fish</button>
-        </div>
-        <div id = "chicken" class="content">
-          <a href="#">Curry Chicken Rice</a>
-          <a href="#">Mamee Chicken Rice</a>
-        </div>
-        <div id = "fish" class="content">
-          <a href="#">Curry fish Rice</a>
-          <a href="#">Mamee fish Rice</a>
+        <div class="content">
+          <?php
+          if(isset($_GET['subcategory_id'])){
+            // Select all foods which belong to the selected category
+            $food_sql = "SELECT foods.food_id, foods.food_name, foods.food_description, foods.food_price, food_subcategories.subcategory_id, food_subcategories.subcategory_name FROM foods JOIN food_subcategories ON foods.subcategory_id = food_subcategories.subcategory_id WHERE foods.subcategory_id=".$_GET['subcategory_id'];
+            $result = mysqli_query($conn, $food_sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                echo '<a href="menu.php?subcategory_id='.$row['subcategory_id'].'&food_id='.$row['food_id'].'">'.$row['food_name'].'</a>';
+                echo ' ';
+              }
+            }
+          }
+          ?>
         </div>
       </div>
-
-      <form class="" action="index.html" method="post">
-        <button type="button" name="add">Add</button>
-        <button type="button" name="edit">Edit</button>
-        <button type="button" name="delete">Delete</button>
-      </form>
     </div>
+
     <div class="description-box" style="background-color: rgb(122, 180, 238);">
       <h1>Description</h1>
     </div>
@@ -56,6 +76,8 @@
         <input type="text" name="contact" value="" placeholder="Contact">
         <input type="text" name="address" value="" placeholder="Address">
         <input type="text" name="discount" value="" placeholder="Discount">
+        <input type="text" name="delivery_cost" value="" placeholder="Delivery Cost">
+        <input type="text" name="receipt_no" value="" placeholder="Receipt No.">
       </form>
       <h2>Total:</h2>
     </div>
