@@ -36,6 +36,21 @@ $(".show-cart").on("click",".delete-item",function(event){
   displayCart();
 });
 
+$(".hover-detail").hover(function(){
+   var id = $(this).attr("data-id");
+        $.ajax({
+            type: 'POST',
+            url: 'detail.php',
+            data: {id:id},
+            success: function (id) {
+                $('.show-description').html(id);
+            }
+        }, function(){
+          //This function is for unhover.
+       });
+});
+
+//---------------------------------------------------------------
 // Add to Cart Javascript starts here
 var cart = []; // id, name, price, count
 

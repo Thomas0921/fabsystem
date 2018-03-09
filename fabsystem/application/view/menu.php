@@ -2,6 +2,7 @@
 
   include '../framework/db.php';
   session_start();
+
  ?>
 
 <!DOCTYPE html>
@@ -68,7 +69,7 @@
               echo '<ul>';
               while($row = $result ->fetch_assoc()){
                 echo '<li>';
-                echo '<a class="add-to-cart" href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
+                echo '<a class="add-to-cart hover-detail" href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
                 echo '</li>';
               }
               echo '</ul>';
@@ -81,6 +82,9 @@
 
     <div class="description-box" style="background-color: rgb(122, 180, 238);">
       <h1>Description</h1>
+      <ul class="show-description">
+
+      </ul>
     </div>
     <div class="customer-box" style="background-color: rgb(125, 213, 156);">
       <h1>Customer's Detail</h1>
