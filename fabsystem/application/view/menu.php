@@ -10,10 +10,20 @@
     <meta charset="utf-8">
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
-    <script src="../../public/js/menu.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
+    <div class="order-box" style="background-color: rgb(255, 121, 121)">
+      <h1>Food Ordered</h1>
+      <div>
+        <ul class="show-cart">
 
+        </ul>
+      </div>
+      <button type="button" id="clear_cart">Clear Cart</button>
+      <button type="button" id="send_to_kitchent">Send To Kitchen</button>
+    </div>
     <div class="food-box" style="background-color: rgb(237, 236, 106);">
       <h1>Food Menu</h1>
       <div class="wrapper">
@@ -55,10 +65,13 @@
             $result = mysqli_query($conn, $food_sql);
 
             if($result ->num_rows > 0){
+              echo '<ul>';
               while($row = $result ->fetch_assoc()){
-                echo '<a href="menu.php?subcategory_id='.$row['subcategory_id'].'&food_id='.$row['food_id'].'">'.$row['food_name'].'</a>';
-                echo ' ';
+                echo '<li>';
+                echo '<a class="add-to-cart" href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
+                echo '</li>';
               }
+              echo '</ul>';
             }
           }
           ?>
@@ -79,8 +92,10 @@
         <input type="text" name="delivery_cost" value="" placeholder="Delivery Cost">
         <input type="text" name="receipt_no" value="" placeholder="Receipt No.">
       </form>
-      <h2>Total:</h2>
+      <h2>Total: RM<span id="total-cart"></span></h2>
     </div>
 
   </body>
+  <script src="../../public/js/menu.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
