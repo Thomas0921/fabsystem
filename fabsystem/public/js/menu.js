@@ -36,11 +36,39 @@ $(".show-cart").on("click",".delete-item",function(event){
   displayCart();
 });
 
+$(".click-cat").click(function(){
+   var id = $(this).attr("category_id");
+        $.ajax({
+            type: 'POST',
+            url: '../controller/AJAXcategory.php',
+            data: {id:id},
+            success: function (id) {
+                $('.sub-tabs').html(id);
+            }
+        }, function(){
+          //This function is for unhover.
+       });
+});
+
+$(".click-subcat").click(function(){
+   var id = $(this).attr("subcategory_id");
+        $.ajax({
+            type: 'POST',
+            url: '../controller/AJAXsubcategory.php',
+            data: {id:id},
+            success: function (id) {
+                $('.content').html(id);
+            }
+        }, function(){
+          //This function is for unhover.
+       });
+});
+
 $(".hover-detail").hover(function(){
    var id = $(this).attr("data-id");
         $.ajax({
             type: 'POST',
-            url: 'detail.php',
+            url: '../controller/AJAXdetail.php',
             data: {id:id},
             success: function (id) {
                 $('.show-description').html(id);

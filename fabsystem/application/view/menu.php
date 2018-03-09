@@ -12,7 +12,7 @@
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="order-box" style="background-color: rgb(255, 121, 121)">
@@ -35,7 +35,7 @@
 
             if($result ->num_rows > 0){
               while($row = $result ->fetch_assoc()){
-                echo '<a href="menu.php?category_id='.$row['category_id'].'">'.$row['category_name'].'</a>';
+                echo '<a class="click-cat" href="#" category_id='.$row['category_id'].'>'.$row['category_name'].'</a>';
                 echo ' ';
               }
             }
@@ -43,6 +43,7 @@
         </div>
         <div class="sub-tabs">
           <?php
+          /*
           if(isset($_GET['category_id'])){
 
             // Select all foods which belong to the selected category
@@ -56,10 +57,12 @@
               }
             }
           }
+          */
            ?>
         </div>
         <div class="content">
           <?php
+          /*
           if(isset($_GET['subcategory_id'])){
             // Select all foods which belong to the selected category
             $food_sql = "SELECT foods.food_id, foods.food_name, foods.food_description, foods.food_price, food_subcategories.subcategory_id, food_subcategories.subcategory_name FROM foods JOIN food_subcategories ON foods.subcategory_id = food_subcategories.subcategory_id WHERE foods.subcategory_id=".$_GET['subcategory_id'];
@@ -75,6 +78,7 @@
               echo '</ul>';
             }
           }
+          */
           ?>
         </div>
       </div>
