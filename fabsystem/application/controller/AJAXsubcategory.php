@@ -9,8 +9,8 @@ include '../framework/db.php';
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
-          echo '<a class="add-to-cart hover-detail" href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
-        echo ' ';
+        $output .= '<a class="add-to-cart hover-detail" href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
+        $output .=  ' ';
       }
       echo $output;
     }

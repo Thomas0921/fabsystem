@@ -9,7 +9,7 @@ include '../framework/db.php';
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
-        $output .= '<a class="click-subcat" href="#" subcategory_id='.$row['subcategory_id'].'>'.$row['subcategory_name'].'</a>';
+        $output .= '<option value='.$row['subcategory_name'].'  data-id='.$row['subcategory_id'].'></option>';
         $output .=  ' ';
       }
       echo $output;

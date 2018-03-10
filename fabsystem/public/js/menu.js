@@ -79,7 +79,40 @@ $(".hover-detail").hover(function(){
           //This function is for unhover.
        });
 });
+//---------------------------------------------------------------
+// edit box
+$(".edit").click(function(){
+  $(".edit-box").toggle();
+});
 
+$(".btn-add").click(function(){
+  $(".popup-bg").show();
+});
+
+$(".close-popup").click(function(){
+  $(".popup-bg").hide();
+});
+
+//---------------------------------------------------------------
+// add food form
+
+$(function() {
+  $('#datalist-cat-id').on('input',function() {
+    var opt = $('option[value="'+$(this).val()+'"]');
+    var id = opt.attr('data-id');
+    $.ajax({
+        async: true,
+        type: 'POST',
+        url: '../controller/AJAXformSubcategory.php',
+        data: {id:id},
+        success: function (id) {
+            $('.ajax-subcat').html(id);
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  });
+});
 //---------------------------------------------------------------
 // Add to Cart Javascript starts here
 var cart = []; // id, name, price, count
