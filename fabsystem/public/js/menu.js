@@ -22,6 +22,7 @@ function displayCart() {
     output += "<li>"
     +cartArray[i].count
     +" "+cartArray[i].name
+    +" "
     +"<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
     +"</li>"
   }
@@ -38,6 +39,7 @@ $(".show-cart").on("click",".delete-item",function(event){
 
 $(".click-cat").click(function(){
    var id = $(this).attr("category_id");
+   $('.content').html("");
         $.ajax({
             type: 'POST',
             url: '../controller/AJAXcategory.php',
