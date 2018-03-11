@@ -52,7 +52,7 @@
         <button class="edit" type="button" name="button">Pencil</button>
         <div class="edit-box" style="display: none;">
           <button class="btn-add" type="button" name="button">Add</button>
-          <button class="" type="button" name="button">Edit</button>
+          <button class="btn-edit" type="button" name="button">Edit</button>
           <button class="" type="button" name="button">Delete</button>
         </div>
         <div class="popup-bg">
@@ -81,7 +81,7 @@
                 <button type="button" name="button">-</button><br>
                 <input list="datalist-subcat" placeholder="Subcategory Name">
                 <datalist id="datalist-subcat" class="ajax-subcat">
-                  
+
                 </datalist>
                 <button type="button" name="button">+</button>
                 <button type="button" name="button">-</button><br>
@@ -111,6 +111,21 @@
         <input type="text" name="discount" value="" placeholder="Discount">
         <input type="text" name="delivery_cost" value="" placeholder="Delivery Cost">
         <input type="text" name="receipt_no" value="" placeholder="Receipt No.">
+        <div class="checkbox-condition">
+          <?php
+            $sql = "SELECT * FROM food_condition";
+            $result = mysqli_query($conn, $sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                echo '<input type="checkbox" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
+                echo ' ';
+              }
+            }
+           ?>
+        </div>
+        <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
+        <input id="others_cost" type="number" min="0" placeholder="Others cost" disabled>
       </form>
       <h2>Total: RM<span id="total-cart"></span></h2>
     </div>

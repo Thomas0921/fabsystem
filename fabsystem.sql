@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2018 at 01:48 PM
+-- Generation Time: Mar 11, 2018 at 10:10 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -58,7 +58,31 @@ INSERT INTO `foods` (`food_id`, `food_name`, `food_description`, `food_price`, `
 (1, 'Curry Chicken Rice', '咖喱鸡饭', '8.90', 1),
 (2, 'Mamee Chicken Rice', '妈蜜鸡丁饭', '8.90', 1),
 (3, 'Mamee Fish Rice', '妈蜜鱼片饭', '8.90', 2),
-(4, 'Mamee Prawn Rice', '妈蜜虾仁饭', '9.90', 3);
+(4, 'Mamee Prawn Rice', '妈蜜虾仁饭', '9.90', 3),
+(5, 'Nasi Ayam Penyet', '印尼鸡饭', '11.90', 5),
+(6, 'Nasi Ayam Kunyit', '黄姜鸡饭', '8.90', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food_add_on`
+--
+
+CREATE TABLE `food_add_on` (
+  `add_on_id` int(11) NOT NULL,
+  `add_on_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `add_on_description` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `add_on_price` decimal(6,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `food_add_on`
+--
+
+INSERT INTO `food_add_on` (`add_on_id`, `add_on_name`, `add_on_description`, `add_on_price`) VALUES
+(1, 'Fried Egg', '荷包蛋', '1.50'),
+(2, 'Fish Fillet', '鱼柳', '1.50'),
+(3, 'Cocktail Sausage (3 pcs)', '迷你小香肠（3片）', '2.20');
 
 -- --------------------------------------------------------
 
@@ -86,6 +110,27 @@ INSERT INTO `food_categories` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `food_condition`
+--
+
+CREATE TABLE `food_condition` (
+  `condition_id` int(11) NOT NULL,
+  `condition_name` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `condition_description` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `condition_price` decimal(6,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `food_condition`
+--
+
+INSERT INTO `food_condition` (`condition_id`, `condition_name`, `condition_description`, `condition_price`) VALUES
+(1, 'Raining day', '下雨天', '1.00'),
+(2, 'Store upstairs', '店屋楼上', '1.00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `food_subcategories`
 --
 
@@ -103,7 +148,8 @@ INSERT INTO `food_subcategories` (`subcategory_id`, `subcategory_name`, `categor
 (1, 'Chicken', 1),
 (2, 'Fish', 1),
 (3, 'Prawn', 1),
-(4, 'Sotong', 1);
+(4, 'Sotong', 1),
+(5, 'Rice', 2);
 
 -- --------------------------------------------------------
 
@@ -146,7 +192,7 @@ CREATE TABLE `users` (
   `user_first` varchar(50) NOT NULL,
   `user_last` varchar(50) NOT NULL,
   `user_email` varchar(50) NOT NULL,
-  `user_pwd` varchar(50) NOT NULL,
+  `user_pwd` char(60) NOT NULL,
   `hash` varchar(50) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -158,7 +204,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_first`, `user_last`, `user_email`, `user_pwd`, `hash`, `active`) VALUES
 (3, 'Kim', 'kaka', 'lalala@gmail.com', '$2y$10$/OCTwztehDIHFlgFxXNIpuXdwzVG3Rl6nxs/vW8fzoM', '3871bd64012152bfb53fdf04b401193f', 0),
 (14, 'Kenny', 'Ong', 'kenny961127@hotmail.co.uk', '$2y$10$dxVjPK.l95wFOOOzQJOcneYGDT0o7CZgcRZ8o8z1o5b', 'a8c88a0055f636e4a163a5e3d16adab7', 0),
-(15, 'Thomas', 'Kim', 'thomaskim092150@gmail.com', '$2y$10$Bm3xFnRD5dyH60exiOIVouvNJafKzUCr99UofHsdOlM', '59b90e1005a220e2ebc542eb9d950b1e', 1);
+(20, 'Thomas', 'Kim', 'thomaskim092150@gmail.com', '$2y$10$b6SoZywLFH4arV/aIfwwR.DpCzTTIh0RSnxm8wAScqWTe2kK1BNRW', '16a5cdae362b8d27a1d8f8c7b78b4330', 1);
 
 --
 -- Indexes for dumped tables
@@ -179,10 +225,22 @@ ALTER TABLE `foods`
   ADD KEY `category_id` (`subcategory_id`);
 
 --
+-- Indexes for table `food_add_on`
+--
+ALTER TABLE `food_add_on`
+  ADD PRIMARY KEY (`add_on_id`);
+
+--
 -- Indexes for table `food_categories`
 --
 ALTER TABLE `food_categories`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `food_condition`
+--
+ALTER TABLE `food_condition`
+  ADD PRIMARY KEY (`condition_id`);
 
 --
 -- Indexes for table `food_subcategories`
@@ -226,7 +284,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `food_add_on`
+--
+ALTER TABLE `food_add_on`
+  MODIFY `add_on_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `food_categories`
@@ -235,10 +299,16 @@ ALTER TABLE `food_categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `food_condition`
+--
+ALTER TABLE `food_condition`
+  MODIFY `condition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `food_subcategories`
 --
 ALTER TABLE `food_subcategories`
-  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -256,7 +326,7 @@ ALTER TABLE `riders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

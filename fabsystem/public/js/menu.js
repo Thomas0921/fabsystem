@@ -37,6 +37,9 @@ $(".show-cart").on("click",".delete-item",function(event){
   displayCart();
 });
 
+//---------------------------------------------------------------
+// pop up form jquery
+
 $(".click-cat").click(function(){
    var id = $(this).attr("category_id");
    $('.content').html("");
@@ -113,6 +116,56 @@ $(function() {
    });
   });
 });
+//---------------------------------------------------------------
+// Customer form Javascript
+
+function updateTotal(data){
+  $("#total-cart").html(data);
+}
+
+function recalculate(){
+    var sum = Number(totalCart());
+
+    $(".checkbox-condition input[type=checkbox]:checked").each(function(){
+      sum += parseInt($(this).attr("condition-price"));
+    });
+    updateTotal(sum.toFixed(2));
+    return sum;
+}
+
+// recalculate whenever any checkbox is checked
+$(".checkbox-condition input[type=checkbox]").change(function(){
+  recalculate();
+});
+
+// run when finished enter the other text
+$('#others_cost').keyup(function() {
+  var total = Number(recalculate());
+  var value = Number($(this).val());
+  total += value;
+  updateTotal(total.toFixed(2));
+});
+
+
+// toggle enable of others cost input
+$("#checkbox_others_cost").change(function(){
+    if ($("#others_cost").attr("disabled")) {
+        $("#others_cost").removeAttr("disabled");
+    } else {
+        $("#others_cost").prop("disabled", (_, val) => !val);
+    }
+});
+
+// Select your input element.
+$('#others_cost').on("input", function(){
+
+  if($(this).val().match(/[^$,.\d]/)){
+    this.value = "";
+  }else {
+
+  }
+});
+
 //---------------------------------------------------------------
 // Add to Cart Javascript starts here
 var cart = []; // id, name, price, count
