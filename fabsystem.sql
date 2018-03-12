@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2018 at 10:10 AM
+-- Generation Time: Mar 12, 2018 at 10:46 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -32,8 +32,7 @@ CREATE TABLE `customers` (
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(50) NOT NULL,
   `customer_address` varchar(100) NOT NULL,
-  `customer_contact` int(50) NOT NULL,
-  `order_id` int(50) NOT NULL
+  `customer_contact` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -160,8 +159,8 @@ INSERT INTO `food_subcategories` (`subcategory_id`, `subcategory_name`, `categor
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `order_time` date NOT NULL,
-  `delivery_time` date NOT NULL,
+  `order_time` datetime NOT NULL,
+  `delivery_time` datetime NOT NULL,
   `order_gross` decimal(6,2) NOT NULL,
   `order_discount` decimal(6,2) NOT NULL,
   `order_delivery` decimal(6,2) NOT NULL,
@@ -177,7 +176,6 @@ CREATE TABLE `orders` (
 CREATE TABLE `riders` (
   `rider_id` int(11) NOT NULL,
   `rider_name` varchar(50) NOT NULL,
-  `order_id` int(11) NOT NULL,
   `rider_earned` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -214,8 +212,7 @@ INSERT INTO `users` (`user_id`, `user_first`, `user_last`, `user_email`, `user_p
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`),
-  ADD KEY `order_id` (`order_id`);
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `foods`
@@ -261,8 +258,7 @@ ALTER TABLE `orders`
 -- Indexes for table `riders`
 --
 ALTER TABLE `riders`
-  ADD PRIMARY KEY (`rider_id`),
-  ADD KEY `order_id` (`order_id`);
+  ADD PRIMARY KEY (`rider_id`);
 
 --
 -- Indexes for table `users`
@@ -278,7 +274,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -333,12 +329,6 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `customers`
---
-ALTER TABLE `customers`
-  ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
-
---
 -- Constraints for table `foods`
 --
 ALTER TABLE `foods`
@@ -356,12 +346,6 @@ ALTER TABLE `food_subcategories`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`rider_id`) REFERENCES `riders` (`rider_id`);
-
---
--- Constraints for table `riders`
---
-ALTER TABLE `riders`
-  ADD CONSTRAINT `riders_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

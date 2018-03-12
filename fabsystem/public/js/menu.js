@@ -84,11 +84,7 @@ $(".hover-detail").hover(function(){
 });
 //---------------------------------------------------------------
 // edit box
-$(".edit").click(function(){
-  $(".edit-box").toggle();
-});
-
-$(".btn-add").click(function(){
+$(".btn-edit").click(function(){
   $(".popup-bg").show();
 });
 
@@ -123,47 +119,85 @@ function updateTotal(data){
   $("#total-cart").html(data);
 }
 
-function recalculate(){
-    var sum = Number(totalCart());
+function recalculateCheckbox(inside){
+      var latest = Number($("#total-cart").text());
+      var sum = Number(latest);
+      var value = Number($(inside).attr("condition-price"));
 
-    $(".checkbox-condition input[type=checkbox]:checked").each(function(){
-      sum += parseInt($(this).attr("condition-price"));
-    });
-    updateTotal(sum.toFixed(2));
-    return sum;
+      if($(inside).prop('checked') == true){
+        sum += value;
+      }else if($(inside).prop('unchecked', false)){
+        sum -= value;
+      }
+      updateTotal(sum.toFixed(2));
+}
+
+// Minusing the oldValue before the oldValue is replace by newValue
+function recalculateInput(inside){
+  $(".total-add input[type=number]").change(function(event) {
+      console.log("helow");
+      latest = Number($("#total-cart").text());
+      // take the old value from html tag
+      oldValue = Number($(inside).attr('old-value'));
+      // minus the oldvalue from total first
+      sum = latest - oldValue;
+      // add the new value to total
+      newVal = Number($(inside).val());
+      sum += newVal;
+      // store the new value into the html tag as old value
+      $(inside).attr('old-value',$(inside).val()) // update old value to new value
+      updateTotal(sum.toFixed(2));
+  });
+}
+
+// Minusing the oldValue before the oldValue is replace by newValue
+function recalculateInputMinus(inside){
+  $(".total-minus input[type=number]").change(function(event) {
+
+      latest = Number($("#total-cart").text());
+      // take the old value from html tag
+      oldValue = Number($(inside).attr('old-value'));
+      // minus the oldvalue from total first
+      sum = latest + oldValue;
+      // add the new value to total
+      newVal = Number($(inside).val());
+      sum -= newVal;
+      // store the new value into the html tag as old value
+      $(inside).attr('old-value',$(inside).val()) // update old value to new value
+      updateTotal(sum.toFixed(2));
+  });
 }
 
 // recalculate whenever any checkbox is checked
 $(".checkbox-condition input[type=checkbox]").change(function(){
-  recalculate();
+  recalculateCheckbox($(this));
 });
 
-// run when finished enter the other text
-$('#others_cost').keyup(function() {
-  var total = Number(recalculate());
-  var value = Number($(this).val());
-  total += value;
-  updateTotal(total.toFixed(2));
+// recalculateInput whenever there is activity on input
+$('#discount').keypress(function(){
+  recalculateInputMinus($(this));
 });
 
+$('#delivery_cost').keypress(function(){
+  recalculateInput($(this));
+});
 
-// toggle enable of others cost input
+$('#others_cost').keypress(function(){
+  recalculateInput($(this));
+});
+
+// toggle enablility of others cost input
 $("#checkbox_others_cost").change(function(){
     if ($("#others_cost").attr("disabled")) {
-        $("#others_cost").removeAttr("disabled");
+      $("#others_cost").removeAttr("disabled");
+       recalculateInput($("#others_cost"));
     } else {
-        $("#others_cost").prop("disabled", (_, val) => !val);
+      $('#others_cost').val("0");
+      recalculateInput("#others_cost");
+      $("#others_cost").prop("disabled", (_, val) => !val);
+
     }
-});
-
-// Select your input element.
-$('#others_cost').on("input", function(){
-
-  if($(this).val().match(/[^$,.\d]/)){
-    this.value = "";
-  }else {
-
-  }
+    updateTotal($("#total-cart").text());
 });
 
 //---------------------------------------------------------------

@@ -49,18 +49,18 @@
         </div>
       </div>
       <div class="">
-        <button class="edit" type="button" name="button">Pencil</button>
-        <div class="edit-box" style="display: none;">
-          <button class="btn-add" type="button" name="button">Add</button>
-          <button class="btn-edit" type="button" name="button">Edit</button>
-          <button class="" type="button" name="button">Delete</button>
-        </div>
+        <button class="btn-edit" type="button" name="button">Pencil</button>
         <div class="popup-bg">
           <div class="popup-main">
             <div class="close-popup" title="Close this popup">
               <p>X</p>
             </div>
             <div class="popup-content">
+              <div class="edit-box">
+                <button class="btn-add" type="button" name="button">Add</button>
+                <button class="btn-edit" type="button" name="button">Edit</button>
+                <button class="" type="button" name="button">Delete</button>
+              </div>
               <h2>Add food to your menu</h2>
               <form class="form-add-food" action="" method="post">
                 <input list="datalist-cat" placeholder="Category Name" id="datalist-cat-id">
@@ -108,9 +108,12 @@
         <input type="text" name="name" value="" placeholder="Name"><br>
         <input type="text" name="contact" value="" placeholder="Contact"><br>
         <input type="text" name="address" value="" placeholder="Address"><br>
-        <input type="text" name="discount" value="" placeholder="Discount">
-        <input type="text" name="delivery_cost" value="" placeholder="Delivery Cost">
-        <input type="text" name="receipt_no" value="" placeholder="Receipt No.">
+        <div class="total-minus">
+          <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount">
+        </div>
+        <div class="total-add">
+          <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost">
+        </div>
         <div class="checkbox-condition">
           <?php
             $sql = "SELECT * FROM food_condition";
@@ -124,8 +127,10 @@
             }
            ?>
         </div>
-        <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
-        <input id="others_cost" type="number" min="0" placeholder="Others cost" disabled>
+        <div class="total-add">
+          <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
+          <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
+        </div>
       </form>
       <h2>Total: RM<span id="total-cart"></span></h2>
     </div>
