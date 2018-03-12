@@ -38,11 +38,21 @@ $(".show-cart").on("click",".delete-item",function(event){
 });
 
 //---------------------------------------------------------------
-// pop up form jquery
+// food menu AJAX
 
 $(".click-cat").click(function(){
    var id = $(this).attr("category_id");
    $('.content').html("");
+         $.ajax({
+             type: 'POST',
+             url: '../controller/AJAXaddOn.php',
+             data: {id:id},
+             success: function (id) {
+                 $('.addon-tabs').html(id);
+             }
+         }, function(){
+           //This function is for unhover.
+        });
         $.ajax({
             type: 'POST',
             url: '../controller/AJAXcategory.php',
@@ -71,16 +81,45 @@ $(".click-subcat").click(function(){
 
 $(".hover-detail").hover(function(){
    var id = $(this).attr("data-id");
-        $.ajax({
-            type: 'POST',
-            url: '../controller/AJAXdetail.php',
-            data: {id:id},
-            success: function (id) {
-                $('.show-description').html(id);
-            }
-        }, function(){
-          //This function is for unhover.
-       });
+       $.ajax({
+           type: 'POST',
+           url: '../controller/AJAXdetail.php',
+           data: {id:id},
+           success: function (id) {
+               $('.show-description').html(id);
+           }
+       }, function(){
+         //This function is for unhover.
+      });
+});
+
+$(".hover-addon-detail").hover(function(){
+   var id = $(this).attr("data-id");
+       $.ajax({
+           type: 'POST',
+           url: '../controller/AJAXaddOnDetail.php',
+           data: {id:id},
+           success: function (id) {
+               $('.show-description').html(id);
+           }
+       }, function(){
+         //This function is for unhover.
+      });
+});
+
+$(".hover-condition").hover(function(){
+  console.log("hello");
+   var id = $(this).attr("data-id");
+       $.ajax({
+           type: 'POST',
+           url: '../controller/AJAXconditionDetail.php',
+           data: {id:id},
+           success: function (id) {
+               $('.show-description').html(id);
+           }
+       }, function(){
+         //This function is for unhover.
+      });
 });
 //---------------------------------------------------------------
 // edit box
@@ -93,7 +132,7 @@ $(".close-popup").click(function(){
 });
 
 //---------------------------------------------------------------
-// add food form
+// add food form pop up
 
 $(function() {
   $('#datalist-cat-id').on('input',function() {
@@ -190,12 +229,8 @@ $('#others_cost').keypress(function(){
 $("#checkbox_others_cost").change(function(){
     if ($("#others_cost").attr("disabled")) {
       $("#others_cost").removeAttr("disabled");
-       recalculateInput($("#others_cost"));
     } else {
-      $('#others_cost').val("0");
-      recalculateInput("#others_cost");
       $("#others_cost").prop("disabled", (_, val) => !val);
-
     }
     updateTotal($("#total-cart").text());
 });

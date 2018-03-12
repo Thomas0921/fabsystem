@@ -47,6 +47,9 @@
         <div class="content">
 
         </div>
+        <div class="addon-tabs">
+
+        </div>
       </div>
       <div class="">
         <button class="btn-edit" type="button" name="button">Pencil</button>
@@ -121,7 +124,7 @@
 
             if($result ->num_rows > 0){
               while($row = $result ->fetch_assoc()){
-                echo '<input type="checkbox" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
+                echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
                 echo ' ';
               }
             }
