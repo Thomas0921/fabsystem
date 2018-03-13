@@ -23,6 +23,7 @@
         </ul>
       </div>
       <button type="button" id="clear_cart">Clear Cart</button>
+      <button type="button" id="clear_addon_cart">Clear Add on Cart</button>
       <button type="button" id="send_to_kitchent">Send To Kitchen</button>
     </div>
     <div class="food-box" style="background-color: rgb(237, 236, 106);">
@@ -62,7 +63,7 @@
               <div class="edit-box">
                 <button class="btn-add" type="button" name="button">Add</button>
                 <button class="btn-edit" type="button" name="button">Edit</button>
-                <button class="" type="button" name="button">Delete</button>
+                <button class="btn-delete" type="button" name="button">Delete</button>
               </div>
               <h2>Add food to your menu</h2>
               <form class="form-add-food" action="" method="post">
@@ -136,6 +137,42 @@
         </div>
       </form>
       <h2>Total: RM<span id="total-cart"></span></h2>
+
+      <button class="btn-edit-cus" type="button" name="button">Pencil</button>
+      <div class="popup-bg-cus">
+        <div class="popup-main-cus">
+          <div class="close-popup-cus" title="Close this popup">
+            <p>X</p>
+          </div>
+          <div class="popup-content-cus">
+            <div class="edit-box-cus">
+              <button class="btn-add-cus" type="button" name="button">Add</button>
+              <button class="btn-edit-cus" type="button" name="button">Edit</button>
+              <button class="btn-delete-cus" type="button" name="button">Delete</button>
+            </div>
+            <h2>Condition to your delivery</h2>
+            <form class="form-add-food-cus" action="" method="post">
+              <input list="datalist-con" placeholder="Condition Name" id="datalist-con-id">
+              <datalist id="datalist-con">
+                <?php
+                  $sql = "SELECT * FROM food_condition";
+                  $result = mysqli_query($conn, $sql);
+
+                  if($result ->num_rows > 0){
+                    while($row = $result ->fetch_assoc()){
+                      echo '<option value='.$row['condition_name'].' data-id="'.$row['condition_id'].'"></option>';
+                      echo ' ';
+                    }
+                  }
+                 ?>
+              </datalist><br>
+              <input type="text" name="" value="" placeholder="Condition Name"><br>
+              <textarea name="name" rows="5" cols="26" placeholder="Description"></textarea><br>
+              <input type="number" name="" value="" min="0" step="0.01" placeholder="Price"><br>
+              <button type="submit" name="btn-add-food">Add</button><br>
+            </form>
+        </div>
+      </div>
     </div>
 
   </body>

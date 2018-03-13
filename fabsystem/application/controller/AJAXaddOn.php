@@ -9,7 +9,7 @@ include '../framework/db.php';
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
-        $output .= '<a class="click-addon hover-addon-detail" href="#" data-id='.$row['add_on_id'].'>'.$row['add_on_name'].'</a>';
+        $output .= '<a class="addon-to-cart hover-addon-detail" href="#" condition-id='.$row['add_on_id'].' condition-name='.$row['add_on_name'].' condition-price='.$row['add_on_price'].'>'.$row['add_on_name'].'</a>';
         $output .=  ' ';
       }
       echo $output;

@@ -1,3 +1,6 @@
+/**************************************************************/
+/* Pop up form food-box */
+
 .popup-bg {
   position: fixed;
   top: 0;
@@ -44,3 +47,54 @@
   left: 50px;
   font-size: 18px;
 }
+/**************************************************************/
+/* Pop up form customer-box */
+
+.popup-bg-cus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.popup-main-cus {
+  position: fixed;
+  width: 500px;
+  height: 600px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, .25);
+  left: 35%;
+  top: 15%;
+}
+
+.close-popup-cus {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  text-align: center;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  color: #c7c7c7;
+  cursor: pointer;
+}
+
+.popup-content-cus h2{
+  position: absolute;
+  left: 50px;
+  top: 15px;
+}
+
+.form-add-food-cus {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  font-size: 18px;
+}
+
+/**************************************************************/

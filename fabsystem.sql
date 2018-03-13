@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2018 at 10:46 AM
+-- Generation Time: Mar 13, 2018 at 09:16 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -32,7 +32,7 @@ CREATE TABLE `customers` (
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(50) NOT NULL,
   `customer_address` varchar(100) NOT NULL,
-  `customer_contact` int(50) NOT NULL
+  `customer_contact` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -59,7 +59,13 @@ INSERT INTO `foods` (`food_id`, `food_name`, `food_description`, `food_price`, `
 (3, 'Mamee Fish Rice', '妈蜜鱼片饭', '8.90', 2),
 (4, 'Mamee Prawn Rice', '妈蜜虾仁饭', '9.90', 3),
 (5, 'Nasi Ayam Penyet', '印尼鸡饭', '11.90', 5),
-(6, 'Nasi Ayam Kunyit', '黄姜鸡饭', '8.90', 5);
+(6, 'Nasi Ayam Kunyit', '黄姜鸡饭', '8.90', 5),
+(7, 'Nasi Lemak with Chicken Wing', '鸡翅膀椰浆饭', '7.90', 6),
+(8, 'Nasic Lemak with Otak', '乌打椰浆饭', '7.90', 6),
+(10, 'Nasi Lemak with Chicken Rendang & Egg', '仁当鸡鸡蛋椰浆饭', '8.90', 6),
+(11, 'Nasi Lemak with Red Chili Chicken & Egg', '红鸡鸡蛋椰浆饭', '8.90', 6),
+(14, 'Nasi Lemak with Egg', '鸡蛋椰浆饭', '4.90', 6),
+(15, 'Fried Kway Teow', '干炒粿条', '6.90', 7);
 
 -- --------------------------------------------------------
 
@@ -71,17 +77,18 @@ CREATE TABLE `food_add_on` (
   `add_on_id` int(11) NOT NULL,
   `add_on_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `add_on_description` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `add_on_price` decimal(6,2) NOT NULL
+  `add_on_price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `food_add_on`
 --
 
-INSERT INTO `food_add_on` (`add_on_id`, `add_on_name`, `add_on_description`, `add_on_price`) VALUES
-(1, 'Fried Egg', '荷包蛋', '1.50'),
-(2, 'Fish Fillet', '鱼柳', '1.50'),
-(3, 'Cocktail Sausage (3 pcs)', '迷你小香肠（3片）', '2.20');
+INSERT INTO `food_add_on` (`add_on_id`, `add_on_name`, `add_on_description`, `add_on_price`, `category_id`) VALUES
+(1, 'Fried Egg', '荷包蛋', '1.50', 1),
+(2, 'Fish Fillet', '鱼柳', '1.50', 1),
+(3, 'Cocktail Sausage (3 pcs)', '迷你小香肠（3片）', '2.20', 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +155,9 @@ INSERT INTO `food_subcategories` (`subcategory_id`, `subcategory_name`, `categor
 (2, 'Fish', 1),
 (3, 'Prawn', 1),
 (4, 'Sotong', 1),
-(5, 'Rice', 2);
+(5, 'Rice', 2),
+(6, 'Rice', 3),
+(7, 'Others', 3);
 
 -- --------------------------------------------------------
 
@@ -164,8 +173,31 @@ CREATE TABLE `orders` (
   `order_gross` decimal(6,2) NOT NULL,
   `order_discount` decimal(6,2) NOT NULL,
   `order_delivery` decimal(6,2) NOT NULL,
-  `rider_id` int(11) NOT NULL
+  `rider_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `status_id` int(11) NOT NULL,
+  `status_name` varchar(50) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_status`
+--
+
+INSERT INTO `order_status` (`status_id`, `status_name`) VALUES
+(1, 'in progress'),
+(2, 'ready'),
+(3, 'delivering'),
+(4, 'closed'),
+(5, 'canceled');
 
 -- --------------------------------------------------------
 
@@ -225,7 +257,8 @@ ALTER TABLE `foods`
 -- Indexes for table `food_add_on`
 --
 ALTER TABLE `food_add_on`
-  ADD PRIMARY KEY (`add_on_id`);
+  ADD PRIMARY KEY (`add_on_id`),
+  ADD KEY `subcategory_id` (`category_id`);
 
 --
 -- Indexes for table `food_categories`
@@ -252,7 +285,14 @@ ALTER TABLE `food_subcategories`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `rider_id` (`rider_id`);
+  ADD KEY `rider_id` (`rider_id`),
+  ADD KEY `status_id` (`status_id`);
+
+--
+-- Indexes for table `order_status`
+--
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`status_id`);
 
 --
 -- Indexes for table `riders`
@@ -274,13 +314,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `food_add_on`
@@ -304,13 +344,19 @@ ALTER TABLE `food_condition`
 -- AUTO_INCREMENT for table `food_subcategories`
 --
 ALTER TABLE `food_subcategories`
-  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_status`
+--
+ALTER TABLE `order_status`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `riders`
@@ -335,6 +381,12 @@ ALTER TABLE `foods`
   ADD CONSTRAINT `foods_ibfk_1` FOREIGN KEY (`subcategory_id`) REFERENCES `food_subcategories` (`subcategory_id`);
 
 --
+-- Constraints for table `food_add_on`
+--
+ALTER TABLE `food_add_on`
+  ADD CONSTRAINT `food_add_on_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `food_categories` (`category_id`);
+
+--
 -- Constraints for table `food_subcategories`
 --
 ALTER TABLE `food_subcategories`
@@ -345,7 +397,8 @@ ALTER TABLE `food_subcategories`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`rider_id`) REFERENCES `riders` (`rider_id`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`rider_id`) REFERENCES `riders` (`rider_id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,41 +1,5 @@
 // JQuery function start here
 
-$(".add-to-cart").click(function(event){
-  event.preventDefault(); //Prevent the link doing the original behaviour
-  var id = $(this).attr("data-id");
-  var name = $(this).attr("data-name");
-  var price = Number($(this).attr("data-price"));
-
-  addItemToCart(id, name, price, 1);
-  displayCart();
-});
-
-$("#clear_cart").click(function(event){
-  clearCart();
-  displayCart();
-});
-
-function displayCart() {
-  var cartArray = listCart();
-  var output = "";
-  for(var i in cartArray) {
-    output += "<li>"
-    +cartArray[i].count
-    +" "+cartArray[i].name
-    +" "
-    +"<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
-    +"</li>"
-  }
-  $(".show-cart").html(output);
-  $("#total-cart").html(totalCart());
-}
-
-// on() will listen to click when the identifier is not visible
-$(".show-cart").on("click",".delete-item",function(event){
-  var id = $(this).attr("data-id");
-  removeItemFromCartAll(id);
-  displayCart();
-});
 
 //---------------------------------------------------------------
 // food menu AJAX
@@ -129,6 +93,14 @@ $(".btn-edit").click(function(){
 
 $(".close-popup").click(function(){
   $(".popup-bg").hide();
+});
+
+$(".btn-edit-cus").click(function(){
+  $(".popup-bg-cus").show();
+});
+
+$(".close-popup-cus").click(function(){
+  $(".popup-bg-cus").hide();
 });
 
 //---------------------------------------------------------------
@@ -236,6 +208,46 @@ $("#checkbox_others_cost").change(function(){
 });
 
 //---------------------------------------------------------------
+$(".add-to-cart").click(function(event){
+  event.preventDefault(); //Prevent the link doing the original behaviour
+  var id = $(this).attr("data-id");
+  var name = $(this).attr("data-name");
+  var price = Number($(this).attr("data-price"));
+
+  addItemToCart(id, name, price, 1);
+  displayCart();
+});
+
+$("#clear_cart").click(function(event){
+  clearCart();
+  displayCart();
+});
+
+function displayCart() {
+  var cartArray = listCart();
+  var output = "";
+  for(var i in cartArray) {
+    output +=
+    "<dl>"
+    + "<dt>"
+    + cartArray[i].count
+    + " "+cartArray[i].name
+    + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
+    + "</dt>"
+    + displayAddonCart();
+    +"</dl>"
+  }
+  $(".show-cart").html(output);
+  $("#total-cart").html(totalCart());
+}
+
+// on() will listen to click when the identifier is not visible
+$(".show-cart").on("click",".delete-item",function(event){
+  var id = $(this).attr("data-id");
+  removeItemFromCartAll(id);
+  displayCart();
+});
+
 // Add to Cart Javascript starts here
 var cart = []; // id, name, price, count
 
@@ -247,9 +259,11 @@ var Item = function(id, name, price, count){
 };
 
 function addItemToCart(id, name, price, count){
+  console.log(cart);
   for (var i in cart){
     if (cart[i].id === id){
       cart[i].count ++;
+      console.log(cart[i].count);
       saveCart();
       return;
     }
@@ -332,3 +346,143 @@ function loadCart() {
 
 loadCart();
 displayCart();
+
+//---------------------------------------------------------------
+$(".addon-to-cart").click(function(event){
+  event.preventDefault(); //Prevent the link doing the original behaviour
+  var id = $(this).attr("condition-id");
+  var name = $(this).attr("condition-name");
+  var price = Number($(this).attr("condition-price"));
+
+  addAddonToCart(id, name, price, 0);
+  displayAddonCart();
+});
+
+$("#clear_addon_cart").click(function(event){
+  clearAddonCart();
+  displayAddonCart();
+});
+
+function displayAddonCart() {
+  var cartArray = listAddonCart();
+  var output = "";
+  for(var i in cartArray) {
+    output +=
+    + "<dd>"
+    + cartArray[i].count
+    + " "+cartArray[i].name
+    + "<button class='delete-addon' data-id='"+cartArray[i].id+"'>X</button>"
+    + "</dd>"
+    + "<br>"
+
+  }
+  $("#total-cart").html(totalAddonCart());
+  return output;
+}
+
+// on() will listen to click when the identifier is not visible
+$(".show-cart").on("click",".delete-addon",function(event){
+  var id = $(this).attr("data-id");
+  removeAddonFromCartAll(id);
+  displayAddonCart();
+});
+
+// Add addon to Cart Javascript starts here
+var addon = []; // id, name, price, count
+
+var Addon = function(id, name, price, count){
+  this.id = id;
+  this.name = name;
+  this.price = price;
+  this.count = count;
+};
+
+function addAddonToCart(id, name, price, count){
+  console.log(addon);
+  for (var i in addon){
+    if (addon[i].id === id){
+      addon[i].count ++;
+      console.log(addon[i].count);
+      saveAddonCart();
+      return;
+    }
+  }
+  var item = new Addon(id, name, price, count);
+  addon.push(item);
+  saveAddonCart();
+}
+
+// Remove one item
+function removeAddonFromCart(id) {
+  for (var i in addon){
+    if (addon[i].id === id){
+      addon[i].count --;
+      if (cart[i].count ===0){
+        addon.splice(i, 1); // if 2, will remove first 2 item from cart
+      }
+      break;
+    }
+  }
+  saveAddonCart();
+}
+
+ // removes all item name
+function removeAddonFromCartAll(id){
+  for (var i in addon) {
+    if(addon[i].id === id){
+      addon.splice(i, 1);
+      break;
+    }
+  }
+  saveAddonCart();
+}
+
+function clearAddonCart(){
+  console.log("clearAddonCart");
+  addon = [];
+  saveAddonCart();
+}
+
+// return total count
+function countAddonCart() {
+  var totalCount = 0;
+  for (var i in addon) {
+    totalCount += cart[i].count;
+  }
+  return totalCount;
+}
+
+ // return total cost
+function totalAddonCart() {
+  var totalCost = 0;
+  for (var i in addon) {
+    totalCost += addon[i].price * addon[i].count;
+  }
+  return totalCost.toFixed(2);
+}
+
+// return array of Item
+function listAddonCart() {
+  var cartCopy = [];
+  for (var i in addon){
+    var item = addon[i];
+    var itemCopy = {};
+    for (var p in item){
+      itemCopy[p] = item[p];
+    }
+    cartCopy.push(itemCopy);
+  }
+  return cartCopy;
+}
+
+function saveAddonCart(){
+  // Javascript Object Notation, write object/array into string
+  localStorage.setItem("addonCart", JSON.stringify(addon));
+}
+
+function loadAddonCart() {
+  cart = JSON.parse(localStorage.getItem("addonCart"));
+}
+
+loadAddonCart();
+displayAddonCart();
