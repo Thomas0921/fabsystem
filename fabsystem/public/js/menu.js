@@ -1,47 +1,5 @@
-// JQuery function start here
-
-
 //---------------------------------------------------------------
 // food menu AJAX
-
-$(".click-cat").click(function(){
-   var id = $(this).attr("category_id");
-   $('.content').html("");
-         $.ajax({
-             type: 'POST',
-             url: '../controller/AJAXaddOn.php',
-             data: {id:id},
-             success: function (id) {
-                 $('.addon-tabs').html(id);
-             }
-         }, function(){
-           //This function is for unhover.
-        });
-        $.ajax({
-            type: 'POST',
-            url: '../controller/AJAXcategory.php',
-            data: {id:id},
-            success: function (id) {
-                $('.sub-tabs').html(id);
-            }
-        }, function(){
-          //This function is for unhover.
-       });
-});
-
-$(".click-subcat").click(function(){
-   var id = $(this).attr("subcategory_id");
-        $.ajax({
-            type: 'POST',
-            url: '../controller/AJAXsubcategory.php',
-            data: {id:id},
-            success: function (id) {
-                $('.content').html(id);
-            }
-        }, function(){
-          //This function is for unhover.
-       });
-});
 
 $(".hover-detail").hover(function(){
    var id = $(this).attr("data-id");
@@ -58,7 +16,9 @@ $(".hover-detail").hover(function(){
 });
 
 $(".hover-addon-detail").hover(function(){
-   var id = $(this).attr("data-id");
+  console.log("hello");
+   var id = $(this).attr("addon-id");
+   console.log(id);
        $.ajax({
            type: 'POST',
            url: '../controller/AJAXaddOnDetail.php',
@@ -72,7 +32,6 @@ $(".hover-addon-detail").hover(function(){
 });
 
 $(".hover-condition").hover(function(){
-  console.log("hello");
    var id = $(this).attr("data-id");
        $.ajax({
            type: 'POST',
@@ -146,7 +105,6 @@ function recalculateCheckbox(inside){
 // Minusing the oldValue before the oldValue is replace by newValue
 function recalculateInput(inside){
   $(".total-add input[type=number]").change(function(event) {
-      console.log("helow");
       latest = Number($("#total-cart").text());
       // take the old value from html tag
       oldValue = Number($(inside).attr('old-value'));
@@ -214,12 +172,14 @@ $(".add-to-cart").click(function(event){
   var name = $(this).attr("data-name");
   var price = Number($(this).attr("data-price"));
 
-  addItemToCart(id, name, price, 1);
+  addItemToCart(id, name, price, 1, null);
   displayCart();
+  console.log(cart);
 });
 
 $("#clear_cart").click(function(event){
   clearCart();
+  clearAddonCart();
   displayCart();
 });
 
@@ -231,11 +191,19 @@ function displayCart() {
     "<dl>"
     + "<dt>"
     + cartArray[i].count
-    + " "+cartArray[i].name
+    + " " + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
+
+    for(var p in cartArray[i].array){
+      output += "<dd>"
+      + (cartArray[i].array)[p].count
+      + " " + (cartArray[i].array)[p].name
+      + "<button class='delete-addon' data-id='"+ (cartArray[i].array)[p].id +"'>X</button>"
+      + "</dd>";
+    }
+
     + "</dt>"
-    + displayAddonCart();
-    +"</dl>"
+    +"</dl>";
   }
   $(".show-cart").html(output);
   $("#total-cart").html(totalCart());
@@ -251,25 +219,25 @@ $(".show-cart").on("click",".delete-item",function(event){
 // Add to Cart Javascript starts here
 var cart = []; // id, name, price, count
 
-var Item = function(id, name, price, count){
+var Item = function(id, name, price, count, array){
   this.id = id;
   this.name = name;
   this.price = price;
   this.count = count;
+  this.array = array;
 };
 
-function addItemToCart(id, name, price, count){
-  console.log(cart);
+function addItemToCart(id, name, price, count, array){
   for (var i in cart){
     if (cart[i].id === id){
       cart[i].count ++;
-      console.log(cart[i].count);
       saveCart();
       return;
     }
   }
-  var item = new Item(id, name, price, count);
+  var item = new Item(id, name, price, count, array);
   cart.push(item);
+  addon = [];
   saveCart();
 }
 
@@ -344,41 +312,30 @@ function loadCart() {
   cart = JSON.parse(localStorage.getItem("orderCart"));
 }
 
-loadCart();
-displayCart();
+
 
 //---------------------------------------------------------------
-$(".addon-to-cart").click(function(event){
+$(".addon-to-cart").unbind().click(function(event){
   event.preventDefault(); //Prevent the link doing the original behaviour
-  var id = $(this).attr("condition-id");
-  var name = $(this).attr("condition-name");
-  var price = Number($(this).attr("condition-price"));
+  var id = $(this).attr("addon-id");
+  var name = $(this).attr("addon-name");
+  var price = Number($(this).attr("addon-price"));
 
-  addAddonToCart(id, name, price, 0);
-  displayAddonCart();
+  if (cart.length == 0 ) {
+    addon = [];
+    saveAddonCart();
+    saveCart();
+  }else {
+    addAddonToCart(id, name, price, 1);
+    displayCart();
+    saveCart();
+  }
 });
 
 $("#clear_addon_cart").click(function(event){
-  clearAddonCart();
-  displayAddonCart();
+  clearAddonCartAll();
+  displayCart();
 });
-
-function displayAddonCart() {
-  var cartArray = listAddonCart();
-  var output = "";
-  for(var i in cartArray) {
-    output +=
-    + "<dd>"
-    + cartArray[i].count
-    + " "+cartArray[i].name
-    + "<button class='delete-addon' data-id='"+cartArray[i].id+"'>X</button>"
-    + "</dd>"
-    + "<br>"
-
-  }
-  $("#total-cart").html(totalAddonCart());
-  return output;
-}
 
 // on() will listen to click when the identifier is not visible
 $(".show-cart").on("click",".delete-addon",function(event){
@@ -398,17 +355,19 @@ var Addon = function(id, name, price, count){
 };
 
 function addAddonToCart(id, name, price, count){
-  console.log(addon);
+  var lastItemIndex = cart.length;
   for (var i in addon){
     if (addon[i].id === id){
       addon[i].count ++;
-      console.log(addon[i].count);
       saveAddonCart();
+      cart[lastItemIndex-1].array = addon;
       return;
     }
   }
   var item = new Addon(id, name, price, count);
   addon.push(item);
+  cart[lastItemIndex-1].array = addon;
+  displayCart();
   saveAddonCart();
 }
 
@@ -423,6 +382,7 @@ function removeAddonFromCart(id) {
       break;
     }
   }
+  displayCart();
   saveAddonCart();
 }
 
@@ -434,12 +394,20 @@ function removeAddonFromCartAll(id){
       break;
     }
   }
+  displayCart();
   saveAddonCart();
 }
 
 function clearAddonCart(){
-  console.log("clearAddonCart");
   addon = [];
+  saveCart();
+  saveAddonCart();
+}
+
+function clearAddonCartAll(){
+  for(var i in cart){
+    cart[i].array = null;
+  }
   saveAddonCart();
 }
 
@@ -463,16 +431,16 @@ function totalAddonCart() {
 
 // return array of Item
 function listAddonCart() {
-  var cartCopy = [];
+  var addonCopy = [];
   for (var i in addon){
     var item = addon[i];
     var itemCopy = {};
     for (var p in item){
       itemCopy[p] = item[p];
     }
-    cartCopy.push(itemCopy);
+    addonCopy.push(itemCopy);
   }
-  return cartCopy;
+  return addonCopy;
 }
 
 function saveAddonCart(){
@@ -481,8 +449,10 @@ function saveAddonCart(){
 }
 
 function loadAddonCart() {
-  cart = JSON.parse(localStorage.getItem("addonCart"));
+  addon = JSON.parse(localStorage.getItem("addonCart"));
 }
 
+loadCart();
 loadAddonCart();
-displayAddonCart();
+displayCart();
+console.log(cart);

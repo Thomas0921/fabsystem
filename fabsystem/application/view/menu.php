@@ -36,20 +36,96 @@
 
             if($result ->num_rows > 0){
               while($row = $result ->fetch_assoc()){
-                echo '<a class="click-cat" href="#" category_id='.$row['category_id'].'>'.$row['category_name'].'</a>';
+                echo '<a class="click-cat"
+                href="menu.php?category_id='.$row['category_id'].'"
+                >'.$row['category_name'].'</a>';
                 echo ' ';
               }
             }
            ?>
         </div>
         <div class="sub-tabs">
+          <?php
+          $output = '';
 
+          if(isset($_GET["category_id"])){
+            $sql = "SELECT food_subcategories.subcategory_id,
+            food_subcategories.subcategory_name,
+            food_categories.category_id,
+            food_categories.category_name
+            FROM food_subcategories JOIN food_categories
+            ON food_subcategories.category_id = food_categories.category_id
+            WHERE food_subcategories.category_id=".$_GET["category_id"];
+
+            $result = mysqli_query($conn, $sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                $output .= '<a class="click-subcat"
+                href="menu.php?subcategory_id='.$row['subcategory_id'].'&category_id='.$row['category_id'].'"
+                >'.$row['subcategory_name'].'</a>';
+                $output .=  ' ';
+              }
+              echo $output;
+            }
+           }
+           ?>
         </div>
         <div class="content">
+          <?php
+          $output = '';
 
+          if(isset($_GET["subcategory_id"])){
+            $sql = "SELECT foods.food_id,
+            foods.food_name,
+            foods.food_description,
+            foods.food_price,
+            food_subcategories.subcategory_id,
+            food_subcategories.subcategory_name
+            FROM foods JOIN food_subcategories ON
+            foods.subcategory_id = food_subcategories.subcategory_id
+            WHERE foods.subcategory_id=".$_GET['subcategory_id'];
+
+            $result = mysqli_query($conn, $sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                $output .= '<a class="add-to-cart hover-detail"
+                href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
+                $output .=  ' ';
+              }
+              echo $output;
+            }
+           }
+           ?>
         </div>
         <div class="addon-tabs">
+          <?php
+          $output = '';
 
+          if(isset($_GET["category_id"])){
+            $sql = "SELECT food_add_on.add_on_id,
+            food_add_on.add_on_name,
+            food_add_on.add_on_price
+            FROM food_add_on JOIN food_categories ON
+            food_add_on.category_id = food_categories.category_id
+            WHERE food_add_on.category_id=".$_GET["category_id"];
+
+            $result = mysqli_query($conn, $sql);
+
+            if($result ->num_rows > 0){
+              while($row = $result ->fetch_assoc()){
+                $output .= '<a class="addon-to-cart hover-addon-detail" href="#"
+                addon-id='.$row['add_on_id'].'
+                addon-name="'.$row['add_on_name'].'"
+                addon-price='.$row['add_on_price'].'
+                >'.$row['add_on_name'].'</a>';
+                $output .=  ' ';
+              }
+              echo $output;
+            }
+           }
+           ?>
         </div>
       </div>
       <div class="">
