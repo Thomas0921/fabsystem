@@ -24,7 +24,7 @@
       </div>
       <button type="button" id="clear_cart">Clear Cart</button>
       <button type="button" id="clear_addon_cart">Clear Add on Cart</button>
-      <button type="button" id="send_to_kitchent">Send To Kitchen</button>
+      <button type="submit" name="send_to_kitchen" id="send_to_kitchen">Send To Kitchen</button>
     </div>
     <div class="food-box" style="background-color: rgb(237, 236, 106);">
       <h1>Food Menu</h1>
@@ -142,9 +142,8 @@
             </div>
             <div class="popup-content">
               <div class="edit-box">
-                <button class="btn-add" type="button" name="button">Add</button>
-                <button class="btn-edit" type="button" name="button">Edit</button>
-                <button class="btn-delete" type="button" name="button">Delete</button>
+                <button class="btn-new-food" type="button" name="button">New Food</button>
+                <button class="btn-new-addon" type="button" name="button">New Add On</button>
               </div>
               <h2>Add food to your menu</h2>
               <form class="form-add-food" action="" method="post">
@@ -217,7 +216,8 @@
           <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
         </div>
       </form>
-      <h2>Total: RM<span id="total-cart"></span></h2>
+
+      <h2>Total: RM<input type="text" id="total-cart" name="total_cost" disabled></h2>
 
       <button class="btn-edit-cus" type="button" name="button">Pencil</button>
       <div class="popup-bg-cus">
@@ -233,7 +233,7 @@
             </div>
             <h2>Condition to your delivery</h2>
             <form class="form-add-food-cus" action="" method="post">
-              <input list="datalist-con" placeholder="Condition Name" id="datalist-con-id">
+              <input list="datalist-con" name="" placeholder="Condition Name" id="datalist-con-id">
               <datalist id="datalist-con">
                 <?php
                   $sql = "SELECT * FROM food_condition";

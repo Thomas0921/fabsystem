@@ -15,20 +15,20 @@ $(".hover-detail").hover(function(){
       });
 });
 
-$(".hover-addon-detail").hover(function(){
-  console.log("hello");
-   var id = $(this).attr("addon-id");
-   console.log(id);
-       $.ajax({
-           type: 'POST',
-           url: '../controller/AJAXaddOnDetail.php',
-           data: {id:id},
-           success: function (id) {
-               $('.show-description').html(id);
-           }
-       }, function(){
-         //This function is for unhover.
-      });
+$(function(){
+  $(".hover-addon-detail").hover(function(){
+     var id = $(this).attr("addon-id");
+         $.ajax({
+             type: 'POST',
+             url: '../controller/AJAXaddOnDetail.php',
+             data: {id:id},
+             success: function (id) {
+                 $('.show-description').html(id);
+             }
+         }, function(){
+           //This function is for unhover.
+        });
+  });
 });
 
 $(".hover-condition").hover(function(){
@@ -86,11 +86,11 @@ $(function() {
 // Customer form Javascript
 
 function updateTotal(data){
-  $("#total-cart").html(data);
+  $("#total-cart").val(data);
 }
 
 function recalculateCheckbox(inside){
-      var latest = Number($("#total-cart").text());
+      var latest = Number($("#total-cart").val());
       var sum = Number(latest);
       var value = Number($(inside).attr("condition-price"));
 
@@ -105,7 +105,7 @@ function recalculateCheckbox(inside){
 // Minusing the oldValue before the oldValue is replace by newValue
 function recalculateInput(inside){
   $(".total-add input[type=number]").change(function(event) {
-      latest = Number($("#total-cart").text());
+      latest = Number($("#total-cart").val());
       // take the old value from html tag
       oldValue = Number($(inside).attr('old-value'));
       // minus the oldvalue from total first
@@ -123,7 +123,7 @@ function recalculateInput(inside){
 function recalculateInputMinus(inside){
   $(".total-minus input[type=number]").change(function(event) {
 
-      latest = Number($("#total-cart").text());
+      latest = Number($("#total-cart").val());
       // take the old value from html tag
       oldValue = Number($(inside).attr('old-value'));
       // minus the oldvalue from total first
@@ -162,7 +162,7 @@ $("#checkbox_others_cost").change(function(){
     } else {
       $("#others_cost").prop("disabled", (_, val) => !val);
     }
-    updateTotal($("#total-cart").text());
+    updateTotal($("#total-cart").val());
 });
 
 //---------------------------------------------------------------
@@ -210,7 +210,7 @@ function displayCart() {
     +"</dl>";
   }
   $(".show-cart").html(output);
-  $("#total-cart").html(totalCart());
+  $("#total-cart").val(totalCart());
 }
 
 // on() will listen to click when the identifier is not visible
@@ -461,4 +461,3 @@ function loadAddonCart() {
 loadCart();
 loadAddonCart();
 displayCart();
-console.log(cart);
