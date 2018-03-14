@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2018 at 09:16 AM
+-- Generation Time: Mar 14, 2018 at 08:34 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -168,6 +168,7 @@ INSERT INTO `food_subcategories` (`subcategory_id`, `subcategory_name`, `categor
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
+  `order_content` varchar(255) NOT NULL,
   `order_time` datetime NOT NULL,
   `delivery_time` datetime NOT NULL,
   `order_gross` decimal(6,2) NOT NULL,
