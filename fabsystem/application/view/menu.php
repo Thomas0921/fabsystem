@@ -91,7 +91,10 @@
             if($result ->num_rows > 0){
               while($row = $result ->fetch_assoc()){
                 $output .= '<a class="add-to-cart hover-detail"
-                href="#" data-id="'.$row['food_id'].'" data-name="'.$row['food_name'].'" data-price="'.$row['food_price'].'" >'.$row['food_name'].'</a>';
+                href="#" data-id="'.$row['food_id'].'"
+                data-name="'.$row['food_name'].'"
+                data-price="'.$row['food_price'].'"
+                >'.$row['food_name'].'</a>';
                 $output .=  ' ';
               }
               echo $output;
@@ -106,7 +109,8 @@
           if(isset($_GET["category_id"])){
             $sql = "SELECT food_add_on.add_on_id,
             food_add_on.add_on_name,
-            food_add_on.add_on_price
+            food_add_on.add_on_price,
+            food_add_on.category_id
             FROM food_add_on JOIN food_categories ON
             food_add_on.category_id = food_categories.category_id
             WHERE food_add_on.category_id=".$_GET["category_id"];
@@ -119,6 +123,7 @@
                 addon-id='.$row['add_on_id'].'
                 addon-name="'.$row['add_on_name'].'"
                 addon-price='.$row['add_on_price'].'
+                category-id = '.$row['category_id'].'
                 >'.$row['add_on_name'].'</a>';
                 $output .=  ' ';
               }

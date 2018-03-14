@@ -171,10 +171,12 @@ $(".add-to-cart").click(function(event){
   var id = $(this).attr("data-id");
   var name = $(this).attr("data-name");
   var price = Number($(this).attr("data-price"));
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var catID = url.searchParams.get("category_id");
 
-  addItemToCart(id, name, price, 1, null);
+  addItemToCart(id, name, price, 1, null, catID);
   displayCart();
-  console.log(cart);
 });
 
 $("#clear_cart").click(function(event){
@@ -194,12 +196,14 @@ function displayCart() {
     + " " + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
 
-    for(var p in cartArray[i].array){
-      output += "<dd>"
-      + (cartArray[i].array)[p].count
-      + " " + (cartArray[i].array)[p].name
-      + "<button class='delete-addon' data-id='"+ (cartArray[i].array)[p].id +"'>X</button>"
-      + "</dd>";
+    if(cartArray[i].array != null){
+      for(var p in cartArray[i].array){
+        output += "<dd>"
+        + (cartArray[i].array)[p].count
+        + " " + (cartArray[i].array)[p].name
+        + "<button class='delete-addon' cat-id='"+cartArray[i].id+"' addon-id='"+ (cartArray[i].array)[p].id +"'>X</button>"
+        + "</dd>";
+      }
     }
 
     + "</dt>"
@@ -219,15 +223,16 @@ $(".show-cart").on("click",".delete-item",function(event){
 // Add to Cart Javascript starts here
 var cart = []; // id, name, price, count
 
-var Item = function(id, name, price, count, array){
+var Item = function(id, name, price, count, array, catID){
   this.id = id;
   this.name = name;
   this.price = price;
   this.count = count;
   this.array = array;
+  this.catID = catID;
 };
 
-function addItemToCart(id, name, price, count, array){
+function addItemToCart(id, name, price, count, array, catID){
   for (var i in cart){
     if (cart[i].id === id){
       cart[i].count ++;
@@ -235,7 +240,7 @@ function addItemToCart(id, name, price, count, array){
       return;
     }
   }
-  var item = new Item(id, name, price, count, array);
+  var item = new Item(id, name, price, count, array, catID);
   cart.push(item);
   addon = [];
   saveCart();
@@ -263,6 +268,7 @@ function removeItemFromCartAll(id){
       break;
     }
   }
+  addon = [];
   saveCart();
 }
 
@@ -283,9 +289,13 @@ function countCart() {
  // return total cost
 function totalCart() {
   var totalCost = 0;
+  var totalAddonCost = 0;
   for (var i in cart) {
     totalCost += cart[i].price * cart[i].count;
+    for (var p in cart[i].array)
+    totalAddonCost += (cart[i].array)[p].price * (cart[i].array)[p].count;
   }
+  totalCost += totalAddonCost;
   return totalCost.toFixed(2);
 }
 
@@ -320,8 +330,15 @@ $(".addon-to-cart").unbind().click(function(event){
   var id = $(this).attr("addon-id");
   var name = $(this).attr("addon-name");
   var price = Number($(this).attr("addon-price"));
+  var cat_id = $(this).attr("category-id");
+  var lastItemIndex = cart.length - 1;
 
   if (cart.length == 0 ) {
+    addon = [];
+    saveAddonCart();
+    saveCart();
+    // doesnt allow add on from other food category
+  }else if (cart[lastItemIndex].catID != cat_id){
     addon = [];
     saveAddonCart();
     saveCart();
@@ -339,9 +356,19 @@ $("#clear_addon_cart").click(function(event){
 
 // on() will listen to click when the identifier is not visible
 $(".show-cart").on("click",".delete-addon",function(event){
-  var id = $(this).attr("data-id");
-  removeAddonFromCartAll(id);
-  displayAddonCart();
+  var catID = $(this).attr("cat-id");
+  var addonID = $(this).attr("addon-id");
+  for (var i in cart){
+    if(cart[i].id == catID){
+      for (var p in cart[i].array){
+        if((cart[i].array)[p].id == addonID){
+          (cart[i].array).splice(p,1);
+        }
+      }
+    }
+  }
+  displayCart();
+  saveCart();
 });
 
 // Add addon to Cart Javascript starts here
@@ -386,18 +413,6 @@ function removeAddonFromCart(id) {
   saveAddonCart();
 }
 
- // removes all item name
-function removeAddonFromCartAll(id){
-  for (var i in addon) {
-    if(addon[i].id === id){
-      addon.splice(i, 1);
-      break;
-    }
-  }
-  displayCart();
-  saveAddonCart();
-}
-
 function clearAddonCart(){
   addon = [];
   saveCart();
@@ -418,15 +433,6 @@ function countAddonCart() {
     totalCount += cart[i].count;
   }
   return totalCount;
-}
-
- // return total cost
-function totalAddonCart() {
-  var totalCost = 0;
-  for (var i in addon) {
-    totalCost += addon[i].price * addon[i].count;
-  }
-  return totalCost.toFixed(2);
 }
 
 // return array of Item
