@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2018 at 08:34 AM
+-- Generation Time: Mar 14, 2018 at 08:41 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -34,6 +34,14 @@ CREATE TABLE `customers` (
   `customer_address` varchar(100) NOT NULL,
   `customer_contact` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `customer_contact`) VALUES
+(1, 'Tan', 'Jalan Joget 7', '0143144171'),
+(2, 'Ong', 'Jalan Jasa 1', '0147896523');
 
 -- --------------------------------------------------------
 
@@ -178,6 +186,19 @@ CREATE TABLE `orders` (
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `order_content`, `order_time`, `delivery_time`, `order_gross`, `order_discount`, `order_delivery`, `rider_id`, `status_id`) VALUES
+(1, 1, '', '2018-03-13 09:23:00', '2018-03-13 10:33:00', '50.00', '5.00', '10.00', 1, 1),
+(2, 2, '', '2018-03-13 11:32:00', '2018-03-13 14:25:00', '50.00', '12.00', '5.00', 2, 2),
+(3, 2, '', '2018-03-13 22:21:59', '2018-03-13 22:21:59', '100.00', '10.00', '50.00', 1, 3),
+(4, 2, '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '40.00', '12.00', '55.00', 2, 4),
+(5, 1, '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '50.00', '5.00', '10.00', 1, 5),
+(6, 1, '', '2018-03-14 11:42:23', '2018-03-14 11:42:23', '45.00', '5.00', '13.00', 2, 2),
+(7, 1, '', '2018-03-14 11:49:06', '2018-03-14 11:49:06', '100.00', '5.00', '10.00', 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -211,6 +232,14 @@ CREATE TABLE `riders` (
   `rider_name` varchar(50) NOT NULL,
   `rider_earned` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `riders`
+--
+
+INSERT INTO `riders` (`rider_id`, `rider_name`, `rider_earned`) VALUES
+(1, 'David', '0.00'),
+(2, 'James', '0.00');
 
 -- --------------------------------------------------------
 
@@ -315,7 +344,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -351,7 +380,7 @@ ALTER TABLE `food_subcategories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -363,7 +392,7 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `riders`
 --
 ALTER TABLE `riders`
-  MODIFY `rider_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
