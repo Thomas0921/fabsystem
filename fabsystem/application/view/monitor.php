@@ -1,6 +1,6 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "fabsystem");
-$query = "SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id JOIN customers on orders.customer_id = customers.customer_id JOIN order_status on orders.status_id = order_status.status_id order by order_time DESC";
+$query = "SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id JOIN order_status on orders.status_id = order_status.status_id order by order_time DESC";
 $result = mysqli_query($connect, $query);
 
 ?>
@@ -9,11 +9,10 @@ $result = mysqli_query($connect, $query);
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Display</title>
+    <title>Monitor</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
   </head>
   <body>
     <div  class="container" style="width:100% ;" >
@@ -31,6 +30,11 @@ $result = mysqli_query($connect, $query);
         <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
       </div>
       </div>
+      <form action="/fetch.php">
+        Date:
+      <input type="date" name="date">
+      <input type="submit">
+      </form>
 
     <br />
     <div id="result"></div>
@@ -52,6 +56,7 @@ $result = mysqli_query($connect, $query);
             <th width="5%">Rider</th>
             <th width="5%">Status</th>
           </thead></tr>
+          <span id="val"></span>
 
 
           <?php
@@ -69,9 +74,10 @@ $result = mysqli_query($connect, $query);
              <th><?php echo $row['order_gross'] ;?></th>
              <th><?php echo $row['order_discount'] ;?></th>
              <th><?php echo $row['order_delivery'] ;?></th>
-             <th><?php echo $nett= $row['order_delivery']+$row['order_gross']-$row['order_discount'];?></th>
+             <th class="nettSum"><?php echo $nett= $row['order_delivery']+$row['order_gross']-$row['order_discount'];?></th>
              <th><?php echo $row['rider_name'] ;?></th>
-              <td><?php echo $row['status_id'] ;?></td>
+              <td hidden><?php echo $row['status_id'] ;?></td>
+              <th><?php echo $row['status_name'] ;?></th>
            </tr>
 
            <?php
@@ -107,11 +113,7 @@ $result = mysqli_query($connect, $query);
 <script>
 
 
-  $(document).ready(function(){
-    setInterval(function() {
-      $(this).load('display.php')
-    }, 3000);
-  });
+
 /*
     $(document).ready(function(){
     $('.view_data').click(function(){
@@ -153,7 +155,7 @@ $result = mysqli_query($connect, $query);
       // load search result and hide table
      load_data(search);
      $("#first").hide();
-       
+
     }
     else
     {
@@ -186,7 +188,11 @@ $result = mysqli_query($connect, $query);
            }
          });
      });
+     var sum = 0;
+     $('#first .nettSum').each(function()
+      {
+        sum += parseInt($(this).html());
 
-
+      });
 
 </script>

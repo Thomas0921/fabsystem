@@ -5,7 +5,7 @@ if(isset($_POST["query"]))
 {
  $search = mysqli_real_escape_string($connect, $_POST["query"]);
  $query = "
-               SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id JOIN customers on orders.customer_id = customers.customer_id JOIN order_status on orders.status_id = order_status.status_id
+               SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id JOIN order_status on orders.status_id = order_status.status_id
                WHERE order_id LIKE '%".$search."%'
                OR order_id LIKE '%".$search."%'
                OR customer_name LIKE '%".$search."%'
@@ -59,7 +59,8 @@ if(isset($_POST["query"]))
              <td>'.$row["order_delivery"].'</td>
              <td>'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
              <td>'.$row["rider_name"].'</td>
-             <th>'.$row["status_id"].'</th>
+             <th hidden>'.$row["status_id"].'</th>
+             <td>'.$row["status_name"].'</td>
             </tr>
             ';
            }
