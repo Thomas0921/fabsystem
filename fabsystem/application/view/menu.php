@@ -141,17 +141,23 @@
               <p>X</p>
             </div>
             <div class="popup-content">
-              
+
               <div class="edit-box">
                 <button class="btn-new-food" type="button" name="button">New Food</button>
                 <button class="btn-new-addon" type="button" name="button">New Add On</button>
               </div>
 
               <div class="add_food_div" style="">
-                <h2>Add food to your menu</h2>
+                <div class="search_containter">
+                  <h5>Search the food you want to change</h5>
+                  <input class="searchFood" list="datalist_search" type="datalist" name="" value="">
+                  <datalist class="datalist_searchFood" id="datalist_search">
+
+                  </datalist>
+                </div>
                 <form class="form-add-food" action="../controller/menuSendOrder.php" method="post">
                   <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
-                  <datalist id="datalist-cat">
+                  <datalist class="datalist_searchFood" id="datalist-cat">
                     <?php
                       $sql = "SELECT * FROM food_categories";
                       $result = mysqli_query($conn, $sql);
@@ -180,7 +186,24 @@
               </div>
 
               <div class="add_addon_div" hidden>
-                <h2>Add add on to your category</h2>
+                <div class="search_containter">
+                  <h5>Search the add on you want to change</h5>
+                  <input class="searchAddon" list="datalist_search_addon" type="datalist" name="" value="">
+                  <datalist class="datalist_searchAddon" id="datalist_search_addon">
+                    <?php
+                    $sql = "SELECT * FROM food_add_on";
+                    $result = mysqli_query($conn, $sql);
+
+                    if($result ->num_rows > 0){
+                      while($row = $result ->fetch_assoc()){
+                        echo '<option value="'.$row['add_on_name'].'" data-id="'.$row['add_on_id'].'"></option>';
+                        echo ' ';
+                      }
+                    }
+                     ?>
+                  </datalist>
+                  <h6 class="notice"></h6>
+                </div>
                 <form class="form-add-addon" action="../controller/menuSendOrder.php" method="post" >
                   <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
                   <datalist id="datalist-cat">
@@ -245,9 +268,8 @@
           <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
           <input id="hidden_order" type="text" name="order_content" required>
         </div>
+        <h2>Total: RM<input type="text" id="total-cart" name="total_cost" ></h2>
       </form>
-
-      <h2>Total: RM<input type="text" id="total-cart" name="total_cost" disabled></h2>
 
       <button class="btn-edit-cus" type="button" name="button">Pencil</button>
       <div class="popup-bg-cus">

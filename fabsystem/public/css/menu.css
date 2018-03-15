@@ -1,3 +1,8 @@
+
+.searchFood::-webkit-calendar-picker-indicator, .searchAddon::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 /**************************************************************/
 /* Pop up form food-box */
 
@@ -43,7 +48,14 @@
 
 .form-add-food, .form-add-addon {
   position: absolute;
-  top: 100px;
+  top: 145px;
+  left: 50px;
+  font-size: 18px;
+}
+
+.search_containter {
+  position: absolute;
+  top: 45px;
   left: 50px;
   font-size: 18px;
 }

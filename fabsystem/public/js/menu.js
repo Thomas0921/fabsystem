@@ -45,6 +45,49 @@ $(".hover-condition").hover(function(){
       });
 });
 //---------------------------------------------------------------
+// search AJAX
+
+$(".searchFood").keyup(function(){
+   var name = $(this).val();
+
+       $.ajax({
+           type: 'POST',
+           url: '../controller/AJAXmenuSearchFood.php',
+           data: {name:name},
+           success: function (id) {
+               $('.datalist_searchFood').html(id);
+           }
+       }, function(){
+         //This function is for unhover.
+      });
+});
+
+
+$(".searchAddon").change(function(){
+  var opt = $('option[value="'+$(this).val()+'"]');
+  var id = opt.attr('data-id');
+  if(id == undefined ){
+    $('.notice').html("* No record found");
+  }else if ($(this).val() == "") {
+    console.log("empty");
+    $('.notice').html("* Please insert a value");
+  }else{
+    $('.notice').html("");
+    console.log(id)
+         $.ajax({
+             type: 'POST',
+             url: '../controller/AJAXmenuFillAddon.php',
+             data: {id:id},
+             success: function (id) {
+                 $('.show-description').html(id);
+             }
+         }, function(){
+           //This function is for unhover.
+        });
+  }
+});
+
+//---------------------------------------------------------------
 // edit box
 $(".btn-edit").click(function(){
   $(".popup-bg").show();
