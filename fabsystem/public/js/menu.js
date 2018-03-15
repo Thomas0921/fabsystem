@@ -63,6 +63,18 @@ $(".close-popup-cus").click(function(){
 });
 
 //---------------------------------------------------------------
+// pop up form change tab
+$('.btn-new-food').on("click", function(){
+  $('.add_food_div').show();
+  $('.add_addon_div').hide();
+});
+
+$('.btn-new-addon').on("click", function(){
+  $('.add_food_div').hide();
+  $('.add_addon_div').show();
+});
+
+//---------------------------------------------------------------
 // add food form pop up
 
 $(function() {
@@ -210,6 +222,7 @@ function displayCart() {
     +"</dl>";
   }
   $(".show-cart").html(output);
+  $("#hidden_order").val(output);
   $("#total-cart").val(totalCart());
 }
 

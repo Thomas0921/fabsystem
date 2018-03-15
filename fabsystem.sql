@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2018 at 08:41 AM
+-- Generation Time: Mar 15, 2018 at 04:26 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -175,13 +175,16 @@ INSERT INTO `food_subcategories` (`subcategory_id`, `subcategory_name`, `categor
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `order_content` varchar(255) NOT NULL,
+  `customer_name` varchar(50) NOT NULL,
+  `customer_contact` varchar(50) NOT NULL,
+  `customer_address` varchar(100) NOT NULL,
+  `order_content` text NOT NULL,
   `order_time` datetime NOT NULL,
   `delivery_time` datetime NOT NULL,
   `order_gross` decimal(6,2) NOT NULL,
   `order_discount` decimal(6,2) NOT NULL,
   `order_delivery` decimal(6,2) NOT NULL,
+  `bill_no` varchar(50) NOT NULL,
   `rider_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -190,14 +193,17 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `customer_id`, `order_content`, `order_time`, `delivery_time`, `order_gross`, `order_discount`, `order_delivery`, `rider_id`, `status_id`) VALUES
-(1, 1, '', '2018-03-13 09:23:00', '2018-03-13 10:33:00', '50.00', '5.00', '10.00', 1, 1),
-(2, 2, '', '2018-03-13 11:32:00', '2018-03-13 14:25:00', '50.00', '12.00', '5.00', 2, 2),
-(3, 2, '', '2018-03-13 22:21:59', '2018-03-13 22:21:59', '100.00', '10.00', '50.00', 1, 3),
-(4, 2, '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '40.00', '12.00', '55.00', 2, 4),
-(5, 1, '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '50.00', '5.00', '10.00', 1, 5),
-(6, 1, '', '2018-03-14 11:42:23', '2018-03-14 11:42:23', '45.00', '5.00', '13.00', 2, 2),
-(7, 1, '', '2018-03-14 11:49:06', '2018-03-14 11:49:06', '100.00', '5.00', '10.00', 1, 3);
+INSERT INTO `orders` (`order_id`, `customer_name`, `customer_contact`, `customer_address`, `order_content`, `order_time`, `delivery_time`, `order_gross`, `order_discount`, `order_delivery`, `bill_no`, `rider_id`, `status_id`) VALUES
+(1, '1', '', '', '', '2018-03-13 09:23:00', '2018-03-13 10:33:00', '50.00', '5.00', '10.00', '', 1, 1),
+(2, '2', '', '', '', '2018-03-13 11:32:00', '2018-03-13 14:25:00', '50.00', '12.00', '5.00', '', 2, 2),
+(3, '2', '', '', '', '2018-03-13 22:21:59', '2018-03-13 22:21:59', '100.00', '10.00', '50.00', '', 1, 3),
+(4, '2', '', '', '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '40.00', '12.00', '55.00', '', 2, 4),
+(5, '1', '', '', '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '50.00', '5.00', '10.00', '', 1, 5),
+(6, '1', '', '', '', '2018-03-14 11:42:23', '2018-03-14 11:42:23', '45.00', '5.00', '13.00', '', 2, 2),
+(7, '1', '', '', '', '2018-03-14 11:49:06', '2018-03-14 11:49:06', '100.00', '5.00', '10.00', '', 1, 3),
+(8, 'thomas', '021-5523657', 'No lala, jalan jasa 3', 'lalalalalalalllllllllllllllllllll', '2018-03-14 18:53:21', '2018-03-21 10:09:08', '56.50', '2.00', '4.00', 'JP4412', 1, 1),
+(9, 'thomas', '021-5523657', 'No lala, jalan jasa 3', 'lalalalalalalllllllllllllllllllll', '2018-03-14 18:56:51', '2018-03-21 10:09:08', '56.50', '2.00', '4.00', 'JP4412', 1, 1),
+(10, 'jason', '02155756', 'lala', 'jdhnc', '2018-03-14 23:04:24', '0000-00-00 00:00:00', '56.20', '2.00', '4.00', 'JBlalala', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -229,17 +235,16 @@ INSERT INTO `order_status` (`status_id`, `status_name`) VALUES
 
 CREATE TABLE `riders` (
   `rider_id` int(11) NOT NULL,
-  `rider_name` varchar(50) NOT NULL,
-  `rider_earned` decimal(6,2) NOT NULL
+  `rider_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `riders`
 --
 
-INSERT INTO `riders` (`rider_id`, `rider_name`, `rider_earned`) VALUES
-(1, 'David', '0.00'),
-(2, 'James', '0.00');
+INSERT INTO `riders` (`rider_id`, `rider_name`) VALUES
+(1, 'not yet'),
+(2, 'James');
 
 -- --------------------------------------------------------
 
@@ -314,7 +319,6 @@ ALTER TABLE `food_subcategories`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
-  ADD KEY `customer_id` (`customer_id`),
   ADD KEY `rider_id` (`rider_id`),
   ADD KEY `status_id` (`status_id`);
 
@@ -380,7 +384,7 @@ ALTER TABLE `food_subcategories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -426,7 +430,6 @@ ALTER TABLE `food_subcategories`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`rider_id`) REFERENCES `riders` (`rider_id`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`);
 COMMIT;

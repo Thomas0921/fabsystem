@@ -24,7 +24,7 @@
       </div>
       <button type="button" id="clear_cart">Clear Cart</button>
       <button type="button" id="clear_addon_cart">Clear Add on Cart</button>
-      <button type="submit" name="send_to_kitchen" id="send_to_kitchen">Send To Kitchen</button>
+      <button type="submit" name="send_to_kitchen" id="send_to_kitchen" form="customer-form-id" >Send To Kitchen</button>
     </div>
     <div class="food-box" style="background-color: rgb(237, 236, 106);">
       <h1>Food Menu</h1>
@@ -141,39 +141,67 @@
               <p>X</p>
             </div>
             <div class="popup-content">
+              
               <div class="edit-box">
                 <button class="btn-new-food" type="button" name="button">New Food</button>
                 <button class="btn-new-addon" type="button" name="button">New Add On</button>
               </div>
-              <h2>Add food to your menu</h2>
-              <form class="form-add-food" action="" method="post">
-                <input list="datalist-cat" placeholder="Category Name" id="datalist-cat-id">
-                <datalist id="datalist-cat">
-                  <?php
-                    $sql = "SELECT * FROM food_categories";
-                    $result = mysqli_query($conn, $sql);
 
-                    if($result ->num_rows > 0){
-                      while($row = $result ->fetch_assoc()){
-                        echo '<option value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
-                        echo ' ';
+              <div class="add_food_div" style="">
+                <h2>Add food to your menu</h2>
+                <form class="form-add-food" action="../controller/menuSendOrder.php" method="post">
+                  <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
+                  <datalist id="datalist-cat">
+                    <?php
+                      $sql = "SELECT * FROM food_categories";
+                      $result = mysqli_query($conn, $sql);
+
+                      if($result ->num_rows > 0){
+                        while($row = $result ->fetch_assoc()){
+                          echo '<option value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
+                          echo ' ';
+                        }
                       }
-                    }
-                   ?>
-                </datalist>
-                <button type="button" name="button">+</button>
-                <button type="button" name="button">-</button><br>
-                <input list="datalist-subcat" placeholder="Subcategory Name">
-                <datalist id="datalist-subcat" class="ajax-subcat">
+                     ?>
+                  </datalist>
+                  <button type="submit" name="add_category" onclick="return  confirm('do you want to add? Y/N')">+</button>
+                  <button type="submit" name="minus_category" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
+                  <input list="datalist-subcat" placeholder="Subcategory Name">
+                  <datalist id="datalist-subcat" class="ajax-subcat">
 
-                </datalist>
-                <button type="button" name="button">+</button>
-                <button type="button" name="button">-</button><br>
-                <input type="text" name="" value="" placeholder="Food Name"><br>
-                <textarea name="name" rows="5" cols="26" placeholder="Description"></textarea><br>
-                <input type="number" name="" value="" min="0" step="0.01" placeholder="Price"><br>
-                <button type="submit" name="btn-add-food">Add</button><br>
-              </form>
+                  </datalist>
+                  <button type="button" name="button">+</button>
+                  <button type="button" name="button">-</button><br>
+                  <input type="text" name="" value="" placeholder="Food Name"><br>
+                  <textarea name="name" rows="5" cols="26" placeholder="Description"></textarea><br>
+                  <input type="number" name="" value="" min="0" step="0.01" placeholder="Price"><br>
+                  <button type="submit" name="btn-add-food">Add</button><br>
+                </form>
+              </div>
+
+              <div class="add_addon_div" hidden>
+                <h2>Add add on to your category</h2>
+                <form class="form-add-addon" action="../controller/menuSendOrder.php" method="post" >
+                  <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
+                  <datalist id="datalist-cat">
+                    <?php
+                      $sql = "SELECT * FROM food_categories";
+                      $result = mysqli_query($conn, $sql);
+
+                      if($result ->num_rows > 0){
+                        while($row = $result ->fetch_assoc()){
+                          echo '<option value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
+                          echo ' ';
+                        }
+                      }
+                     ?>
+                  </datalist>
+                  <input type="text" name="addon_name" value="" placeholder="Addon Name"><br>
+                  <textarea name="addon_description" rows="5" cols="26" placeholder="Description"></textarea><br>
+                  <input type="number" name="addon_price" value="" min="0" step="0.01" placeholder="Price"><br>
+                  <button type="submit" name="btn-add-addon">Add</button><br>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -188,16 +216,17 @@
     </div>
     <div class="customer-box" style="background-color: rgb(125, 213, 156);">
       <h1>Customer's Detail</h1>
-      <form class="customer-form" action="index.html" method="post">
-        <input type="text" name="name" value="" placeholder="Name"><br>
-        <input type="text" name="contact" value="" placeholder="Contact"><br>
-        <input type="text" name="address" value="" placeholder="Address"><br>
+      <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
+        <input type="text" name="name" value="" placeholder="Name" required><br>
+        <input type="text" name="contact" value="" placeholder="Contact" required><br>
+        <input type="text" name="address" value="" placeholder="Address" required><br>
         <div class="total-minus">
-          <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount">
+          <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount" required>
         </div>
         <div class="total-add">
-          <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost">
+          <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost" required>
         </div>
+        <input type="text" name="bill_no" value="" placeholder="bill_no" required><br>
         <div class="checkbox-condition">
           <?php
             $sql = "SELECT * FROM food_condition";
@@ -214,6 +243,7 @@
         <div class="total-add">
           <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
           <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
+          <input id="hidden_order" type="text" name="order_content" required>
         </div>
       </form>
 

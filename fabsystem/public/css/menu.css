@@ -41,7 +41,7 @@
   top: 15px;
 }
 
-.form-add-food {
+.form-add-food, .form-add-addon {
   position: absolute;
   top: 100px;
   left: 50px;
