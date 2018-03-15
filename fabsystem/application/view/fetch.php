@@ -1,69 +1,76 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <?php
-$connect = mysqli_connect("localhost", "root", "", "fabsystem");
+
+$conn = mysqli_connect("localhost", "root", "", "fabsystem");
 $output ='';
-if(isset($_POST["query"]))
+if(isset($_POST["query"]) && isset($_POST["date"]))
 {
- $search = mysqli_real_escape_string($connect, $_POST["query"]);
+ $search = mysqli_real_escape_string($conn, $_POST["query"]);
+ $date = mysqli_real_escape_string($conn, $_POST["date"]);
  $query = "
                SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id JOIN order_status on orders.status_id = order_status.status_id
-               WHERE order_id LIKE '%".$search."%'
-               OR order_id LIKE '%".$search."%'
-               OR customer_name LIKE '%".$search."%'
-               OR customer_address LIKE '%".$search."%'
-               OR order_time LIKE '%".$search."%'
-               OR delivery_time LIKE '%".$search."%'
-               OR order_gross LIKE '%".$search."%'
-               OR order_discount LIKE '%".$search."%'
-               OR order_delivery LIKE '%".$search."%'
-               OR rider_name LIKE '%".$search."%'
-               OR status_name LIKE '%".$search."%'
+               WHERE (order_id LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (customer_name LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (customer_address LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (order_gross LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (order_discount LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (order_delivery LIKE '%".$search."%' AND order_time LIKE '%".$date."%' )
+               OR (rider_name LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (status_name LIKE '%".$search."%' AND order_time LIKE '%".$date."%') order by order_time desc
             ";
 
           }
-          $result = mysqli_query($connect, $query);
+          $result = mysqli_query($conn, $query);
           if($result ->num_rows > 0)
           {
            $output .= '
             <div class="table-responsive">
-             <table class="table table bordered">
+             <table id="first" class="table table bordered">
+             <thead>
              <tr>
-             <th>ID</th>
-             <th>OrderNo</th>
-             <th>Name</th>
-             <th>Address</th>
-             <th>OrderTime</th>
-             <th>DeliveryTime</th>
-             <th>Nett</th>
-             <th>Gross</th>
-             <th>Disc</th>
-             <th>Delivery</th>
-             <th>Nett</th>
-             <th>Rider</th>
-             <th>Status</th>
-             </tr>
+             <th width="5%">ID</th>
+             <th width="5%">OrderID</th>
+             <th width="5%">Name</th>
+             <th width="20%">Address</th>
+             <th width="5%">OrderTime</th>
+             <th width="5%">DeliveryTime</th>
+             <th width="5%">Duration</th>
+             <th width="5%">Gross(RM)</th>
+             <th width="5%">Disc(RM)</th>
+             <th width="5%">Delivery(RM)</th>
+             <th width="5%">Nett(RM)</th>
+             <th width="5%">Rider</th>
+             <th width="5%">Status</th>
+             </tr></thead>
+             <tbody>
              ';
 
            while($row = mysqli_fetch_array($result))
            {
             $output .= '
             <tr>
-             <td>'.$row["order_id"].'</td>
-             <td>'.$row["order_id"].'</td>
-             <td>'.$row["customer_name"].'</td>
-             <td>'.$row["customer_address"].'</td>
-             <td>'.$row["order_time"].'</td>
-             <td>'.$row["delivery_time"].'</td>
-             <td>'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['delivery_time']))->format('%h hours and %i minutes').'</td>
-             <td>'.$row["order_gross"].'</td>
-             <td>'.$row["order_discount"].'</td>
-             <td>'.$row["order_delivery"].'</td>
-             <td>'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
-             <td>'.$row["rider_name"].'</td>
+             <td width="5%">'.$row["order_id"].'</td>
+             <td width="5%">'.$row["order_id"].'</td>
+             <td width="5%">'.$row["customer_name"].'</td>
+             <td width="20%">'.$row["customer_address"].'</td>
+             <td width="5%">'.$row["order_time"].'</td>
+             <td width="5%">'.$row["delivery_time"].'</td>
+             <td width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['delivery_time']))->format('%h hours and %i minutes').'</td>
+             <td width="5%">'.$row["order_gross"].'</td>
+             <td width="5%">'.$row["order_discount"].'</td>
+             <td width="5%">'.$row["order_delivery"].'</td>
+             <td class="nettSum2" width="5%">'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
+             <td width="5%">'.$row["rider_name"].'</td>
              <th hidden>'.$row["status_id"].'</th>
-             <td>'.$row["status_name"].'</td>
+             <td width="5%">'.$row["status_name"].'</td>
             </tr>
             ';
-           }
+          }
+           $output .= '</tbody></table>
+                       </div>';
            echo $output;
           }
           else
@@ -97,4 +104,11 @@ $(document).ready(function(){
          }
        });
    });
+
+   var sum = 0;
+   $('#first .nettSum2').each(function()
+    {
+      sum += parseFloat($(this).html());
+    });
+    $('#subtotal_id').html(sum);
 </script>

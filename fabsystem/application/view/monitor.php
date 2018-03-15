@@ -13,35 +13,41 @@ $result = mysqli_query($connect, $query);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    thead {
+      display: block;
+    }
+    tbody {
+      display: block;
+      height: 450px;       /* Just for the demo          */
+      overflow-y: auto;    /* Trigger vertical scroll    */
+      overflow-x: hidden;  /* Hide the horizontal scroll */
+    }
+    </style>
   </head>
   <body>
     <div  class="container" style="width:100% ;" >
       <h3 align="center">MONITOR SCREEN</h3>
-      <ul >
-      <li ><img src="chef.png" width="50px"></li>
-      <li ><img src="serve.png" width="50px"></li>
-      <li ><img src="bike.png" width="50px" ></li>
-      <li ><img src="tick.png" width="50px"></li>
-      <li ><img src="minus.png" width="50px"></li>
-    </ul>
       <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon">Search</span>
-        <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
-      </div>
+        <div class="input-group">
+          <span class="input-group-addon">Search</span>
+          <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
+        </div>
       </div>
       <form action="/fetch.php">
         Date:
-      <input type="date" name="date">
-      <input type="submit">
+        <input id="date_picker" type="date" name="date">
       </form>
 
-    <br />
-    <div id="result"></div>
-    </div>
+      <br />
+      <div id="result">
 
-        <table id="first" class="table table-bordered">
-          <tr><thead>
+      <!--</div>
+
+      <div class="table-responsive" >
+        <table id="first" class="table table-bordered scrollingTable" >
+          <thead>
+          <tr>
             <th width="5%">ID</th>
             <th width="5%">OrderID</th>
             <th width="5%">Name</th>
@@ -55,60 +61,45 @@ $result = mysqli_query($connect, $query);
             <th width="5%">Nett(RM)</th>
             <th width="5%">Rider</th>
             <th width="5%">Status</th>
-          </thead></tr>
+          </tr>
+          </thead>
           <span id="val"></span>
-
-
+          <tbody>
           <?php
-
-        while ($row = mysqli_fetch_assoc($result)) {
+          while ($row = mysqli_fetch_assoc($result)) {
            ?>
            <tr>
-             <th id="head"><?php echo $row['order_id'] ;?></th>
-             <th><?php echo $row['order_id'] ;?></th>
-             <th><?php echo $row['customer_name'] ;?></th>
-             <th><?php echo $row['customer_address'] ;?></th>
-             <th><?php echo $row['order_time'] ;?></th>
-             <th><?php echo $row['delivery_time'] ;?></th>
-             <th><?php echo $time = date_diff(new DateTime($row['order_time']), new DateTime($row['delivery_time']))->format('%h hours and %i minutes') ;?></th>
-             <th><?php echo $row['order_gross'] ;?></th>
-             <th><?php echo $row['order_discount'] ;?></th>
-             <th><?php echo $row['order_delivery'] ;?></th>
-             <th class="nettSum"><?php echo $nett= $row['order_delivery']+$row['order_gross']-$row['order_discount'];?></th>
-             <th><?php echo $row['rider_name'] ;?></th>
+             <th id="head" width="5%"><?php echo $row['order_id'] ;?></th>
+             <th width="5%"><?php echo $row['order_id'] ;?></th>
+             <th width="5%"><?php echo $row['customer_name'] ;?></th>
+             <th width="20%"><?php echo $row['customer_address'] ;?></th>
+             <th width="5%"><?php echo $row['order_time'] ;?></th>
+             <th width="5%"><?php echo $row['delivery_time'] ;?></th>
+             <th width="5%"><?php echo $time = date_diff(new DateTime($row['order_time']), new DateTime($row['delivery_time']))->format('%h hours and %i minutes') ;?></th>
+             <th width="5%"><?php echo $row['order_gross'] ;?></th>
+             <th width="5%"><?php echo $row['order_discount'] ;?></th>
+             <th width="5%"><?php echo $row['order_delivery'] ;?></th>
+             <th class="nettSum" width="5%"><?php echo $nett= $row['order_delivery']+$row['order_gross']-$row['order_discount'];?></th>
+             <th width="5%"><?php echo $row['rider_name'] ;?></th>
               <td hidden><?php echo $row['status_id'] ;?></td>
-              <th><?php echo $row['status_name'] ;?></th>
+              <th width="5%"><?php echo $row['status_name'] ;?></th>
            </tr>
-
-           <?php
-
-       }
-         ?>
+          <?php
+           }
+          ?>
+          </tbody>
         </table>
-
       </div>
-    </div>
 
+    </div> <!--End of container-->
   </body>
+  <footer>
+    <div class="">
+      Subtotal: <span id="subtotal_id"></span>
+    </div>
+  </footer>
 </html>
 
-<div id="dataModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Employee detail</h4>
-      </div>
-        <div class="modal-body" id="employee_detail" >
-
-        </div>
-      <div class="modal-footer">
-         <button type="button" class="btn btn_default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <script>
 
@@ -136,12 +127,15 @@ $result = mysqli_query($connect, $query);
   $(document).ready(function(){
 
 
-   function load_data(query)
+   function load_data(query, date)
    {
     $.ajax({
      url:"fetch.php",
      method:"POST",
-     data:{query:query},
+     data:{
+       query:query,
+       date:date
+     },
      success:function(data)
      {
       $('#result').html(data);
@@ -150,10 +144,13 @@ $result = mysqli_query($connect, $query);
    }
    $('#search_text').keyup(function(){
     var search = $(this).val();
+    var date = $("#date_picker").val();
+    console.log(search);
+    console.log(date);
     if(search != '')
     {
       // load search result and hide table
-     load_data(search);
+     load_data(search, date);
      $("#first").hide();
 
     }
@@ -191,8 +188,28 @@ $result = mysqli_query($connect, $query);
      var sum = 0;
      $('#first .nettSum').each(function()
       {
-        sum += parseInt($(this).html());
+        sum += parseFloat($(this).html());
 
       });
+      $('#subtotal_id').html(sum);
 
+    $('#date_picker').on("change", function(){
+      $("#first").hide();
+      var query = $("#search_text").val();
+      var date = $(this).val();
+      console.log(query);
+      console.log(date);
+      $.ajax({
+       url:"fetch.php",
+       method:"POST",
+       data:{
+         query:query,
+         date:date
+       },
+       success:function(data)
+       {
+        $('#result').html(data);
+       }
+      });
+    });
 </script>
