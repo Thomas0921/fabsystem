@@ -154,6 +154,7 @@
                   <datalist class="datalist_searchFood" id="datalist_search">
 
                   </datalist>
+                  <h6 class="notice"></h6>
                 </div>
                 <form class="form-add-food" action="../controller/menuSendOrder.php" method="post">
                   <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
@@ -240,16 +241,16 @@
     <div class="customer-box" style="background-color: rgb(125, 213, 156);">
       <h1>Customer's Detail</h1>
       <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
-        <input type="text" name="name" value="" placeholder="Name" required><br>
-        <input type="text" name="contact" value="" placeholder="Contact" required><br>
-        <input type="text" name="address" value="" placeholder="Address" required><br>
+        <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
+        <input type="text" id="input_contact" name="contact" value="" placeholder="Contact" required><br>
+        <input type="text" id="input_address" name="address" value="" placeholder="Address" required><br>
         <div class="total-minus">
           <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount" required>
         </div>
         <div class="total-add">
           <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost" required>
         </div>
-        <input type="text" name="bill_no" value="" placeholder="bill_no" required><br>
+        <input type="text" id="bill_no" name="bill_no" value="" placeholder="Bill Number" required><br>
         <div class="checkbox-condition">
           <?php
             $sql = "SELECT * FROM food_condition";

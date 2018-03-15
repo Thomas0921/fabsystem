@@ -62,6 +62,30 @@ $(".searchFood").keyup(function(){
       });
 });
 
+$(".searchFood").change(function(){
+  var opt = $('option[value="'+$(this).val()+'"]');
+  var id = opt.attr('data-id');
+  if(id == undefined ){
+    $('.notice').html("* No record found");
+  }else if ($(this).val() == "") {
+    console.log("empty");
+    $('.notice').html("* Please insert a value");
+  }else{
+    $('.notice').html("");
+    console.log(id)
+
+         $.ajax({
+             type: 'POST',
+             url: '../controller/AJAXmenuFillFood.php',
+             data: {id:id},
+             success: function (id) {
+                 $('.show-description').html(id);
+             }
+         }, function(){
+           //This function is for unhover.
+        });
+  }
+});
 
 $(".searchAddon").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
@@ -74,6 +98,7 @@ $(".searchAddon").change(function(){
   }else{
     $('.notice').html("");
     console.log(id)
+
          $.ajax({
              type: 'POST',
              url: '../controller/AJAXmenuFillAddon.php',
@@ -139,6 +164,59 @@ $(function() {
 });
 //---------------------------------------------------------------
 // Customer form Javascript
+
+$(window).bind('beforeunload', function(){
+  localStorage.setItem("name", $("#input_name").val());
+  localStorage.setItem("contact", $("#input_contact").val());
+  localStorage.setItem("address", $("#input_address").val());
+  localStorage.setItem("discount", $("#discount").val());
+  localStorage.setItem("delivery_cost", $("#delivery_cost").val());
+  localStorage.setItem("bill_no", $("#bill_no").val());
+});
+
+
+$(window).on('load', function(){
+  var url_string = window.location.href;
+
+  if(window.location.href.indexOf("insert=success") > -1){
+    clearCart();
+    displayCart();
+    $("#input_name").val("");
+    $("#input_contact").val("");
+    $("#input_address").val("");
+    $("#discount").val("");
+    $("#delivery_cost").val("");
+    $("#bill_no").val("");
+  }else {
+    var name = localStorage.getItem("name");
+    if (name !== null) {
+      $("#input_name").val(name);
+    }
+    var contact = localStorage.getItem("contact");
+    if (contact !== null){
+      $("#input_contact").val(contact);
+    }
+    var address = localStorage.getItem("address");
+    if (address !== null){
+      $("#input_address").val(address);
+    }
+    var discount = localStorage.getItem("discount");
+    if (discount !== null) {
+      $("#discount").val(discount);
+    }
+    var delivery_cost = localStorage.getItem("delivery_cost");
+    if (delivery_cost !== null) {
+      $("#delivery_cost").val(delivery_cost);
+    }
+    var bill_no = localStorage.getItem("bill_no");
+    if (bill_no !== null) {
+      $("#bill_no").val(bill_no);
+    }
+  }
+});
+
+//---------------------------------------------------------------
+// Customer form price add on Javascript
 
 function updateTotal(data){
   $("#total-cart").val(data);
