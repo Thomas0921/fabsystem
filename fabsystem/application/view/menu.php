@@ -149,13 +149,15 @@
 
               <div class="add_food_div" style="">
                 <div class="search_containter">
+
                   <h5>Search the food you want to change</h5>
+                  <h6 class="notice"></h6>
                   <input class="searchFood" list="datalist_search" type="datalist" name="" value="">
                   <datalist class="datalist_searchFood" id="datalist_search">
-
+                    <!-- Will get the options by ajax -->
                   </datalist>
-                  <h6 class="notice"></h6>
                 </div>
+
                 <form class="form-add-food" action="../controller/menuSendOrder.php" method="post">
                   <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
                   <datalist class="datalist_searchFood" id="datalist-cat">
@@ -166,29 +168,32 @@
                       if($result ->num_rows > 0){
                         while($row = $result ->fetch_assoc()){
                           echo '<option value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
-                          echo ' ';
                         }
                       }
                      ?>
                   </datalist>
                   <button type="submit" name="add_category" onclick="return  confirm('do you want to add? Y/N')">+</button>
                   <button type="submit" name="minus_category" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
-                  <input list="datalist-subcat" placeholder="Subcategory Name">
+                  <input list="datalist-subcat" placeholder="Subcategory Name" id="datalist-subcat-id">
                   <datalist id="datalist-subcat" class="ajax-subcat">
-
+                    <!-- Will get the options by ajax -->
                   </datalist>
                   <button type="button" name="button">+</button>
                   <button type="button" name="button">-</button><br>
-                  <input type="text" name="" value="" placeholder="Food Name"><br>
-                  <textarea name="name" rows="5" cols="26" placeholder="Description"></textarea><br>
-                  <input type="number" name="" value="" min="0" step="0.01" placeholder="Price"><br>
-                  <button type="submit" name="btn-add-food">Add</button><br>
+                  <input id="food_name" type="text" name="food_name" value="" placeholder="Food Name"><br>
+                  <textarea id="food_description" name="food_description" rows="5" cols="26" placeholder="Description"></textarea><br>
+                  <input id="food_price" type="number" name="food_price" value="" min="0" step="0.01" placeholder="Price"><br>
+                  <button type="submit" name="btn-add-food">Add</button>
+                  <button type="submit" name="btn-update-food">Update</button>
+                  <button type="submit" name="btn-delete-food">Delete</button><br>
                 </form>
               </div>
 
               <div class="add_addon_div" hidden>
                 <div class="search_containter">
+
                   <h5>Search the add on you want to change</h5>
+                  <h6 class="notice"></h6>
                   <input class="searchAddon" list="datalist_search_addon" type="datalist" name="" value="">
                   <datalist class="datalist_searchAddon" id="datalist_search_addon">
                     <?php
@@ -203,28 +208,21 @@
                     }
                      ?>
                   </datalist>
-                  <h6 class="notice"></h6>
                 </div>
-                <form class="form-add-addon" action="../controller/menuSendOrder.php" method="post" >
-                  <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
-                  <datalist id="datalist-cat">
-                    <?php
-                      $sql = "SELECT * FROM food_categories";
-                      $result = mysqli_query($conn, $sql);
 
-                      if($result ->num_rows > 0){
-                        while($row = $result ->fetch_assoc()){
-                          echo '<option value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
-                          echo ' ';
-                        }
-                      }
-                     ?>
+                <form class="form-add-addon" action="../controller/menuSendOrder.php" method="post" >
+                  <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-addon-cat-id">
+                  <datalist id="datalist-cat">
+                    <!-- this datalist will use the list from new food datalist -->
                   </datalist>
-                  <input type="text" name="addon_name" value="" placeholder="Addon Name"><br>
-                  <textarea name="addon_description" rows="5" cols="26" placeholder="Description"></textarea><br>
-                  <input type="number" name="addon_price" value="" min="0" step="0.01" placeholder="Price"><br>
-                  <button type="submit" name="btn-add-addon">Add</button><br>
+                  <input id="addon_name" type="text" name="addon_name" value="" placeholder="Addon Name"><br>
+                  <textarea id="addon_description" name="addon_description" rows="5" cols="26" placeholder="Description"></textarea><br>
+                  <input id="addon_price" type="number" name="addon_price" value="" min="0" step="0.01" placeholder="Price"><br>
+                  <button type="submit" name="btn-add-addon">Add</button>
+                  <button type="submit" name="btn-update-addon">Update</button>
+                  <button type="submit" name="btn-delete-addon">Delete</button><br>
                 </form>
+
               </div>
             </div>
           </div>
@@ -259,7 +257,6 @@
             if($result ->num_rows > 0){
               while($row = $result ->fetch_assoc()){
                 echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
-                echo ' ';
               }
             }
            ?>
@@ -267,7 +264,7 @@
         <div class="total-add">
           <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
           <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
-          <input id="hidden_order" type="text" name="order_content" required>
+          <input id="hidden_order" type="hidden" name="order_content" required>
         </div>
         <h2>Total: RM<input type="text" id="total-cart" name="total_cost" ></h2>
       </form>
@@ -279,32 +276,36 @@
             <p>X</p>
           </div>
           <div class="popup-content-cus">
-            <div class="edit-box-cus">
-              <button class="btn-add-cus" type="button" name="button">Add</button>
-              <button class="btn-edit-cus" type="button" name="button">Edit</button>
-              <button class="btn-delete-cus" type="button" name="button">Delete</button>
-            </div>
-            <h2>Condition to your delivery</h2>
-            <form class="form-add-food-cus" action="" method="post">
-              <input list="datalist-con" name="" placeholder="Condition Name" id="datalist-con-id">
-              <datalist id="datalist-con">
-                <?php
-                  $sql = "SELECT * FROM food_condition";
-                  $result = mysqli_query($conn, $sql);
+            <div class="add_condition_div" style="">
+              <div class="search_containter">
 
-                  if($result ->num_rows > 0){
-                    while($row = $result ->fetch_assoc()){
-                      echo '<option value='.$row['condition_name'].' data-id="'.$row['condition_id'].'"></option>';
-                      echo ' ';
+                <h5>Search the condition you want to change</h5>
+                <h6 class="notice"></h6>
+                <input class="searchCondition" list="datalist_search_condition" type="datalist" name="" value="">
+                <datalist class="datalist_searchCondition" id="datalist_search_condition">
+                  <?php
+                    $sql = "SELECT * FROM food_condition";
+                    $result = mysqli_query($conn, $sql);
+
+                    if($result ->num_rows > 0){
+                      while($row = $result ->fetch_assoc()){
+                        echo '<option value="'.$row['condition_name'].'" data-id="'.$row['condition_id'].'"></option>';
+                      }
                     }
-                  }
-                 ?>
-              </datalist><br>
-              <input type="text" name="" value="" placeholder="Condition Name"><br>
-              <textarea name="name" rows="5" cols="26" placeholder="Description"></textarea><br>
-              <input type="number" name="" value="" min="0" step="0.01" placeholder="Price"><br>
-              <button type="submit" name="btn-add-food">Add</button><br>
-            </form>
+                   ?>
+                </datalist>
+              </div>
+
+              <form class="form-add-condition" action="../controller/AJAXconditionSQL.php" method="post">
+                <input id="condition_name" type="text" name="condition_name" value="" placeholder="Condition Name"><br>
+                <textarea id="condition_description" name="condition_description" rows="5" cols="26" placeholder="Description"></textarea><br>
+                <input id="condition_price" type="number" name="condition_price" value="" min="0" step="0.01" placeholder="Price"><br>
+                <button type="submit" name="btn-add-condition">Add</button>
+                <button type="submit" name="btn-update-condition">Update</button>
+                <button type="submit" name="btn-delete-condition">Delete</button><br>
+              </form>
+            </div>
+
         </div>
       </div>
     </div>

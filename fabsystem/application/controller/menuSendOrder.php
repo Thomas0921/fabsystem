@@ -43,6 +43,54 @@ if (isset($_POST['minus_category'])){
 
 }
 
+if (isset($_POST['btn-add-food'])){
+
+    // datalist havent know which category id inserted
+    $datalist_cat = mysqli_real_escape_string($conn, $_POST['datalist_cat']);
+    $addon_name = mysqli_real_escape_string($conn, $_POST['addon_name']);
+    $addon_description = mysqli_real_escape_string($conn, $_POST['addon_description']);
+    $addon_price = mysqli_real_escape_string($conn, $_POST['addon_price']);
+
+    $sql = "INSERT INTO food_add_on(addon_id, addon_name, addon_description, addon_price, category_id)
+    VALUES (NULL, '$addon_name', '$addon_description', '$addon_price', '$datalist_cat' )";
+
+    $result = mysqli_query($conn, $sql);
+}
+
+if (isset($_POST['btn-update-food'])){
+
+    // datalist havent know which category id inserted
+    $datalist_cat = mysqli_real_escape_string($conn, $_POST['datalist_cat']);
+    $food_name = mysqli_real_escape_string($conn, $_POST['food_name']);
+    $food_description = mysqli_real_escape_string($conn, $_POST['food_description']);
+    $food_price = mysqli_real_escape_string($conn, $_POST['food_price']);
+
+    $sql = "UPDATE foods
+    SET food_name = '$food_name',
+    food_description = '$food_description',
+    food_price = '$food_price'
+    WHERE food_id =
+    ";
+
+    $result = mysqli_query($conn, $sql);
+    header("Location: ../view/menu.php?update=success");
+    exit();
+}
+
+if (isset($_POST['btn-delete-food'])){
+
+    // datalist havent know which category id inserted
+    $datalist_cat = mysqli_real_escape_string($conn, $_POST['datalist_cat']);
+    $addon_name = mysqli_real_escape_string($conn, $_POST['addon_name']);
+    $addon_description = mysqli_real_escape_string($conn, $_POST['addon_description']);
+    $addon_price = mysqli_real_escape_string($conn, $_POST['addon_price']);
+
+    $sql = "INSERT INTO food_add_on(addon_id, addon_name, addon_description, addon_price, category_id)
+    VALUES (NULL, '$addon_name', '$addon_description', '$addon_price', '$datalist_cat' )";
+
+    $result = mysqli_query($conn, $sql);
+}
+
 if (isset($_POST['btn-add-addon'])){
 
     // datalist havent know which category id inserted
@@ -56,5 +104,34 @@ if (isset($_POST['btn-add-addon'])){
 
     $result = mysqli_query($conn, $sql);
 }
+
+if (isset($_POST['btn-update-addon'])){
+
+    // datalist havent know which category id inserted
+    $datalist_cat = mysqli_real_escape_string($conn, $_POST['datalist_cat']);
+    $addon_name = mysqli_real_escape_string($conn, $_POST['addon_name']);
+    $addon_description = mysqli_real_escape_string($conn, $_POST['addon_description']);
+    $addon_price = mysqli_real_escape_string($conn, $_POST['addon_price']);
+
+    $sql = "INSERT INTO food_add_on(addon_id, addon_name, addon_description, addon_price, category_id)
+    VALUES (NULL, '$addon_name', '$addon_description', '$addon_price', '$datalist_cat' )";
+
+    $result = mysqli_query($conn, $sql);
+}
+
+if (isset($_POST['btn-delete-addon'])){
+
+    // datalist havent know which category id inserted
+    $datalist_cat = mysqli_real_escape_string($conn, $_POST['datalist_cat']);
+    $addon_name = mysqli_real_escape_string($conn, $_POST['addon_name']);
+    $addon_description = mysqli_real_escape_string($conn, $_POST['addon_description']);
+    $addon_price = mysqli_real_escape_string($conn, $_POST['addon_price']);
+
+    $sql = "INSERT INTO food_add_on(addon_id, addon_name, addon_description, addon_price, category_id)
+    VALUES (NULL, '$addon_name', '$addon_description', '$addon_price', '$datalist_cat' )";
+
+    $result = mysqli_query($conn, $sql);
+}
+
 
  ?>

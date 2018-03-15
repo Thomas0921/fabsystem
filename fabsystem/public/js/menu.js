@@ -64,22 +64,28 @@ $(".searchFood").keyup(function(){
 
 $(".searchFood").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
-  var id = opt.attr('data-id');
-  if(id == undefined ){
+  var food_id = opt.attr('data-id');
+
+  if(food_id == undefined ){
     $('.notice').html("* No record found");
-  }else if ($(this).val() == "") {
-    console.log("empty");
-    $('.notice').html("* Please insert a value");
+    $('#datalist-cat-id').prop("disabled", false);
+    $('#datalist-subcat-id').prop("disabled", false);
   }else{
     $('.notice').html("");
-    console.log(id)
+    console.log(food_id);
+    $('#datalist-cat-id').prop("disabled", true);
+    $('#datalist-subcat-id').prop("disabled", true);
 
          $.ajax({
              type: 'POST',
              url: '../controller/AJAXmenuFillFood.php',
-             data: {id:id},
-             success: function (id) {
-                 $('.show-description').html(id);
+             data: {food_id:food_id},
+             success: function (data) {
+               responseArray = data.split(",");
+
+               $("#food_name").val(responseArray[0]);
+               $("#food_description").val(responseArray[1]);
+               $("#food_price").val(responseArray[2]);
              }
          }, function(){
            //This function is for unhover.
@@ -89,27 +95,93 @@ $(".searchFood").change(function(){
 
 $(".searchAddon").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
-  var id = opt.attr('data-id');
-  if(id == undefined ){
+  var add_on_id = opt.attr('data-id');
+
+  if(add_on_id == undefined ){
     $('.notice').html("* No record found");
-  }else if ($(this).val() == "") {
-    console.log("empty");
-    $('.notice').html("* Please insert a value");
+    $('#datalist-cat-id').prop("disabled", false);
   }else{
     $('.notice').html("");
-    console.log(id)
+    $('#datalist-addon-cat-id').prop("disabled", true);
 
          $.ajax({
              type: 'POST',
              url: '../controller/AJAXmenuFillAddon.php',
-             data: {id:id},
-             success: function (id) {
-                 $('.show-description').html(id);
+             data: {add_on_id:add_on_id},
+             success: function (data) {
+               responseArray = data.split(",");
+
+               $("#addon_name").val(responseArray[0]);
+               $("#addon_description").val(responseArray[1]);
+               $("#addon_price").val(responseArray[2]);
              }
          }, function(){
            //This function is for unhover.
         });
   }
+});
+
+$(".searchCondition").change(function(){
+  var opt = $('option[value="'+$(this).val()+'"]');
+  var condition_id = opt.attr('data-id');
+
+  if(condition_id == undefined ){
+    $('.notice').html("* No record found");
+    $('#datalist-cat-id').prop("disabled", false);
+  }else{
+    $('.notice').html("");
+    $('#datalist-addon-cat-id').prop("disabled", true);
+
+         $.ajax({
+             type: 'POST',
+             url: '../controller/AJAXmenuFillCondition.php',
+             data: {condition_id:condition_id},
+             success: function (data) {
+               responseArray = data.split(",");
+
+               $("#condition_name").val(responseArray[0]);
+               $("#condition_description").val(responseArray[1]);
+               $("#condition_price").val(responseArray[2]);
+             }
+         }, function(){
+           //This function is for unhover.
+        });
+  }
+});
+//---------------------------------------------------------------
+// condition SQL AJAX
+$(".btn-update-condition").click(function(){
+  var opt = $('option[value="'+$(".searchCondition").val()+'"]');
+  var update_condition_id = opt.attr('data-id');
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXconditionSQL.php',
+      data: {update_condition_id:update_condition_id},
+      success: function (data) {
+        alert("Record updated");
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
+
+$(".btn-delete-condition").click(function(){
+  var opt = $('option[value="'+$(".searchCondition").val()+'"]');
+  var delete_condition_id = opt.attr('data-id');
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXconditionSQL.php',
+      data: {delete_condition_id:delete_condition_id},
+      success: function (data) {
+        alert("Record deleted");
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
 });
 
 //---------------------------------------------------------------

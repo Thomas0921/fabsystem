@@ -1,5 +1,7 @@
 
-.searchFood::-webkit-calendar-picker-indicator, .searchAddon::-webkit-calendar-picker-indicator {
+.searchFood::-webkit-calendar-picker-indicator,
+.searchAddon::-webkit-calendar-picker-indicator,
+.searchCondition::-webkit-calendar-picker-indicator {
   display: none;
 }
 
@@ -102,9 +104,9 @@
   top: 15px;
 }
 
-.form-add-food-cus {
+.form-add-condition {
   position: absolute;
-  top: 100px;
+  top: 150px;
   left: 50px;
   font-size: 18px;
 }
