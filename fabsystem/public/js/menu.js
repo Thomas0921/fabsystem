@@ -62,6 +62,7 @@ $(".searchFood").keyup(function(){
       });
 });
 
+
 $(".searchFood").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
   var food_id = opt.attr('data-id');
@@ -121,6 +122,7 @@ $(".searchAddon").change(function(){
   }
 });
 
+
 $(".searchCondition").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
   var condition_id = opt.attr('data-id');
@@ -146,87 +148,139 @@ $(".searchCondition").change(function(){
         });
   }
 });
+
+//---------------------------------------------------------------
+// pop up add category AJAX
+
+$("#btn_add_subcategory").click(function(){
+  var opt = $('option[value="'+ $("#datalist-cat-id").val() +'"]');
+  var cat_id = opt.attr("data-id");
+  var opt1 = $('option[value="'+ $("#datalist-subcat-id").val() +'"]');
+  var subcat_id = opt1.attr("data-id");
+  var subcat_name = $("#datalist-subcat-id").val();
+  var status = "add";
+
+  if(cat_id == undefined){
+    alert("Please choose main category")
+  } else{
+
+    if(subcat_name === ""){
+      alert("subcategory field is empty");
+    }else {
+      subcat_id = 0;
+      $.ajax({
+          type: "POST",
+          url: "../controller/AJAXsubcategorySQL.php",
+          data: {
+            status,status,
+            cat_id:cat_id,
+            subcat_id:subcat_id,
+            subcat_name:subcat_name
+          },
+          success: function (data) {
+            alert(data);
+            $(".searchAddon").val("");
+            $("#datalist-cat-id").val("");
+            $("#datalist-subcat-id").val("");
+            $("#food_name").val("");
+            $("#food_description").val("");
+            $("#food_price").val("");
+          }
+      }, function(){
+        //This function is for unhover.
+     });
+    }
+  }
+});
+
+
+$("#btn_delete_subcategory").click(function(){
+  var opt = $('option[value="'+ $("#datalist-subcat-id").val() +'"]');
+  var subcat_id = opt.attr("data-id");
+  var status = "delete";
+
+  if(subcat_id == undefined){
+    alert("subcategory field is empty");
+  }else {
+    $.ajax({
+        type: "POST",
+        url: "../controller/AJAXsubcategorySQL.php",
+        data: {
+          status:status,
+          subcat_id:subcat_id
+        },
+        success: function (data) {
+          alert(data);
+          $(".searchAddon").val("");
+          $("#datalist-cat-id").val("");
+          $("#datalist-subcat-id").val("");
+          $("#food_name").val("");
+          $("#food_description").val("");
+          $("#food_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
 //---------------------------------------------------------------
 // pop up add category AJAX
 
 $("#btn_add_category").click(function(){
 
-  var cat_name = $("#datalist-cat-id").val();
-
-  if(cat_name === ""){
-    $(".form-notice-food").html("category field is empty");
-  }else {
-    $(".form-notice-food").html("");
-    $.ajax({
-        type: "POST",
-        url: "../controller/AJAXcategorySQL.php",
-        data: {
-          cat_name:cat_name
-        },
-        success: function (data) {
-          alert("Record added");
-          $(".searchAddon").val("");
-          $("#datalist-cat-id").val("");
-          $("#datalist-subcat-id").val("");
-          $("#food_name").val("");
-          $("#food_description").val("");
-          $("#food_price").val("");
-        }
-    }, function(){
-      //This function is for unhover.
-   });
-  }
-});
-
-$("#btn_edit_category").click(function(){
   var opt = $('option[value="'+ $("#datalist-cat-id").val() +'"]');
   var cat_id = opt.attr("data-id");
   var cat_name = $("#datalist-cat-id").val();
-  var edit = "";
+  var status = "add";
 
-  if(cat_id === "" && cat_name === ""){
-    $(".form-notice-food").html("category field is empty");
-  }else {
-    $(".form-notice-food").html("");
-    $.ajax({
-        type: "POST",
-        url: "../controller/AJAXcategorySQL.php",
-        data: {
-          edit:edit,
-          cat_id:cat_id,
-          cat_name:cat_name
-        },
-        success: function (data) {
-          alert("Record edited");
-          $(".searchAddon").val("");
-          $("#datalist-cat-id").val("");
-          $("#datalist-subcat-id").val("");
-          $("#food_name").val("");
-          $("#food_description").val("");
-          $("#food_price").val("");
-        }
-    }, function(){
-      //This function is for unhover.
-   });
+  if(cat_id == undefined && cat_name != ""){
+    cat_id = 0;
+    if(cat_name === ""){
+      alert("Category field is empty");
+    }else {
+      $.ajax({
+          type: "POST",
+          url: "../controller/AJAXcategorySQL.php",
+          data: {
+            status:status,
+            cat_id:cat_id,
+            cat_name:cat_name
+          },
+          success: function (data) {
+            alert(data);
+            $(".searchAddon").val("");
+            $("#datalist-cat-id").val("");
+            $("#datalist-subcat-id").val("");
+            $("#food_name").val("");
+            $("#food_description").val("");
+            $("#food_price").val("");
+          }
+      }, function(){
+
+     });
+    }
   }
 });
+
 
 $("#btn_delete_category").click(function(){
   var opt = $('option[value="'+ $("#datalist-cat-id").val() +'"]');
   var cat_id = opt.attr("data-id");
+  var status = "delete";
 
-  if(cat_id === ""){
-    $(".form-notice-food").html("category field is empty");
+  if(cat_id == undefined){
+    alert("category field is empty");
   }else {
-    $(".form-notice-food").html("");
     $.ajax({
         type: "POST",
         url: "../controller/AJAXcategorySQL.php",
         data: {
+          status:status,
           cat_id:cat_id,
         },
         success: function (data) {
-          alert("Record deleted");
+          alert(data);
           $(".searchAddon").val("");
           $("#datalist-cat-id").val("");
           $("#datalist-subcat-id").val("");
@@ -561,12 +615,20 @@ $('.btn-new-addon').on("click", function(){
 $(function() {
   $('#datalist-cat-id').on('input',function() {
     var opt = $('option[value="'+$(this).val()+'"]');
-    var id = opt.attr('data-id');
-    $("#datalist-subcat-id").val("");
-    var url_string = window.location.href;
-    url_string += "&cat-form-id=" + id;
-    console.log(url_string);
-    window.history.pushState("", "", url_string);
+    var cat_id = opt.attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXfillSubcategory.php',
+        data: {
+          cat_id:cat_id
+        },
+        success: function (id) {
+            $('.ajax-subcat').html(id);
+        }
+    }, function(){
+      //This function is for unhover.
+   });
   });
 });
 //---------------------------------------------------------------

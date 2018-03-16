@@ -147,7 +147,7 @@
                 <button class="btn-new-addon" type="button" name="button">New Add On</button>
               </div>
 
-              <div class="add_food_div" style="">
+              <div class="add_food_div">
                 <div class="search_containter">
 
                   <h5>Search the food you want to change</h5>
@@ -158,9 +158,9 @@
                   </datalist>
                 </div>
 
-                <form class="form-add-food" action="../controller/menuSendOrder.php" method="post">
+                <form class="form-add-food" action="../controller/subcategorySQL.php" method="post">
                   <h6 class="form-notice-food"></h6>
-                  <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
+                  <input list="datalist-cat" autocomplete="off" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
                   <datalist class="datalist_searchFood" id="datalist-cat">
                     <?php
                       $sql = "SELECT * FROM food_categories";
@@ -168,41 +168,19 @@
 
                       if($result ->num_rows > 0){
                         while($row = $result ->fetch_assoc()){
-                          echo '<option href="menu.php?"cat-form-id="'.$row['category_id'].'" value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
+                          echo '<option value="'.$row['category_name'].'" data-id="'.$row['category_id'].'"></option>';
                         }
                       }
                      ?>
                   </datalist>
-                  <button type="button" id="btn_add_category" name="add_category" onclick="return  confirm('do you want to add? Y/N')">+</button>
-                  <button type="button" id="btn_edit_category" name="edit_category" onclick="return  confirm('do you want to edit? Y/N')">E</button>
-                  <button type="button" id="btn_delete_category" name="minus_category" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
+                  <button type="button" id="btn_add_category" name="add_subcategory">+</button>
+                  <button type="button" id="btn_delete_category" name="minus_subcategory">-</button><br>
                   <input list="datalist-subcat" placeholder="Subcategory Name" id="datalist-subcat-id">
                   <datalist id="datalist-subcat" class="ajax-subcat">
-                    <?php
-
-                      $output = '';
-
-                      if(isset($_GET["cat-form-id"])){
-                        $sql = "SELECT subcategory_id, subcategory_name,
-                        FROM food_subcategories
-                        WHERE category_id=".$_GET["cat-form-id"];
-
-                        $result = mysqli_query($conn, $sql);
-
-                        if($result ->num_rows > 0){
-                          while($row = $result ->fetch_assoc()){
-                            $output .= '<option value='.$row['subcategory_name'].'  data-id='.$row['subcategory_id'].'></option>';
-                            $output .=  ' ';
-                          }
-                          echo $output;
-                        }
-                       }
-
-                     ?>
+                    <!-- will get from AJAXmenuSearchSubcategory.php -->
                   </datalist>
-                  <button type="button" id="btn_add_subcategory" name="add_subcategory" onclick="return  confirm('do you want to add? Y/N')">+</button>
-                  <button type="button" id="btn_edit_subcategory" name="edit_subcategory" onclick="return  confirm('do you want to edit? Y/N')">E</button>
-                  <button type="button" id="btn_minus_subcategory" name="minus_subcategory" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
+                  <button type="button" id="btn_add_subcategory" name="add_subcategory">+</button>
+                  <button type="button" id="btn_delete_subcategory" name="minus_subcategory">-</button><br>
                   <input id="food_name" type="text" name="food_name" value="" placeholder="Food Name"><br>
                   <textarea id="food_description" name="food_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                   <input id="food_price" type="number" name="food_price" value="" min="0" step="0.01" placeholder="Price"><br>
@@ -248,6 +226,7 @@
                 </form>
 
               </div>
+
             </div>
           </div>
         </div>

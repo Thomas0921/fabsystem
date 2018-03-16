@@ -1,37 +1,51 @@
 <?php
 include '../framework/db.php';
 
-if (isset($_POST['cat_name'])){
+if (isset($_POST['status']) && isset($_POST['cat_id']) && isset($_POST['cat_name'])){
 
-  $cat_name = mysqli_real_escape_string($conn, $_POST['cat_name']);
+  if($_POST['status'] == "add"){
 
-  $sql = "INSERT INTO food_categories(category_id, category_name)
-  VALUES (NULL, '$datalist_cat')";
+    $cat_id = mysqli_real_escape_string($conn, $_POST['cat_id']);
+    $cat_name = mysqli_real_escape_string($conn, $_POST['cat_name']);
 
-  $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM food_categories WHERE category_id= $cat_id";
+    $result = mysqli_query($conn, $sql);
+
+    if($result ->num_rows > 0){
+
+      echo "Main category has been created before";
+
+    }else{
+
+      $sql = "INSERT INTO food_categories(category_name) VALUES ('$cat_name');";
+      $result = mysqli_query($conn, $sql);
+
+      echo "New category created";
+
+    }
+  }
 }
 
-if (isset($_POST['edit']) && isset($_POST['cat_id']) && isset($_POST['cat_name'])){
+if (isset($_POST['status']) && isset($_POST['cat_id'])){
 
-  $cat_id = mysqli_real_escape_string($conn, $_POST['cat_id']);
-  $cat_name = mysqli_real_escape_string($conn, $_POST['cat_name']);
+  if($_POST['status'] == "delete"){
 
-  $sql = "UPDATE food_categories
-  SET category_name = '".$cat_name."'
-  WHERE category_id ='".$cat_id."'
-  ";
+    $cat_id = mysqli_real_escape_string($conn, $_POST['cat_id']);
 
-  $result = mysqli_query($conn, $sql);
-}
+    $sql = "SELECT * FROM food_subcategories WHERE category_id= $cat_id";
+    $result = mysqli_query($conn, $sql);
 
-if (isset($_POST['cat_id'])){
+    if($result ->num_rows > 0){
+      echo "Please clear all subcategories to remove this main category";
+    }else {
+      $sql = "DELETE FROM food_categories
+      WHERE category_id = $cat_id";
 
-  $cat_id = mysqli_real_escape_string($conn, $_POST['cat_id']);
+      $result = mysqli_query($conn, $sql);
 
-  $sql = "DELETE FROM food_categories
-  WHERE category_id = '$cat_id'";
-
-  $result = mysqli_query($conn, $sql);
+      echo "Main category removed";
+    }
+  }
 }
 
 
