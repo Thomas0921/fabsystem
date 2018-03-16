@@ -102,47 +102,23 @@ $result = mysqli_query($connect, $query);
 
 
 <script>
-
-
-
-/*
-    $(document).ready(function(){
-    $('.view_data').click(function(){
-      var email = $(this).attr("user_email");
-
-      $.ajax({
-        url:"select.php",
-        method:"post",
-        data:{email:email},
-        success:function(data){
-          $('#employee_detail').html(data);
-          $('#dataModal').modal("show");
-
-        }
-      });
-
-
-    });
-  }); */
   $(document).ready(function(){
-
-
-   function load_data(query, date)
-   {
+    function load_data(query, date)
+  {
     $.ajax({
-     url:"fetch.php",
-     method:"POST",
-     data:{
+    url:"fetch.php",
+    method:"POST",
+    data:{
        query:query,
        date:date
-     },
-     success:function(data)
-     {
+         },
+    success:function(data)
+      {
       $('#result').html(data);
-     }
+      }
     });
-   }
-   $('#search_text').keyup(function(){
+  }
+    $('#search_text').keyup(function(){
     var search = $(this).val();
     var date = $("#date_picker").val();
     console.log(search);
@@ -185,20 +161,19 @@ $result = mysqli_query($connect, $query);
            }
          });
      });
-     var sum = 0;
-     $('#first .nettSum').each(function()
+          var sum = 0;
+          $('#first .nettSum').each(function()
       {
-        sum += parseFloat($(this).html());
+          sum += parseFloat($(this).html());
 
       });
-      $('#subtotal_id').html(sum);
+        $('#subtotal_id').html(sum);
 
-    $('#date_picker').on("change", function(){
-      $("#first").hide();
-      var query = $("#search_text").val();
-      var date = $(this).val();
-      console.log(query);
-      console.log(date);
+        $('#date_picker').on("change", function(){
+        $("#first").hide();
+        var query = $("#search_text").val();
+        var date = $(this).val();
+        
       $.ajax({
        url:"fetch.php",
        method:"POST",
