@@ -1,11 +1,11 @@
 <?php
 include '../framework/db.php';
 
-if (isset($_POST['btn-add-condition'])){
+if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
 
-  $condition_name = mysqli_real_escape_string($conn, $_POST['condition_name']);
-  $condition_description = mysqli_real_escape_string($conn, $_POST['condition_description']);
-  $condition_price = mysqli_real_escape_string($conn, $_POST['condition_price']);
+  $condition_name = mysqli_real_escape_string($conn, $_POST['name']);
+  $condition_description = mysqli_real_escape_string($conn, $_POST['description']);
+  $condition_price = mysqli_real_escape_string($conn, $_POST['price']);
 
   $sql = "INSERT INTO food_condition(condition_id, condition_name, condition_description, condition_price)
   VALUES (NULL, '$condition_name', '$condition_description', '$condition_price');";
@@ -15,19 +15,19 @@ if (isset($_POST['btn-add-condition'])){
   exit();
 }
 
-if (isset($_POST['update_condition_id'])){
+if (isset($_POST['update_condition_id']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
 
     $condition_id = mysqli_real_escape_string($conn, $_POST['update_condition_id']);
-    $condition_name = mysqli_real_escape_string($conn, $_POST['condition_name']);
-    $condition_description = mysqli_real_escape_string($conn, $_POST['condition_description']);
-    $condition_price = mysqli_real_escape_string($conn, $_POST['condition_price']);
+    $condition_name = mysqli_real_escape_string($conn, $_POST['name']);
+    $condition_description = mysqli_real_escape_string($conn, $_POST['description']);
+    $condition_price = mysqli_real_escape_string($conn, $_POST['price']);
 
-    $sql = "UPDATE food_condition
-    SET condition_name = '".$condition_name."',
-    condition_description = '".$condition_description."',
-    condition_price = '".$condition_price."'
-    WHERE condition_id ='".$condition_id."'
-    ";
+     $sql = "UPDATE food_condition
+     SET condition_name = '".$condition_name."',
+     condition_description = '".$condition_description."',
+     condition_price = '".$condition_price."'
+     WHERE condition_id ='".$condition_id."'
+     ";
 
     $result = mysqli_query($conn, $sql);
     header("Location: ../view/menu.php?condition=updated");

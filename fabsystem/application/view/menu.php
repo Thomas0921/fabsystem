@@ -159,6 +159,7 @@
                 </div>
 
                 <form class="form-add-food" action="../controller/menuSendOrder.php" method="post">
+                  <h6 class="form-notice-food"></h6>
                   <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-cat-id">
                   <datalist class="datalist_searchFood" id="datalist-cat">
                     <?php
@@ -167,25 +168,47 @@
 
                       if($result ->num_rows > 0){
                         while($row = $result ->fetch_assoc()){
-                          echo '<option value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
+                          echo '<option href="menu.php?"cat-form-id="'.$row['category_id'].'" value='.$row['category_name'].' data-id="'.$row['category_id'].'"></option>';
                         }
                       }
                      ?>
                   </datalist>
-                  <button type="submit" name="add_category" onclick="return  confirm('do you want to add? Y/N')">+</button>
-                  <button type="submit" name="minus_category" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
+                  <button type="button" id="btn_add_category" name="add_category" onclick="return  confirm('do you want to add? Y/N')">+</button>
+                  <button type="button" id="btn_edit_category" name="edit_category" onclick="return  confirm('do you want to edit? Y/N')">E</button>
+                  <button type="button" id="btn_delete_category" name="minus_category" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
                   <input list="datalist-subcat" placeholder="Subcategory Name" id="datalist-subcat-id">
                   <datalist id="datalist-subcat" class="ajax-subcat">
-                    <!-- Will get the options by ajax -->
+                    <?php
+
+                      $output = '';
+
+                      if(isset($_GET["cat-form-id"])){
+                        $sql = "SELECT subcategory_id, subcategory_name,
+                        FROM food_subcategories
+                        WHERE category_id=".$_GET["cat-form-id"];
+
+                        $result = mysqli_query($conn, $sql);
+
+                        if($result ->num_rows > 0){
+                          while($row = $result ->fetch_assoc()){
+                            $output .= '<option value='.$row['subcategory_name'].'  data-id='.$row['subcategory_id'].'></option>';
+                            $output .=  ' ';
+                          }
+                          echo $output;
+                        }
+                       }
+
+                     ?>
                   </datalist>
-                  <button type="button" name="button">+</button>
-                  <button type="button" name="button">-</button><br>
+                  <button type="button" id="btn_add_subcategory" name="add_subcategory" onclick="return  confirm('do you want to add? Y/N')">+</button>
+                  <button type="button" id="btn_edit_subcategory" name="edit_subcategory" onclick="return  confirm('do you want to edit? Y/N')">E</button>
+                  <button type="button" id="btn_minus_subcategory" name="minus_subcategory" onclick="return  confirm('do you want to delete? Y/N')">-</button><br>
                   <input id="food_name" type="text" name="food_name" value="" placeholder="Food Name"><br>
                   <textarea id="food_description" name="food_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                   <input id="food_price" type="number" name="food_price" value="" min="0" step="0.01" placeholder="Price"><br>
-                  <button type="submit" name="btn-add-food">Add</button>
-                  <button type="submit" name="btn-update-food">Update</button>
-                  <button type="submit" name="btn-delete-food">Delete</button><br>
+                  <button type="button" id="btn-add-food" name="btn-add-food">Add</button>
+                  <button type="button" id="btn-update-food" name="btn-update-food">Update</button>
+                  <button type="button" id="btn-update-food" name="btn-delete-food">Delete</button><br>
                 </form>
               </div>
 
@@ -210,7 +233,8 @@
                   </datalist>
                 </div>
 
-                <form class="form-add-addon" action="../controller/menuSendOrder.php" method="post" >
+                <form class="form-add-addon" action="../controller/AJAXaddonSQL.php" method="post" >
+                  <h6 class="form-notice-addon"></h6>
                   <input list="datalist-cat" name ="datalist_cat" placeholder="Category Name" id="datalist-addon-cat-id">
                   <datalist id="datalist-cat">
                     <!-- this datalist will use the list from new food datalist -->
@@ -218,9 +242,9 @@
                   <input id="addon_name" type="text" name="addon_name" value="" placeholder="Addon Name"><br>
                   <textarea id="addon_description" name="addon_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                   <input id="addon_price" type="number" name="addon_price" value="" min="0" step="0.01" placeholder="Price"><br>
-                  <button type="submit" name="btn-add-addon">Add</button>
-                  <button type="submit" name="btn-update-addon">Update</button>
-                  <button type="submit" name="btn-delete-addon">Delete</button><br>
+                  <button type="button" id="btn-add-addon" name="btn-add-addon">Add</button>
+                  <button type="button" id="btn-update-addon" name="btn-update-addon">Update</button>
+                  <button type="button" id="btn-delete-addon" name="btn-delete-addon">Delete</button><br>
                 </form>
 
               </div>
@@ -297,12 +321,13 @@
               </div>
 
               <form class="form-add-condition" action="../controller/AJAXconditionSQL.php" method="post">
+                <h6 class="form-notice-condition"></h6>
                 <input id="condition_name" type="text" name="condition_name" value="" placeholder="Condition Name"><br>
                 <textarea id="condition_description" name="condition_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                 <input id="condition_price" type="number" name="condition_price" value="" min="0" step="0.01" placeholder="Price"><br>
-                <button type="submit" name="btn-add-condition">Add</button>
-                <button type="submit" name="btn-update-condition">Update</button>
-                <button type="submit" name="btn-delete-condition">Delete</button><br>
+                <button type="button" class="btn-add-condition" name="btn-add-condition">Add</button>
+                <button type="button" class="btn-update-condition" name="btn-update-condition">Update</button>
+                <button type="button" class="btn-delete-condition" name="btn-delete-condition">Delete</button><br>
               </form>
             </div>
 

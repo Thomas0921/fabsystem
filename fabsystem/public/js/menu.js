@@ -127,10 +127,8 @@ $(".searchCondition").change(function(){
 
   if(condition_id == undefined ){
     $('.notice').html("* No record found");
-    $('#datalist-cat-id').prop("disabled", false);
   }else{
     $('.notice').html("");
-    $('#datalist-addon-cat-id').prop("disabled", true);
 
          $.ajax({
              type: 'POST',
@@ -149,17 +147,341 @@ $(".searchCondition").change(function(){
   }
 });
 //---------------------------------------------------------------
+// pop up add category AJAX
+
+$("#btn_add_category").click(function(){
+
+  var cat_name = $("#datalist-cat-id").val();
+
+  if(cat_name === ""){
+    $(".form-notice-food").html("category field is empty");
+  }else {
+    $(".form-notice-food").html("");
+    $.ajax({
+        type: "POST",
+        url: "../controller/AJAXcategorySQL.php",
+        data: {
+          cat_name:cat_name
+        },
+        success: function (data) {
+          alert("Record added");
+          $(".searchAddon").val("");
+          $("#datalist-cat-id").val("");
+          $("#datalist-subcat-id").val("");
+          $("#food_name").val("");
+          $("#food_description").val("");
+          $("#food_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+$("#btn_edit_category").click(function(){
+  var opt = $('option[value="'+ $("#datalist-cat-id").val() +'"]');
+  var cat_id = opt.attr("data-id");
+  var cat_name = $("#datalist-cat-id").val();
+  var edit = "";
+
+  if(cat_id === "" && cat_name === ""){
+    $(".form-notice-food").html("category field is empty");
+  }else {
+    $(".form-notice-food").html("");
+    $.ajax({
+        type: "POST",
+        url: "../controller/AJAXcategorySQL.php",
+        data: {
+          edit:edit,
+          cat_id:cat_id,
+          cat_name:cat_name
+        },
+        success: function (data) {
+          alert("Record edited");
+          $(".searchAddon").val("");
+          $("#datalist-cat-id").val("");
+          $("#datalist-subcat-id").val("");
+          $("#food_name").val("");
+          $("#food_description").val("");
+          $("#food_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+$("#btn_delete_category").click(function(){
+  var opt = $('option[value="'+ $("#datalist-cat-id").val() +'"]');
+  var cat_id = opt.attr("data-id");
+
+  if(cat_id === ""){
+    $(".form-notice-food").html("category field is empty");
+  }else {
+    $(".form-notice-food").html("");
+    $.ajax({
+        type: "POST",
+        url: "../controller/AJAXcategorySQL.php",
+        data: {
+          cat_id:cat_id,
+        },
+        success: function (data) {
+          alert("Record deleted");
+          $(".searchAddon").val("");
+          $("#datalist-cat-id").val("");
+          $("#datalist-subcat-id").val("");
+          $("#food_name").val("");
+          $("#food_description").val("");
+          $("#food_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+//---------------------------------------------------------------
+// food SQL AJAX
+
+$("#btn-add-food").click(function(){
+  var opt = $('option[value="'+$("#datalist-cat-id").val()+'"]');
+  var cat_id = opt.attr('data-id');
+  var opt2 = $('option[value="'+$("#datalist-subcat-id").val()+'"]');
+  var subcat_id = opt2.attr('data-id');
+  var name = $("#food_name").val();
+  var description = $("#food_description").val();
+  var price = $("#food_price").val();
+  if(cat_id === "" && subcat_id === "" || name === "" || description === "" || price === ""){
+    $('.form-notice-food').html("Please fill in all the field");
+  }else {
+    $('.form-notice-food').html("");
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXfoodSQL.php',
+        data: {
+          cat_id:cat_id,
+          subcat_id:subcat_id,
+          name:name,
+          description:description,
+          price:price
+        },
+        success: function (data) {
+          alert("Record added");
+          $(".searchAddon").val("");
+          $("#datalist-cat-id").val("");
+          $("#datalist-subcat-id").val("");
+          $("#food_name").val("");
+          $("#food_description").val("");
+          $("#food_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+$("#btn-update-food").click(function(){
+  var opt = $('option[value="'+$(".searchFood").val()+'"]');
+  var update_food_id = opt.attr('data-id');
+  var name = $("#food_name").val();
+  var description = $("#food_description").val();
+  var price = $("#food_price").val();
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXfoodSQL.php',
+      data: {
+        update_food_id:update_food_id,
+        name:name,
+        description:description,
+        price:price
+      },
+      success: function (data) {
+        alert("Record updated");
+        $(".searchFood").val("");
+        $("#datalist-cat-id").val("");
+        $("#datalist-subcat-id").val("");
+        $("#food_name").val("");
+        $("#food_description").val("");
+        $("#food_price").val("");
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
+
+$("#btn-delete-food").click(function(){
+  var opt = $('option[value="'+$(".searchAddon").val()+'"]');
+  var delete_food_id = opt.attr('data-id');
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXfoodSQL.php',
+      data: {
+        delete_food_id:delete_food_id,
+      },
+      success: function (data) {
+        alert("Record deleted");
+        $(".searchFood").val("");
+        $("#datalist-cat-id").val("");
+        $("#datalist-subcat-id").val("");
+        $("#food_name").val("");
+        $("#food_description").val("");
+        $("#food_price").val("");
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
+
+//---------------------------------------------------------------
+// addon SQL AJAX
+
+$("#btn-add-addon").click(function(){
+  var opt = $('option[value="'+$("#datalist-addon-cat-id").val()+'"]');
+  var add_addon_id = opt.attr('data-id');
+  var name = $("#addon_name").val();
+  var description = $("#addon_description").val();
+  var price = $("#addon_price").val();
+
+  if(add_addon_id === "" && name === "" || description === "" || price === ""){
+    $('.form-notice-addon').html("Please fill in all the field");
+  }else{
+    $('.form-notice-addon').html("");
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXaddonSQL.php',
+        data: {
+          add_addon_id:add_addon_id,
+          name:name,
+          description:description,
+          price:price
+        },
+        success: function (data) {
+          alert("Record added");
+          $(".searchAddon").val("")
+          $("#datalist-addon-cat-id").val("")
+          $("#addon_name").val("");
+          $("#addon_description").val("");
+          $("#addon_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+$("#btn-update-addon").click(function(){
+  var opt = $('option[value="'+$(".searchAddon").val()+'"]');
+  var update_addon_id = opt.attr('data-id');
+  var name = $("#addon_name").val();
+  var description = $("#addon_description").val();
+  var price = $("#addon_price").val();
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXaddonSQL.php',
+      data: {
+        update_addon_id:update_addon_id,
+        name:name,
+        description:description,
+        price:price
+      },
+      success: function (data) {
+        alert("Record updated");
+        $(".searchAddon").val("")
+        $("#datalist-addon-cat-id").val("")
+        $("#addon_name").val("");
+        $("#addon_description").val("");
+        $("#addon_price").val("");
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
+
+$("#btn-delete-addon").click(function(){
+  var opt = $('option[value="'+$(".searchAddon").val()+'"]');
+  var delete_addon_id = opt.attr('data-id');
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXaddonSQL.php',
+      data: {
+        delete_addon_id:delete_addon_id,
+      },
+      success: function (data) {
+        alert("Record deleted");
+        $(".searchAddon").val("")
+        $("#datalist-addon-cat-id").val("")
+        $("#addon_name").val("");
+        $("#addon_description").val("");
+        $("#addon_price").val("");
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
+
+//---------------------------------------------------------------
 // condition SQL AJAX
+
+$(".btn-add-condition").click(function(){
+  var name = $("#condition_name").val();
+  var description = $("#condition_description").val();
+  var price = $("#condition_price").val();
+
+  if(name === "" && description === "" || price === ""){
+    $('.form-notice-condition').html("Please fill in all the field");
+  }else{
+    $('.form-notice-condition').html("");
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXconditionSQL.php',
+        data: {
+          name:name,
+          description:description,
+          price:price
+        },
+        success: function (data) {
+          alert("Record added");
+          $(".searchCondition").val("")
+          $("#condition_name").val("");
+          $("#condition_description").val("");
+          $("#condition_price").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
 $(".btn-update-condition").click(function(){
   var opt = $('option[value="'+$(".searchCondition").val()+'"]');
   var update_condition_id = opt.attr('data-id');
+  var name = $("#condition_name").val();
+  var description = $("#condition_description").val();
+  var price = $("#condition_price").val();
 
   $.ajax({
       type: 'POST',
       url: '../controller/AJAXconditionSQL.php',
-      data: {update_condition_id:update_condition_id},
+      data: {
+        update_condition_id:update_condition_id,
+        name:name,
+        description:description,
+        price:price
+      },
       success: function (data) {
         alert("Record updated");
+        $(".searchCondition").val("")
+        $("#condition_name").val("");
+        $("#condition_description").val("");
+        $("#condition_price").val("");
       }
   }, function(){
     //This function is for unhover.
@@ -174,9 +496,15 @@ $(".btn-delete-condition").click(function(){
   $.ajax({
       type: 'POST',
       url: '../controller/AJAXconditionSQL.php',
-      data: {delete_condition_id:delete_condition_id},
+      data: {
+        delete_condition_id:delete_condition_id,
+      },
       success: function (data) {
         alert("Record deleted");
+        $(".searchCondition").val("")
+        $("#condition_name").val("");
+        $("#condition_description").val("");
+        $("#condition_price").val("");
       }
   }, function(){
     //This function is for unhover.
@@ -207,11 +535,24 @@ $(".close-popup-cus").click(function(){
 $('.btn-new-food').on("click", function(){
   $('.add_food_div').show();
   $('.add_addon_div').hide();
+
+  $('.searchAddon').val("");
+  $('#datalist-addon-cat-id').prop("disabled", false);
+  $("#addon_name").val("");
+  $("#addon_description").val("");
+  $("#addon_price").val("");
 });
 
 $('.btn-new-addon').on("click", function(){
   $('.add_food_div').hide();
   $('.add_addon_div').show();
+
+  $('.searchFood').val("");
+  $('#datalist-cat-id').prop("disabled", false);
+  $('#datalist-subcat-id').prop("disabled", false);
+  $("#food_name").val("");
+  $("#food_description").val("");
+  $("#food_price").val("");
 });
 
 //---------------------------------------------------------------
@@ -221,17 +562,11 @@ $(function() {
   $('#datalist-cat-id').on('input',function() {
     var opt = $('option[value="'+$(this).val()+'"]');
     var id = opt.attr('data-id');
-    $.ajax({
-        async: true,
-        type: 'POST',
-        url: '../controller/AJAXformSubcategory.php',
-        data: {id:id},
-        success: function (id) {
-            $('.ajax-subcat').html(id);
-        }
-    }, function(){
-      //This function is for unhover.
-   });
+    $("#datalist-subcat-id").val("");
+    var url_string = window.location.href;
+    url_string += "&cat-form-id=" + id;
+    console.log(url_string);
+    window.history.pushState("", "", url_string);
   });
 });
 //---------------------------------------------------------------
@@ -393,10 +728,11 @@ $("#clear_cart").click(function(event){
 function displayCart() {
   var cartArray = listCart();
   var output = "";
+
+  output += "<dl>";
   for(var i in cartArray) {
     output +=
-    "<dl>"
-    + "<dt>"
+     "<dt>"
     + cartArray[i].count
     + " " + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
@@ -411,9 +747,9 @@ function displayCart() {
       }
     }
 
-    + "</dt>"
-    +"</dl>";
+    + "</dt>";
   }
+  output += "</dl>";
   $(".show-cart").html(output);
   $("#hidden_order").val(output);
   $("#total-cart").val(totalCart());
