@@ -21,7 +21,7 @@ session_start();
     while ($row = mysqli_fetch_assoc($result)) {
      ?>
 
-    <div class="columns">
+    <div class="columns" id="col_<?php echo $row['order_id'];?>" >
       <ul class="price">
         <li class="header"><?php echo $row['order_id'];?></li>
         <li class="content">
@@ -29,8 +29,8 @@ session_start();
         </li>
         <p id="value">  <?php $row['status_id']; ?> </p>
         <li> <?php echo $row['rider_name']; ?></li>
-        <li> <button id="btn_ready" data-id="<?php echo $row['order_id'] ?>">Deliver</button></li>
-        <li> <button id="btn_complete" data-id="<?php echo $row['order_id'] ?>">Completed</button></li>
+        <li> <button class="btn_delivery" data-id="<?php echo $row['order_id'] ?>">Deliver</button></li>
+        <li> <button class="btn_complete" data-id="<?php echo $row['order_id'] ?>">Completed</button></li>
       </ul>
     </div>
   <?php
@@ -40,14 +40,17 @@ session_start();
 </html>
 
 <script>
-$("#btn_ready").on('click',function(){
+$(".btn_delivery").on('click',function(){
   var order_id = $(this).attr('data-id');
+  var status = "ready";
   alert(order_id);
+
    $.ajax({
      type: 'POST',
      url: '../controller/AJAXDriverStatusUpdate.php', // will change to other php when done
      data: {
-       order_id:order_id,
+       status:status,
+       order_id:order_id
      },
      success: function (data) {
        alert(data);
@@ -56,14 +59,17 @@ $("#btn_ready").on('click',function(){
  });
 });
 
-$("#btn_complete").on('click',function(){
+$(".btn_complete").on('click',function(){
   var order_id = $(this).attr('data-id');
+  var status = "delivering";
   alert(order_id);
+
    $.ajax({
      type: 'POST',
      url: '../controller/AJAXDriverStatusUpdate.php', // will change to other php when done
      data: {
-       order_id:order_id,
+       status:status,
+       order_id:order_id
      },
      success: function (data) {
        alert(data);

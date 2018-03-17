@@ -2,25 +2,26 @@
  include '../framework/db.php';
 
 if(isset($_POST['order_id'])){
+  if($_POST['status'] == "ready"){
 
-  $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);
-  $sql  = "UPDATE orders SET status_id = 3 WHERE order_id = $order_id";
-  $result = mysqli_query($conn, $sql);
+      $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);
+      $sql  = "UPDATE orders SET status_id = 3 WHERE order_id = $order_id";
+      $result = mysqli_query($conn, $sql);
 
+      echo "Record updated to 3";
+
+  }
 }
 
 if(isset($_POST['order_id'])){
-  $data = "SELECT * FROM orders JOIN order_status ON orders.status_id = order_status.status_id";
-  $result = mysqli_query($conn, $data);
+  if($_POST['status'] == "delivering"){
 
-  while ($row = mysqli_fetch_assoc($result)) {
-    if ($row['status_id'] == 3) {
-      $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);
-      $sql  = "UPDATE orders SET status_id = 4 WHERE order_id = $order_id";
-    }
-    else {
-      echo "FAILED UPDATE!!!";
-    }
-    }
-  }
+        $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);
+        $sql  = "UPDATE orders SET status_id = 4 WHERE order_id = $order_id";
+        $result = mysqli_query($conn, $sql);
+
+        echo "Record updated to 4";
+
+      }
+}
  ?>
