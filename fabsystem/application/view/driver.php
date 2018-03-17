@@ -27,7 +27,7 @@ session_start();
         <li class="content">
           <div class="qr" data-id ="<?php echo $row['order_id'];?>" ><?php echo $row['customer_address']; ?></div>
         </li>
-        <p id="value">  <?php $row['status_id']; ?> </p>
+        <p hidden id="value" data-id="<?php echo $row['order_id'] ?>"><?php $row['status_id']; ?> </p>
         <li> <?php echo $row['rider_name']; ?></li>
         <li> <button class="btn_delivery" data-id="<?php echo $row['order_id'] ?>">Deliver</button></li>
         <li> <button class="btn_complete" data-id="<?php echo $row['order_id'] ?>">Completed</button></li>
@@ -43,9 +43,8 @@ session_start();
 $(".btn_delivery").on('click',function(){
   var order_id = $(this).attr('data-id');
   var status = "ready";
-  alert(order_id);
 
-   $.ajax({
+     $.ajax({
      type: 'POST',
      url: '../controller/AJAXDriverStatusUpdate.php', // will change to other php when done
      data: {
@@ -55,14 +54,26 @@ $(".btn_delivery").on('click',function(){
      success: function (data) {
        alert(data);
        location.reload();
-     }
+       }
  });
 });
+
+$("#value").on(function(){
+  var id = $(this).attr("data-id");
+  alert(id);
+  if ($("#value").text("3")) {
+    $("#col_" + id + " li.header").removeClass('header').attr('id', 'button-clicked');
+    alert("#col_" + id);
+  }
+  alert("#col_" + id);
+
+});
+
 
 $(".btn_complete").on('click',function(){
   var order_id = $(this).attr('data-id');
   var status = "delivering";
-  alert(order_id);
+    alert(order_id);
 
    $.ajax({
      type: 'POST',
