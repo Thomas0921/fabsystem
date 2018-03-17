@@ -1,10 +1,3 @@
-$(function() {
-      $("input#date_picker").ready("load",function(){
-        var selected = $(this).val();
-        alert(selected);
-    });
-});
-
 $(document).ready(function(){
   function load_data(query, date)
 {

@@ -14,7 +14,7 @@ session_start();
 
   </head>
   <body>
-    <h2 style="text-align:center">Driver View</h2>
+    <h2 style="text-align:center">Rider View</h2>
 
     <button class="btn-edit" type="button" name="button">Pencil</button>
     <div class="popup-bg">
@@ -60,7 +60,10 @@ session_start();
           <div class="qr" data-id ="<?php echo $row['order_id'];?>" ><?php echo $row['customer_address']; ?></div>
         </li>
         <p hidden id="value" data-id="<?php echo $row['order_id']; ?>"><?php echo $row['status_id']; ?></p>
-        <li><?php echo $row['rider_name']; ?></li>
+        <li>
+          <input list="datalist-rider" autocomplete="off" placeholder="Rider Name" id="datalist-rider-id">
+          <p id="rider_name_p"><?php echo $row['rider_name']; ?></p>
+        </li>
         <li>
           <button class="btn_delivery" data-id="<?php echo $row['order_id']; ?>">Deliver</button>
           <button class="btn_complete" data-id="<?php echo $row['order_id']; ?>">Completed</button>

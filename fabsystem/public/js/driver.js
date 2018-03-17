@@ -1,19 +1,28 @@
 $(".btn_delivery").on('click',function(){
-  var order_id = $(this).attr('data-id');
-  var status = "ready";
 
-     $.ajax({
-     type: 'POST',
-     url: '../controller/AJAXDriverStatusUpdate.php', // will change to other php when done
-     data: {
-       status:status,
-       order_id:order_id
-     },
-     success: function (data) {
-       alert(data);
-       location.reload();
-       }
- });
+  var order_id = $(this).attr('data-id');
+  var opt = $('option[value="'+$("#datalist-rider-id-input").val()+'"]');
+  var rider_id = opt.attr("data-id");
+  var status = "delivering";
+  console.log(rider_id);
+  console.log(order_id);
+  if(rider_id == undefined) {
+    alert("Please select a rider from the list");
+  }else {
+    $.ajax({
+    type: 'POST',
+    url: '../controller/AJAXDriverStatusUpdate.php', // will change to other php when done
+    data: {
+      status:status,
+      rider_id: rider_id,
+      order_id:order_id
+    },
+    success: function (data) {
+      alert(data);
+      location.reload();
+      }
+    });
+  }
 });
 
 $(".columns").each(function(){
@@ -22,17 +31,22 @@ $(".columns").each(function(){
     $("#col_" + id_selected + " li.header").removeClass('header').attr('id', 'button-clicked');
     $("#col_" + id_selected + " li button.btn_complete").css('display','block');
     $("#col_" + id_selected + " li button.btn_delivery").css('display','none');
+    $("#col_" + id_selected + " li #datalist-rider-id").css('display','none');
+    $("#col_" + id_selected + " li p#rider_name_p").css('display','block');
+
 
   }else if ($("#col_" + id_selected + " p#value").text() == 2) {
     $("#col_" + id_selected + " li button.btn_complete").css('display','none');
     $("#col_" + id_selected + " li button.btn_delivery").css('display','block');
+    $("#col_" + id_selected + " li #datalist-rider-id").css('display','block');
+    $("#col_" + id_selected + " li p#rider_name_p").css('display','none');
   }
 });
 
 
 $(".btn_complete").on('click',function(){
   var order_id = $(this).attr('data-id');
-  var status = "delivering";
+  var status = "completed";
 
    $.ajax({
      type: 'POST',
