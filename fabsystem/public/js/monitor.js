@@ -54,13 +54,21 @@ $(document).ready(function(){
          }
        });
    });
+   //subtotal
         var sum = 0;
         $('#first .nettSum').each(function()
-    {
+        {
         sum += parseFloat($(this).html());
 
-    });
-      $('#subtotal_id').html(sum);
+        });
+    //total delivery
+      var sum = 0;
+      $('#first .netDelivery').each(function()
+      {
+        sum += parseFloat($(this).html());
+
+      });
+      $('#totalDelivery').html(sum);
 
       $('#date_picker').on("change", function(){
 

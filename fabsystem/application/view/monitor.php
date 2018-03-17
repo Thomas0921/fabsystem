@@ -33,7 +33,8 @@ $result = mysqli_query($conn, $query);
     </div>
   </body>
   <div class="">
-    Subtotal: <span id="subtotal_id"></span>
+    Subtotal: <span id="subtotal_id"></span> <br>
+    TotalDelivery: <span id="totalDelivery"></span>
   </div>
 </html>
 

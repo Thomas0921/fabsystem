@@ -61,7 +61,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
              <td width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['delivery_time']))->format('%h hours and %i minutes').'</td>
              <td width="5%">'.$row["order_gross"].'</td>
              <td width="5%">'.$row["order_discount"].'</td>
-             <td width="5%">'.$row["order_delivery"].'</td>
+             <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
              <td class="nettSum2" width="5%">'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
              <td width="5%">'.$row["rider_name"].'</td>
              <th hidden>'.$row["status_id"].'</th>
@@ -111,4 +111,11 @@ $(document).ready(function(){
       sum += parseFloat($(this).html());
     });
     $('#subtotal_id').html(sum);
+
+    var sum = 0;
+    $('#first .netDelivery').each(function()
+     {
+       sum += parseFloat($(this).html());
+     });
+     $('#totalDelivery').html(sum);
 </script>

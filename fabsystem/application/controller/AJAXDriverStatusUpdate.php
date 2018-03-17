@@ -5,7 +5,7 @@ if(isset($_POST['order_id'])){
   if($_POST['status'] == "ready"){
 
       $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);
-      $sql  = "UPDATE orders SET status_id = 3 WHERE order_id = $order_id";
+      $sql  = "UPDATE orders SET status_id = 3 , delivery_time = NOW() WHERE order_id = $order_id";
       $result = mysqli_query($conn, $sql);
 
       echo "Record updated to 3";
