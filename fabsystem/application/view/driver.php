@@ -28,10 +28,12 @@ session_start();
         <li class="content">
           <div class="qr" data-id ="<?php echo $row['order_id'];?>" ><?php echo $row['customer_address']; ?></div>
         </li>
-        <p id="value" data-id="<?php echo $row['order_id']; ?>"><?php echo $row['status_id']; ?></p>
+        <p hidden id="value" data-id="<?php echo $row['order_id']; ?>"><?php echo $row['status_id']; ?></p>
         <li><?php echo $row['rider_name']; ?></li>
-        <li><button class="btn_delivery" data-id="<?php echo $row['order_id']; ?>">Deliver</button></li>
-        <li><button class="btn_complete" data-id="<?php echo $row['order_id']; ?>">Completed</button></li>
+        <li>
+          <button class="btn_delivery" data-id="<?php echo $row['order_id']; ?>">Deliver</button>
+          <button class="btn_complete" data-id="<?php echo $row['order_id']; ?>">Completed</button>
+        </li>
       </ul>
     </div>
   <?php

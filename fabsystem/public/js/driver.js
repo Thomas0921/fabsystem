@@ -18,9 +18,14 @@ $(".btn_delivery").on('click',function(){
 
 $(".columns").each(function(){
   var id_selected = $(this).attr("data-id");
-  console.log(id_selected);
-  if ($("#col_" + id_selected + " p#value").text() == 3) {  
+  if ($("#col_" + id_selected + " p#value").text() == 3) {
     $("#col_" + id_selected + " li.header").removeClass('header').attr('id', 'button-clicked');
+    $("#col_" + id_selected + " li button.btn_complete").css('display','block');
+    $("#col_" + id_selected + " li button.btn_delivery").css('display','none');
+
+  }else if ($("#col_" + id_selected + " p#value").text() == 2) {
+    $("#col_" + id_selected + " li button.btn_complete").css('display','none');
+    $("#col_" + id_selected + " li button.btn_delivery").css('display','block');
   }
 });
 
@@ -28,7 +33,6 @@ $(".columns").each(function(){
 $(".btn_complete").on('click',function(){
   var order_id = $(this).attr('data-id');
   var status = "delivering";
-    alert(order_id);
 
    $.ajax({
      type: 'POST',
