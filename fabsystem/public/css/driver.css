@@ -47,30 +47,3 @@
     text-decoration: none;
     font-size: 18px;
 }
-
-/*content */
-.delete-item, .delete-addon{
-  display: none;
-}
-
-
-dl, dt, dd {
-  cursor: pointer;
-  position: relative;
-  list-style-type: none;
-  text-align: left;
-  padding: 4px;
-  background: #eee;
-  font-size: 18px;
-  transition: 0.2s;
-}
-dt:hover,dd:hover {
-  background: #ddd;
-}
-
-dt.active, dd.active{
-
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
