@@ -37,6 +37,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
              <th width="20%">Address</th>
              <th width="5%">OrderTime</th>
              <th width="5%">DeliveryTime</th>
+             <th width="5%">ClosedTime</th>
              <th width="5%">Duration</th>
              <th width="5%">Gross(RM)</th>
              <th width="5%">Disc(RM)</th>
@@ -58,7 +59,8 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
              <td width="20%">'.$row["customer_address"].'</td>
              <td width="5%">'.$row["order_time"].'</td>
              <td width="5%">'.$row["delivery_time"].'</td>
-             <td width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['delivery_time']))->format('%h hours and %i minutes').'</td>
+             <td width="5%">'.$row["closed_time"].'</td>
+             <td width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h hours and %i minutes').'</td>
              <td width="5%">'.$row["order_gross"].'</td>
              <td width="5%">'.$row["order_discount"].'</td>
              <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
