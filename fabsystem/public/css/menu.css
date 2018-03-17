@@ -112,3 +112,27 @@
 }
 
 /**************************************************************/
+.container {
+background-color: #e9edf0;
+}
+
+.left_content{
+  float: left;
+
+}
+
+.right_content{
+  float: right;
+}
+
+.food-box {
+  width: 75%;
+}
+
+.customer-box{
+  width: 50%;
+}
+
+.description-box {
+  width: 25%;
+}

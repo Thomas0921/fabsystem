@@ -25,11 +25,11 @@ session_start();
       <ul class="price">
         <li class="header"><?php echo $row['order_id'];?></li>
         <li class="content">
-          <div class="qr"><?php echo $row['customer_address']; ?></div>
+          <div class="qr" data-id ="<?php echo $row['order_id'];?>" ><?php echo $row['customer_address']; ?></div>
         </li>
         <p id="value">  <?php $row['status_id']; ?> </p>
         <li> <?php echo $row['rider_name']; ?></li>
-        <li> <button id="btn_ready" data-id="<?php echo $row['order_id'] ?>">Delivering</button></li>
+        <li> <button id="btn_ready" data-id="<?php echo $row['order_id'] ?>">Deliver</button></li>
         <li> <button id="btn_complete" data-id="<?php echo $row['order_id'] ?>">Completed</button></li>
       </ul>
     </div>
@@ -73,8 +73,9 @@ $("#btn_complete").on('click',function(){
 });
 
 
-$(window).on("load", function() {
-  generate_qrcode($(".qr").text(), $(".qr"));
+$(".qr").each(function() {
+  var id = $(this).attr("data-id");
+  generate_qrcode($(this).text(), $(this));
 });
 
 function generate_qrcode(sample, identifier){
