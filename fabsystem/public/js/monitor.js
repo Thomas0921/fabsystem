@@ -1,3 +1,10 @@
+$(function() {
+      $("input#date_picker").ready("load",function(){
+        var selected = $(this).val();
+        alert(selected);
+    });
+});
+
 $(document).ready(function(){
   function load_data(query, date)
 {
@@ -14,6 +21,8 @@ $(document).ready(function(){
     }
   });
 }
+
+
   $('#search_text').keyup(function(){
   var search = $(this).val();
   var date = $("#date_picker").val();
@@ -88,8 +97,3 @@ $(document).ready(function(){
      }
     });
   });
-
-// Kenny you can continue here or type your new one
-$(window).on("load", function(){
-  $("#date_picker").timepicker({ 'scrollDefault': 'now' });
-});
