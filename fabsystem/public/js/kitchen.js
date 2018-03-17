@@ -3,9 +3,7 @@
 $(".btn_ready").on('click',function(){
   var order_id = $(this).attr('data-id');
   var col_no = "col_" + order_id;
-
   if($("#"+ col_no + " dd").length == $("#"+ col_no + " dd.active").length && $("#"+ col_no + " dt").length == $("#"+ col_no + " dt.active").length)  {
-    alert(order_id);
 
      $.ajax({
        type: 'POST',
@@ -17,18 +15,11 @@ $(".btn_ready").on('click',function(){
          location.reload();
        }
    });
-  }
+ }else {
+   alert("Please tick the food done above before sending");
+ }
 });
 
-
-
-$("dt, dd").click(function(){
-setContent(this);
-localStorage.setItem('active-container', $(this).data('rel'));
-});
-
-// set content on load
-localStorage.getItem('active-container');
 
 function setContent(inside) {
   if($(inside).hasClass("active")){
@@ -37,3 +28,16 @@ function setContent(inside) {
       $(inside).addClass('active');
   }
 }
+
+$("dt, dd").click(function(e) {
+    setContent(this);
+    var activeIndex = $(this).index();
+    localStorage.setItem("activeSelection", activeIndex);
+});
+
+var activeIndex = localStorage.getItem("activeSelection");
+if (isNaN(activeIndex)) {
+       console.log('nothing stored');
+   } else {
+       $('.columns dd:nth-child('+activeIndex+')').addClass('active');
+   }
