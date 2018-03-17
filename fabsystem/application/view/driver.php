@@ -15,8 +15,39 @@ session_start();
   </head>
   <body>
     <h2 style="text-align:center">Driver View</h2>
-    <?php
 
+    <button class="btn-edit" type="button" name="button">Pencil</button>
+    <div class="popup-bg">
+      <div class="popup-main">
+        <div class="close-popup" title="Close this popup">
+          <p>X</p>
+        </div>
+        <div class="popup-content">
+          <div class="add_rider_div" style="">
+            <input list="datalist-rider" autocomplete="off" name ="datalist_rider" placeholder="Rider Name" id="datalist-rider-id">
+            <datalist class="datalist_searchRider" id="datalist-rider">
+              <?php
+                $sql = "SELECT * FROM riders WHERE rider_id != 1";
+                $result = mysqli_query($conn, $sql);
+
+                if($result ->num_rows > 0){
+                  while($row = $result ->fetch_assoc()){
+                    echo '<option value="'.$row['rider_name'].'" data-id="'.$row['rider_id'].'"></option>';
+                  }
+                }
+               ?>
+            </datalist>
+            <button type="button" id="btn_add_rider" name="add_rider">+</button>
+            <button type="button" id="btn_update_rider" name="add_rider">Edit</button>
+            <button type="button" id="btn_delete_rider" name="delete_rider">-</button><br>
+            <input hidden id="editRiderInput" type="text" name="" value="">
+            <button hidden id="editRiderButton" type="button" name="button">Update</button>
+          </div><!-- add_condition_div -->
+        </div>
+      </div>
+    </div>
+
+    <?php
     $query = "SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id WHERE status_id = 2 OR status_id = 3 order by order_id ASC";
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_assoc($result)) {

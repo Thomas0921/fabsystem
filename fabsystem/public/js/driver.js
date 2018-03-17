@@ -48,7 +48,6 @@ $(".btn_complete").on('click',function(){
  });
 });
 
-
 $(".qr").each(function() {
   var id = $(this).attr("data-id");
   generate_qrcode($(this).text(), $(this));
@@ -66,4 +65,111 @@ function generate_qrcode(sample, identifier){
       $(identifier).html(code);
       }
     });
+}
+
+//---------------------------------------------------------------
+// edit box
+
+$(".btn-edit").click(function(){
+  $(".popup-bg").show();
+});
+
+$(".close-popup").click(function(){
+  $(".popup-bg").hide();
+});
+
+//---------------------------------------------------------------
+// pop up add category AJAX
+$("#btn_add_rider").click(function(){
+
+  var opt = $('option[value="'+ $("#datalist-rider-id").val() +'"]');
+  var rider_id = opt.attr("data-id");
+  var rider_name = $("#datalist-rider-id").val();
+  var status = "add";
+
+  if(rider_id == undefined && rider_name != ""){
+    rider_id = 0;
+    if(rider_name === ""){
+      alert("Rider field is empty");
+    }else {
+      $.ajax({
+          type: "POST",
+          url: "../controller/AJAXriderSQL.php",
+          data: {
+            status:status,
+            rider_id:rider_id,
+            rider_name:rider_name
+          },
+          success: function (data) {
+            alert(data);
+            $("#datalist-rider-id").val("");
+          }
+      }, function(){
+
+     });
+    }
   }
+});
+
+$("#btn_update_rider").click(function(){
+  var rider_name = $("#datalist-rider-id").val();
+  if(rider_name == ""){
+    alert("Please choose an existing rider name to edit")
+  }else {
+    $("#datalist-rider-id").prop("disabled", true);
+    $("#editRiderInput").val(rider_name);
+    $("#editRiderInput").show();
+    $("#editRiderButton").show();
+  }
+});
+
+$("#editRiderButton").click(function(){
+  var opt = $('option[value="'+ $("#datalist-rider-id").val() +'"]');
+  var rider_id = opt.attr("data-id");
+  var rider_name = $("#editRiderInput").val();
+  var status = "update";
+
+  if(rider_name == ""){
+    alert("Rider field is empty");
+  }else {
+    $.ajax({
+        type: "POST",
+        url: "../controller/AJAXriderSQL.php",
+        data: {
+          status:status,
+          rider_id:rider_id,
+          rider_name:rider_name
+        },
+        success: function (data) {
+          alert(data);
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+$("#btn_delete_rider").click(function(){
+  var opt = $('option[value="'+ $("#datalist-rider-id").val() +'"]');
+  var rider_id = opt.attr("data-id");
+  var status = "delete";
+
+  if(rider_id == undefined){
+    alert("category field is empty");
+  }else {
+    $.ajax({
+        type: "POST",
+        url: "../controller/AJAXriderSQL.php",
+        data: {
+          status:status,
+          rider_id:rider_id,
+        },
+        success: function (data) {
+          alert(data);
+          $("#datalist-rider-id").val("");
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});

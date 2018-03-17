@@ -88,8 +88,3 @@ $(document).ready(function(){
      }
     });
   });
-
-// Kenny you can continue here or type your new one
-$(window).on("load", function(){
-  $("#date_picker").timepicker({ 'scrollDefault': 'now' });
-});

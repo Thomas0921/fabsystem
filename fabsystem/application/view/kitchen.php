@@ -15,6 +15,7 @@ session_start();
 <body>
 
   <h2 style="text-align:center">Kitchen View</h2>
+
   <?php
   $query = "SELECT * FROM orders WHERE status_id = 1 order by order_id ASC";
   $result = mysqli_query($conn, $query);
