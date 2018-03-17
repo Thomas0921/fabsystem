@@ -1,14 +1,12 @@
 
 
-$("#btn_ready").on('click',function(){
-
+$(".btn_ready").on('click',function(){
   var order_id = $(this).attr('data-id');
-  var col = ".col_" + order_id;
-  console.log(col);
-  console.log(($(col).children()).length);
-  console.log(($(col).children(".active")).length);
-  if( ($(col).children()).length == ($(col).children(".active")).length)  {
+  var col_no = "col_" + order_id;
+
+  if($("#"+ col_no + " dd").length == $("#"+ col_no + " dd.active").length && $("#"+ col_no + " dt").length == $("#"+ col_no + " dt.active").length)  {
     alert(order_id);
+
      $.ajax({
        type: 'POST',
        url: '../controller/AJAXstatusUpdate.php', // will change to other php when done
@@ -24,20 +22,18 @@ $("#btn_ready").on('click',function(){
 
 
 
-$("dt").click(function(){
-  if($(this).hasClass("active")){
-    $(this).removeClass('active');
-  }else{
-      $(this).addClass('active');
-
-  }
-
+$("dt, dd").click(function(){
+setContent(this);
+localStorage.setItem('active-container', $(this).data('rel'));
 });
 
-$("dd").click(function(){
-  if($(this).hasClass("active")){
-    $(this).removeClass('active');
+// set content on load
+localStorage.getItem('active-container');
+
+function setContent(inside) {
+  if($(inside).hasClass("active")){
+    $(inside).removeClass('active');
   }else{
-      $(this).addClass('active');
+      $(inside).addClass('active');
   }
-});
+}
