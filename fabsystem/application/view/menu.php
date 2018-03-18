@@ -23,7 +23,7 @@
     <meta charset="utf-8">
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
@@ -348,26 +348,59 @@
     </div>
     </div> <!-- container -->
     <!--floating button -->
-    <a href="#" class="float" id="menu-share">
-   <i class="fa fa-navicon my-float" ><img src="../../public/image/home.png" width="5px" alt=""> </i>
-   </a>
-   <ul>
-   <li><a href="monitor.php">
-   <i class="fa fa-desktop my-float"></i>
-   </a></li>
-   <li><a href="menu.php">
-   <i class="fa fa-edit my-float"></i>
-   </a></li>
-   <li><a href="kitchen.php">
-   <i class="fa fa-cutlery my-float"></i>
-   </a></li>
-   <li><a href="rider.php">
-   <i class="fa fa-motorcycle my-float"></i>
-   </a></li>
-   <li><a href="../../helper/loginsystem/logout.php">
-   <i class="fa fa-sign-out my-float"></i>
-   </a></li>
-   </ul>
+    <div class="helper-floating-button">
+      <a href="#" class="float" id="menu-share">
+        <i class="fa fa-home my-float" style="font-size:30px;"></i>
+      </a>
+     <ul class="icon">
+
+       <li class="btn">
+         <a class="btnlink" href="monitor.php">
+           <div class="label-container" style="position:absolute; bottom: 288px;">
+             <div class="label-text">Monitor Page</div>
+             <i class="fa fa-play label-arrow"></i>
+           </div>
+           <i class="fa fa-desktop my-float" style="font-size:20px;"></i>
+         </a>
+       </li>
+       <li class="btn">
+         <a class="btnlink" href="menu.php">
+           <div class="label-container" style="position:absolute; bottom: 224px;">
+             <div class="label-text">Menu Page</div>
+             <i class="fa fa-play label-arrow"></i>
+           </div>
+           <i class="fa fa-edit my-float" style="font-size:20px;"></i>
+         </a>
+       </li>
+       <li class="btn">
+         <a class="btnlink" href="kitchen.php">
+           <div class="label-container" style="position:absolute; bottom: 158px;">
+             <div class="label-text">Kitchen Page</div>
+             <i class="fa fa-play label-arrow"></i>
+           </div>
+           <i class="fa fa-cutlery my-float" style="font-size:20px;"></i>
+         </a>
+       </li>
+       <li class="btn">
+         <a class="btnlink" href="rider.php">
+           <div class="label-container" style="position:absolute; bottom: 96px;">
+             <div class="label-text">Rider Page</div>
+             <i class="fa fa-play label-arrow"></i>
+           </div>
+           <i class="fa fa-motorcycle my-float" style="font-size:20px;"></i>
+         </a>
+       </li>
+       <li class="btn">
+         <a class="btnlink" href="../../helper/loginsystem/logout.php">
+           <div class="label-container">
+             <div class="label-text">Logout</div>
+             <i class="fa fa-play label-arrow"></i>
+           </div>
+           <i class="fa fa-sign-out my-float" style="font-size:20px;"></i>
+         </a>
+       </li>
+     </ul>
+    </div>
   </body>
   <script src="../../public/js/menu.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
