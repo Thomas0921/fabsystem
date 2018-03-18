@@ -6,7 +6,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Driver</title>
+    <title>Rider</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/css/driver.css">
@@ -61,7 +61,7 @@ session_start();
         </li>
         <p hidden id="value" data-id="<?php echo $row['order_id']; ?>"><?php echo $row['status_id']; ?></p>
         <li>
-          <input list="datalist-rider" autocomplete="off" placeholder="Rider Name" id="datalist-rider-id">
+          <input list="datalist-rider" autocomplete="off" placeholder="Rider Name" class="datalist-rider-id-input">
           <p id="rider_name_p"><?php echo $row['rider_name']; ?></p>
         </li>
         <li>
