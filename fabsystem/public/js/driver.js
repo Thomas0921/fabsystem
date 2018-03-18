@@ -1,8 +1,16 @@
+$(".datalist-rider-id-input").change(function(){
+  var opt = $('option[value="'+$(this).val()+'"]');
+  var rider_id = opt.attr("data-id");
+  console.log(rider_id);
+  ($(this).parents("li").siblings().children(".btn_delivery")).attr("rider-id", rider_id);
+
+});
+
+
 $(".btn_delivery").on('click',function(){
 
   var order_id = $(this).attr('data-id');
-  var opt = $('option[value="'+$("#datalist-rider-id-input").val()+'"]');
-  var rider_id = opt.attr("data-id");
+  var rider_id = $(this).attr("rider-id");
   var status = "delivering";
   console.log(rider_id);
   console.log(order_id);
@@ -31,14 +39,14 @@ $(".columns").each(function(){
     $("#col_" + id_selected + " li.header").removeClass('header').attr('id', 'button-clicked');
     $("#col_" + id_selected + " li button.btn_complete").css('display','block');
     $("#col_" + id_selected + " li button.btn_delivery").css('display','none');
-    $("#col_" + id_selected + " li #datalist-rider-id").css('display','none');
+    $("#col_" + id_selected + " li .datalist-rider-id-input").css('display','none');
     $("#col_" + id_selected + " li p#rider_name_p").css('display','block');
 
 
   }else if ($("#col_" + id_selected + " p#value").text() == 2) {
     $("#col_" + id_selected + " li button.btn_complete").css('display','none');
     $("#col_" + id_selected + " li button.btn_delivery").css('display','block');
-    $("#col_" + id_selected + " li #datalist-rider-id").css('display','block');
+    $("#col_" + id_selected + " li .datalist-rider-id-input").css('display','block');
     $("#col_" + id_selected + " li p#rider_name_p").css('display','none');
   }
 });

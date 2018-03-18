@@ -189,8 +189,8 @@
                       <textarea id="food_description" name="food_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                       <input id="food_price" type="number" name="food_price" value="" min="0" step="0.01" placeholder="Price"><br>
                       <button type="button" id="btn-add-food" name="btn-add-food">Add</button>
-                      <button type="button" id="btn-update-food" name="btn-update-food">Update</button>
-                      <button type="button" id="btn-update-food" name="btn-delete-food">Delete</button><br>
+                      <button style="display:none;" type="button" id="btn-update-food" name="btn-update-food">Update</button>
+                      <button style="display:none;" type="button" id="btn-delete-food" name="btn-delete-food">Delete</button><br>
                     </form>
                   </div>
 
@@ -225,8 +225,8 @@
                       <textarea id="addon_description" name="addon_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                       <input id="addon_price" type="number" name="addon_price" value="" min="0" step="0.01" placeholder="Price"><br>
                       <button type="button" id="btn-add-addon" name="btn-add-addon">Add</button>
-                      <button type="button" id="btn-update-addon" name="btn-update-addon">Update</button>
-                      <button type="button" id="btn-delete-addon" name="btn-delete-addon">Delete</button><br>
+                      <button style="display:none;" type="button" id="btn-update-addon" name="btn-update-addon">Update</button>
+                      <button style="display:none;" type="button" id="btn-delete-addon" name="btn-delete-addon">Delete</button><br>
                     </form>
 
                   </div>
@@ -309,8 +309,8 @@
                     <textarea id="condition_description" name="condition_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                     <input id="condition_price" type="number" name="condition_price" value="" min="0" step="0.01" placeholder="Price"><br>
                     <button type="button" class="btn-add-condition" name="btn-add-condition">Add</button>
-                    <button type="button" class="btn-update-condition" name="btn-update-condition">Update</button>
-                    <button type="button" class="btn-delete-condition" name="btn-delete-condition">Delete</button><br>
+                    <button style="display:none;" type="button" class="btn-update-condition" name="btn-update-condition">Update</button>
+                    <button style="display:none;" type="button" class="btn-delete-condition" name="btn-delete-condition">Delete</button><br>
                   </form>
                 </div><!-- add_condition_div -->
             </div><!-- popup-content-cus -->
