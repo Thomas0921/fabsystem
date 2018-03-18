@@ -1,13 +1,19 @@
-html{
-background-color: #e9edf0;
 
-}
 thead {
   display: block;
+  color: gray;
+
+}
+tr th{
+  text-decoration: none;
 }
 tbody {
   display: block;
   height: 450px;       /* Just for the demo          */
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+div.container{
+  float: right: ;
 }

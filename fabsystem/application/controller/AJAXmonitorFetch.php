@@ -1,10 +1,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../public/css/monitorfetch.css">
 
 <?php
+include '../framework/db.php';
+session_start();
 
-$conn = mysqli_connect("localhost", "root", "", "fabsystem");
 $output ='';
 if(isset($_POST["query"]) && isset($_POST["date"]))
 {
@@ -13,6 +15,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
  $query = "
                SELECT * FROM orders JOIN riders on orders.rider_id = riders.rider_id JOIN order_status on orders.status_id = order_status.status_id
                WHERE (order_id LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
+               OR (bill_no LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
                OR (customer_name LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
                OR (customer_address LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
                OR (order_gross LIKE '%".$search."%' AND order_time LIKE '%".$date."%')
@@ -28,11 +31,11 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
           {
            $output .= '
             <div class="table-responsive">
-             <table id="first" class="table table bordered">
+             <table id="first" class="table">
              <thead>
              <tr>
-             <th width="5%">ID</th>
-             <th width="5%">OrderID</th>
+             <th class="ID" width="2.55%">ID</th>
+             <th width="5%">BillNo</th>
              <th width="5%">Name</th>
              <th width="20%">Address</th>
              <th width="5%">OrderTime</th>
@@ -52,22 +55,22 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
            while($row = mysqli_fetch_array($result))
            {
             $output .= '
-            <tr>
-             <td width="5%">'.$row["order_id"].'</td>
-             <td width="5%">'.$row["order_id"].'</td>
+            <tr class="rows">
+             <td class="cells" width="2.55%">'.$row["order_id"].'</td>
+             <td width="5%">'.$row["bill_no"].'</td>
              <td width="5%">'.$row["customer_name"].'</td>
              <td width="20%">'.$row["customer_address"].'</td>
              <td width="5%">'.$row["order_time"].'</td>
              <td width="5%">'.$row["delivery_time"].'</td>
              <td width="5%">'.$row["closed_time"].'</td>
-             <td width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h hours and %i minutes').'</td>
+             <td class="time" width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h hours and %i minutes').'</td>
              <td width="5%">'.$row["order_gross"].'</td>
              <td width="5%">'.$row["order_discount"].'</td>
              <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
              <td class="nettSum2" width="5%">'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
              <td width="5%">'.$row["rider_name"].'</td>
              <th hidden>'.$row["status_id"].'</th>
-             <td width="5%">'.$row["status_name"].'</td>
+             <td class="status" width="5%">'.$row["status_name"].'</td>
             </tr>
             ';
           }
@@ -88,21 +91,21 @@ $(document).ready(function(){
       //Iterate through each of the rows
        $('tr').each(function(){
          //Check the value of the last <td> element in the row (trimmed to ignore white-space)
-         if($(this).find('th').text().trim() === "1"){
-             //Set the row to green
-             $(this).css('background','#ffe800');
+         if($(this).find('.status').text().trim() === "in progress"){
+
+             $(this).find(".cells").css('background','#F0C810' ).css('text-align', 'center' );
          }
-         if ($(this).find('th').text().trim() === "2") {
-           $(this).css('background','#37d726');
+         if ($(this).find('.status').text().trim() === "ready") {
+           $(this).find(".cells").css('background','#29CF69').css('text-align', 'center' );
          }
-         if ($(this).find('th').text().trim() === "3") {
-           $(this).css('background','#0775c8');
+         if ($(this).find('.status').text().trim() === "delivering") {
+           $(this).find(".cells").css('background','#4695C3' ).css('text-align', 'center' );
          }
-         if ($(this).find('th').text().trim() === "4") {
-           $(this).css('background','#a0a0a0');
+         if ($(this).find('.status').text().trim() === "closed") {
+           $(this).find(".cells").css('background','#C3C4C5').css('text-align', 'center' );
          }
-         if ($(this).find('th').text().trim() === "5") {
-           $(this).css('background','gray');
+         if ($(this).find('.status').text().trim() === "cancelled") {
+           $(this).find(".cells").css('background','#84908E').css('text-align', 'center' );
          }
        });
    });

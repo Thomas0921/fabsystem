@@ -1,0 +1,27 @@
+.rows{
+  padding : 10px;
+  background-color: #fff;
+
+}
+
+.cells{
+  border-radius: 100px;
+}
+
+body{
+  background-color: #e9edf0;
+}
+
+
+.nettSum2 , .time{
+
+}
+
+th.ID{
+  text-align: center;
+}
+
+td{
+
+    border-color: white;
+}
