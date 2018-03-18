@@ -23,19 +23,15 @@
     <meta charset="utf-8">
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
-<<<<<<< HEAD
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-=======
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
->>>>>>> dd569bdf491df26d1e5a851484bd67ca1c5a6f0c
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <a href="../../helper/loginsystem/logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
     <div class="container">
       <div class="left_content">
-        <div class="order-box" style="background-color: rgb(255, 121, 121)">
+        <div class="order-box">
           <h1>Food Ordered</h1>
           <div>
             <ul class="show-cart">
@@ -47,7 +43,7 @@
           <button type="submit" name="send_to_kitchen" id="send_to_kitchen" form="customer-form-id" >Send To Kitchen</button>
         </div>
 
-        <div class="cancelled-box" style="background-color: rgb(255, 111, 219)">
+        <div class="cancelled-box">
           <h1>Cancel Ongoing Order</h1>
           <div class="searchOrder_containter">
 
@@ -63,7 +59,7 @@
         </div>
       </div>
       <div class="right_content">
-        <div class="food-box" style="background-color: rgb(237, 236, 106);">
+        <div class="food-box">
           <h1>Food Menu</h1>
           <div class="wrapper">
             <div class="tabs">
@@ -270,13 +266,13 @@
           </div>
         </div>
         <div class="right_lower_div">
-          <div class="description-box" style="background-color: rgb(122, 180, 238);">
+          <div class="description-box">
             <h1>Description</h1>
             <ul class="show-description">
 
             </ul>
           </div>
-          <div class="customer-box" style="background-color: rgb(125, 213, 156);">
+          <div class="customer-box">
             <h1>Customer's Detail</h1>
             <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
               <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
