@@ -59,7 +59,6 @@
       </div>
       <div class="right_content">
         <div class="food-box">
-          <h1>Food Menu</h1>
           <div class="wrapper">
             <div class="tabs">
               <?php
