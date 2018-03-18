@@ -113,14 +113,14 @@
 
 /**************************************************************/
 
-body {
+html {
   background-color: #e9edf0;
   font-family: sans-serif;
 }
 
-.container {
-  width: 100%;
-  height: 100%;
+header{
+  background-color:#29CF69;
+  padding: 7px;
 }
 
 .left_content{
@@ -147,7 +147,7 @@ body {
 }
 
 .food-box {
-  background-color: rgb(237, 236, 106);
+  background-color: #FFF;
 }
 
 .customer-box{
@@ -166,11 +166,33 @@ body {
 .food-box .click-cat{
   font-size: 30px;
   text-decoration: none;
+  margin: 15px;
 }
 
 .food-box .click-subcat{
   font-size: 25px;
   text-decoration: none;
+  margin: 10px;
+}
+
+.food-box .sub-tabs {
+  margin-left: 15px;
+}
+
+.food-box .content{
+  margin-left: 30px;
+}
+
+.food-box .add-to-cart{
+  background-color: #FFF;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  height: 60px;
+  width: 350px;
+  padding: 20px;
+  border: 2px solid rgb(180, 180, 180);
+  margin: 2px;
 }
 
 /************************************************************************/

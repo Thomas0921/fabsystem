@@ -366,13 +366,14 @@ $("#btn-add-food").click(function(){
   var cat_id = opt.attr('data-id');
   var opt2 = $('option[value="'+$("#datalist-subcat-id").val()+'"]');
   var subcat_id = opt2.attr('data-id');
+  alert(cat_id);
+  alert(subcat_id);
   var name = $("#food_name").val();
   var description = $("#food_description").val();
   var price = $("#food_price").val();
   if(cat_id === "" && subcat_id === "" || name === "" || description === "" || price === ""){
-    $('.form-notice-food').html("Please fill in all the field");
+    alert("Please fill in all the field");
   }else {
-    $('.form-notice-food').html("");
     $.ajax({
         type: 'POST',
         url: '../controller/AJAXfoodSQL.php',
@@ -384,7 +385,7 @@ $("#btn-add-food").click(function(){
           price:price
         },
         success: function (data) {
-          alert("Record added");
+          alert(data);
           $(".searchAddon").val("");
           $("#datalist-cat-id").val("");
           $("#datalist-subcat-id").val("");
@@ -415,7 +416,7 @@ $("#btn-update-food").click(function(){
         price:price
       },
       success: function (data) {
-        alert("Record updated");
+        alert(data);
         $(".searchFood").val("");
         $("#datalist-cat-id").val("");
         $("#datalist-subcat-id").val("");
@@ -677,9 +678,10 @@ $('.btn-new-addon').on("click", function(){
 // add food form pop up
 
 $(function() {
-  $('#datalist-cat-id').on('input',function() {
+  $('#datalist-cat-id').on('change',function() {
     var opt = $('option[value="'+$(this).val()+'"]');
     var cat_id = opt.attr('data-id');
+    $("#datalist-subcat-id").val("");
 
     $.ajax({
         type: 'POST',
