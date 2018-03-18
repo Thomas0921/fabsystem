@@ -27,7 +27,6 @@ else {
     <link rel="stylesheet" type="text/css" href="../../public/css/kitchen.css">
   </head>
 <body>
-<a href="../../helper/loginsystem/logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
   <h2 style="text-align:center">Kitchen View</h2>
 
   <?php

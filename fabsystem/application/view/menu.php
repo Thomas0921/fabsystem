@@ -28,7 +28,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <a href="../../helper/loginsystem/logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
     <div class="container">
       <div class="left_content">
         <div class="order-box" style="background-color: rgb(255, 121, 121)">

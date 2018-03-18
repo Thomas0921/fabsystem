@@ -27,7 +27,6 @@ else {
 
   </head>
   <body>
-    <a href="../../helper/loginsystem/logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
     <h2 style="text-align:center">Rider View</h2>
 
     <button class="btn-edit" type="button" name="button">Pencil</button>
