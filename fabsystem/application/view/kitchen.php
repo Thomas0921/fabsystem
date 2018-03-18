@@ -37,10 +37,10 @@ else {
 
   <div class="columns" id="col_<?php echo $row['order_id'] ;?>">
     <ul class="price">
-      <li class="header"><?php echo $row['order_id'] ;?></li>
+      <li class="header"><?php echo $row['bill_no'] ;?></li>
       <li class="content"><?php echo $row['order_content'] ;?></li>
       <p id="value">  <?php $row['status_id']; ?> </p>
-      <li> <button class="btn_ready" data-id="<?php echo $row['order_id'] ?>">Ready</button></li>
+      <button class="btn_ready" data-id="<?php echo $row['order_id'] ?>">Ready</button>
     </ul>
   </div>
 <?php

@@ -2,10 +2,19 @@
     box-sizing: border-box;
 }
 
+h2{
+  background : #29CF69;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  color: white;
+}
+
 .columns {
     float: left;
-    width: 25%;
-    padding: 4px;
+    width: 24%;
+    margin: 9px;
 }
 
 .price {
@@ -18,11 +27,11 @@
 }
 
 .price:hover {
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    box-shadow: 0 8px 12px 0 #C8E6C9
 }
 
 .price .header {
-    background-color: #111;
+    background-color: #29CF69;
     color: white;
     font-size: 25px;
 }
@@ -37,17 +46,35 @@
     background-color: #4CAF50;
     font-size: 20px;
 }
-
-.btn_delivery {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 30px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
+#datalist-rider-id{
+  margin-left: 50px;
 }
 
+.btn_delivery {
+  background-color: #29CF69;
+  border: none;
+  color: white;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 20px;
+}
+
+.btn_complete {
+  background-color: #ffe800;
+  border: none;
+  color: white;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 20px;
+}
 #button-clicked{
   background-color: #ffe800;
 }

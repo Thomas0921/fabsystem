@@ -4,13 +4,15 @@ body{
   margin-left: 10px;
 }
 
-h3.header{
+h2.header{
   background: #29CF69;
   width: 100%;
   clear: both;
   margin: 0;
   padding-top: 20px;
   padding-bottom: 20px;
+  color: white;
+  
 }
 
 #search_text{

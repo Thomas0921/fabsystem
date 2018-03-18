@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $query);
     </head>
   <body>
     <div  id ="container" >
-      <h3 class="header" align="center">MONITOR SCREEN</h3>
+      <h2 class="header" align="center">MONITOR SCREEN</h2>
       <div>
         <div id="input-group">
               <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
@@ -47,26 +47,6 @@ $result = mysqli_query($conn, $query);
       <div id="result">
     </div>
 
-    <a href="#" class="float" id="menu-share">
-<i class="fa fa-navicon my-float" ></i>
-</a>
-<ul>
-<li><a href="monitor.php">
-<i class="fa fa-desktop my-float"></i>
-</a></li>
-<li><a href="menu.php">
-<i class="fa fa-edit my-float"></i>
-</a></li>
-<li><a href="kitchen.php">
-<i class="fa fa-cutlery my-float"></i>
-</a></li>
-<li><a href="rider.php">
-<i class="fa fa-motorcycle my-float"></i>
-</a></li>
-<li><a href="../../helper/loginsystem/logout.php">
-<i class="fa fa-sign-out my-float"></i>
-</a></li>
-</ul>
 
     <!--floating button -->
     <div class="helper-floating-button">

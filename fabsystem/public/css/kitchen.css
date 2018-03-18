@@ -2,15 +2,24 @@
     box-sizing: border-box;
 }
 
+h2{
+  background : #29CF69;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  color: white;
+}
+
 .columns {
     float: left;
-    width: 25%;
-    padding: 4px;
+    width: 24%;
+    margin: 9px;
 }
 
 .price {
     list-style-type: none;
-    border: 1px solid #eee;
+    border: 0px solid #eee;
     margin: 0;
     padding: 0;
     -webkit-transition: 0.3s;
@@ -18,11 +27,11 @@
 }
 
 .price:hover {
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    box-shadow: 0 8px 12px 0 #C8E6C9
 }
 
 .price .header {
-    background-color: #111;
+    background-color: #29CF69;
     color: white;
     font-size: 25px;
 }
@@ -33,19 +42,22 @@
     text-align: center;
 }
 
-.price .grey {
-    background-color: #4CAF50;
-    font-size: 20px;
-}
 
 .btn_ready {
-    background-color: #4CAF50;
+    background-color: #29CF69;
     border: none;
     color: white;
-    padding: 10px 30px;
+    width: 100%;
+    margin: 0;
+    height: 100%;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
+    padding: 20px;
+}
+.btn_ready:hover{
+    background-color: #43A047;
+
 }
 
 /*content */
@@ -60,17 +72,17 @@ dl, dt, dd {
   list-style-type: none;
   text-align: left;
   padding: 4px;
-  background: #eee;
+  background: white;
   font-size: 18px;
   transition: 0.2s;
 }
 dt:hover,dd:hover {
-  background: #ddd;
+  background: #C8E6C9;
 }
 
 dt.active, dd.active{
 
-  background: #888;
+  background: #81C784;
   color: #fff;
   text-decoration: line-through;
 }
