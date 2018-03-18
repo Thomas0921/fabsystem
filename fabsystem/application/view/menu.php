@@ -23,7 +23,7 @@
     <meta charset="utf-8">
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
@@ -265,88 +265,88 @@
           </div>
         </div>
         <div class="right_lower_div">
+          <div class="description-box" style="background-color: rgb(122, 180, 238);">
+            <h1>Description</h1>
+            <ul class="show-description">
 
-        </div>
-        <div class="description-box" style="background-color: rgb(122, 180, 238);">
-          <h1>Description</h1>
-          <ul class="show-description">
-
-          </ul>
-        </div>
-        <div class="customer-box" style="background-color: rgb(125, 213, 156);">
-          <h1>Customer's Detail</h1>
-          <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
-            <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
-            <input type="text" id="input_contact" name="contact" value="" placeholder="Contact" required><br>
-            <input type="text" id="input_address" name="address" value="" placeholder="Address" required><br>
-            <div class="total-minus">
-              <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount" required>
-            </div>
-            <div class="total-add">
-              <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost" required>
-            </div>
-            <input type="text" id="bill_no" name="bill_no" value="" placeholder="Bill Number" required><br>
-            <div class="checkbox-condition">
-              <?php
-                $sql = "SELECT * FROM food_condition";
-                $result = mysqli_query($conn, $sql);
-
-                if($result ->num_rows > 0){
-                  while($row = $result ->fetch_assoc()){
-                    echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
-                  }
-                }
-               ?>
-            </div>
-            <div class="total-add">
-              <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
-              <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
-              <input id="hidden_order" type="hidden" name="order_content" required>
-            </div>
-            <h2>Total: RM<input type="text" id="total-cart" name="total_cost" ></h2>
-          </form>
-
-          <button class="btn-edit-cus" type="button" name="button">Pencil</button>
-          <div class="popup-bg-cus">
-            <div class="popup-main-cus">
-              <div class="close-popup-cus" title="Close this popup">
-                <p>X</p>
+            </ul>
+          </div>
+          <div class="customer-box" style="background-color: rgb(125, 213, 156);">
+            <h1>Customer's Detail</h1>
+            <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
+              <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
+              <input type="text" id="input_contact" name="contact" value="" placeholder="Contact" required><br>
+              <input type="text" id="input_address" name="address" value="" placeholder="Address" required><br>
+              <div class="total-minus">
+                <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount" required>
               </div>
-              <div class="popup-content-cus">
-                <div class="add_condition_div" style="">
-                  <div class="search_containter">
+              <div class="total-add">
+                <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost" required>
+              </div>
+              <input type="text" id="bill_no" name="bill_no" value="" placeholder="Bill Number" required><br>
+              <div class="checkbox-condition">
+                <?php
+                  $sql = "SELECT * FROM food_condition";
+                  $result = mysqli_query($conn, $sql);
 
-                    <h5>Search the condition you want to change</h5>
-                    <h6 class="notice"></h6>
-                    <input class="searchCondition" list="datalist_search_condition" type="datalist" name="" value="">
-                    <datalist class="datalist_searchCondition" id="datalist_search_condition">
-                      <?php
-                        $sql = "SELECT * FROM food_condition";
-                        $result = mysqli_query($conn, $sql);
+                  if($result ->num_rows > 0){
+                    while($row = $result ->fetch_assoc()){
+                      echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
+                    }
+                  }
+                 ?>
+              </div>
+              <div class="total-add">
+                <input id="checkbox_others_cost" type="checkbox" condition-price=""> Others
+                <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
+                <input id="hidden_order" type="hidden" name="order_content" required>
+              </div>
+              <h2>Total: RM<input type="text" id="total-cart" name="total_cost" ></h2>
+            </form>
 
-                        if($result ->num_rows > 0){
-                          while($row = $result ->fetch_assoc()){
-                            echo '<option value="'.$row['condition_name'].'" data-id="'.$row['condition_id'].'"></option>';
+            <button class="btn-edit-cus" type="button" name="button">Pencil</button>
+            <div class="popup-bg-cus">
+              <div class="popup-main-cus">
+                <div class="close-popup-cus" title="Close this popup">
+                  <p>X</p>
+                </div>
+                <div class="popup-content-cus">
+                  <div class="add_condition_div" style="">
+                    <div class="search_containter">
+
+                      <h5>Search the condition you want to change</h5>
+                      <h6 class="notice"></h6>
+                      <input class="searchCondition" list="datalist_search_condition" type="datalist" name="" value="">
+                      <datalist class="datalist_searchCondition" id="datalist_search_condition">
+                        <?php
+                          $sql = "SELECT * FROM food_condition";
+                          $result = mysqli_query($conn, $sql);
+
+                          if($result ->num_rows > 0){
+                            while($row = $result ->fetch_assoc()){
+                              echo '<option value="'.$row['condition_name'].'" data-id="'.$row['condition_id'].'"></option>';
+                            }
                           }
-                        }
-                       ?>
-                    </datalist>
-                  </div>
+                         ?>
+                      </datalist>
+                    </div>
 
-                  <form class="form-add-condition" action="../controller/AJAXconditionSQL.php" method="post">
-                    <h6 class="form-notice-condition"></h6>
-                    <input id="condition_name" type="text" name="condition_name" value="" placeholder="Condition Name"><br>
-                    <textarea id="condition_description" name="condition_description" rows="5" cols="26" placeholder="Description"></textarea><br>
-                    <input id="condition_price" type="number" name="condition_price" value="" min="0" step="0.01" placeholder="Price"><br>
-                    <button type="button" class="btn-add-condition" name="btn-add-condition">Add</button>
-                    <button style="display:none;" type="button" class="btn-update-condition" name="btn-update-condition">Update</button>
-                    <button style="display:none;" type="button" class="btn-delete-condition" name="btn-delete-condition">Delete</button><br>
-                  </form>
-                </div><!-- add_condition_div -->
-            </div><!-- popup-content-cus -->
-          </div> <!-- popup-main-cus -->
-        </div><!-- popup-bg-cus -->
-      </div><!-- right_content -->
+                    <form class="form-add-condition" action="../controller/AJAXconditionSQL.php" method="post">
+                      <h6 class="form-notice-condition"></h6>
+                      <input id="condition_name" type="text" name="condition_name" value="" placeholder="Condition Name"><br>
+                      <textarea id="condition_description" name="condition_description" rows="5" cols="26" placeholder="Description"></textarea><br>
+                      <input id="condition_price" type="number" name="condition_price" value="" min="0" step="0.01" placeholder="Price"><br>
+                      <button type="button" class="btn-add-condition" name="btn-add-condition">Add</button>
+                      <button style="display:none;" type="button" class="btn-update-condition" name="btn-update-condition">Update</button>
+                      <button style="display:none;" type="button" class="btn-delete-condition" name="btn-delete-condition">Delete</button><br>
+                    </form>
+                  </div><!-- add_condition_div -->
+              </div><!-- popup-content-cus -->
+            </div> <!-- popup-main-cus -->
+          </div><!-- popup-bg-cus -->
+        </div><!-- right_content -->
+      </div><!-- right-lower-div -->
+    </div>
     </div> <!-- container -->
   </body>
   <script src="../../public/js/menu.js"></script>
