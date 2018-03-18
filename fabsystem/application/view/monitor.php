@@ -31,22 +31,23 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" type="text/css" href="../../public/css/monitor.css">
     </head>
   <body>
-    <div  class="container" >
-      <h3 align="center">MONITOR SCREEN</h3>
+    <div  id ="container" >
+      <h3 class="header" align="center">MONITOR SCREEN</h3>
       <div>
-        <div class="input-group">
-          <span class="input-group-addon">Search</span>
-          <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
+        <div id="input-group">    
+              <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
+              <form class="date">
+                Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
+              </form
+
           </div></div>
         </div>
-        <form class="date">
-          Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
-        </form>
+
 
       <div id="result">
     </div>
     <a href="#" class="float" id="menu-share">
-<i class="fa fa-navicon my-float" ><img src="../../public/image/home.png" width="5px" alt=""> </i>
+<i class="fa fa-navicon my-float" ></i>
 </a>
 <ul>
 <li><a href="monitor.php">

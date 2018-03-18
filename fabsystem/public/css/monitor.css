@@ -1,4 +1,30 @@
 
+body{
+  background-color: #e9edf0;
+}
+
+h3.header{
+  background: #29CF69;
+  width: 100%;
+  clear: both;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#search_text{
+  margin-left: 10px;
+  margin-top: 30px;
+  width: 40%;
+  margin-bottom: 40px;
+  align-items: middle;
+}
+
+.date{
+  margin-left: 10px;
+  margin-bottom: 40px;
+}
+
 thead {
   display: block;
   color: gray;
@@ -14,16 +40,6 @@ tbody {
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-div.input-group, span.input-group-addon{
-  float: right ;
-  clear: both;
-
-}
-
-form.date{
-  float: left;
-  clear: both;
-}
 
 /*floting button*/
 .label-container{

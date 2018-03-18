@@ -7,13 +7,13 @@ html {
 }
 
 body {
-  background: #ffffff; /* #c1bdba */
+  background: #e9edf0; /* #c1bdba */
   font-family: 'Titillium Web', sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: #1ab188;
+  color: #29CF69;
   -webkit-transition: .5s ease;
   transition: .5s ease;
 }
@@ -22,7 +22,7 @@ a:hover {
 }
 
 .form {
-  background: rgba(19, 35, 47, 0.9); 
+  background: white;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -59,7 +59,7 @@ a:hover {
   color: #ffffff;
 }
 .tab-group .active a {
-  background: #1ab188;
+  background: #29CF69;
   color: #ffffff;
 }
 
@@ -76,13 +76,13 @@ h1 {
 
 h2 {
     text-align: center;
-    color: #1ab188;
+    color: #29CF69;
     font-weight: 1000;
     margin: 0;
 }
 
 span {
-    color: #1ab188;
+    color: #29CF69;
     font-weight: bold;
 }
 
@@ -117,7 +117,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+  color: #29CF69;
 }
 
 label.active {
@@ -150,7 +150,7 @@ input, textarea {
 }
 input:focus, textarea:focus {
   outline: 0;
-  border-color: #1ab188;
+  border-color: #29CF69;
 }
 
 textarea {
@@ -186,7 +186,7 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
+  background: #29CF69;
   color: #ffffff;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;

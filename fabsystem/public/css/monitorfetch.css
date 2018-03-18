@@ -13,10 +13,6 @@ body{
 }
 
 
-.nettSum2 , .time{
-
-}
-
 th.ID{
   text-align: center;
 }
@@ -25,6 +21,8 @@ td{
 
     border-color: white;
 }
+
+
 
 /*floting button*/
 .label-container{
