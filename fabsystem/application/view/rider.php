@@ -6,7 +6,11 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
+<<<<<<< HEAD:fabsystem/application/view/driver.php
+    <meta charset="utf-8"><meta http-equiv="refresh" content="60" >    
+=======
     <meta charset="utf-8"><meta http-equiv="refresh" content="60" >
+>>>>>>> 885cb58b923b1ecdc996c52e8ff3b70794cb7eef:fabsystem/application/view/rider.php
     <title>Rider</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
