@@ -34,7 +34,7 @@ $result = mysqli_query($conn, $query);
     <div  id ="container" >
       <h3 class="header" align="center">MONITOR SCREEN</h3>
       <div>
-        <div id="input-group">    
+        <div id="input-group">
               <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
               <form class="date">
                 Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
@@ -46,7 +46,7 @@ $result = mysqli_query($conn, $query);
 
       <div id="result">
     </div>
-<<<<<<< HEAD
+
     <a href="#" class="float" id="menu-share">
 <i class="fa fa-navicon my-float" ></i>
 </a>
@@ -67,7 +67,7 @@ $result = mysqli_query($conn, $query);
 <i class="fa fa-sign-out my-float"></i>
 </a></li>
 </ul>
-=======
+
     <!--floating button -->
     <div class="helper-floating-button">
       <a href="#" class="float" id="menu-share">
@@ -122,7 +122,7 @@ $result = mysqli_query($conn, $query);
        </li>
      </ul>
     </div>
->>>>>>> a97f796e893bf8be55c0c2ae7a8ff0e1e303982f
+
   </body>
   <div class="">
     TotalNett: <span id="subtotal_id"></span> <br>
