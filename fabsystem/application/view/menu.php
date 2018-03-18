@@ -24,6 +24,7 @@
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
@@ -348,6 +349,27 @@
         </div><!-- popup-bg-cus -->
       </div><!-- right_content -->
     </div> <!-- container -->
+    <!--floating button -->
+    <a href="#" class="float" id="menu-share">
+   <i class="fa fa-navicon my-float" ><img src="../../public/image/home.png" width="5px" alt=""> </i>
+   </a>
+   <ul>
+   <li><a href="monitor.php">
+   <i class="fa fa-desktop my-float"></i>
+   </a></li>
+   <li><a href="menu.php">
+   <i class="fa fa-edit my-float"></i>
+   </a></li>
+   <li><a href="kitchen.php">
+   <i class="fa fa-cutlery my-float"></i>
+   </a></li>
+   <li><a href="rider.php">
+   <i class="fa fa-motorcycle my-float"></i>
+   </a></li>
+   <li><a href="../../helper/loginsystem/logout.php">
+   <i class="fa fa-sign-out my-float"></i>
+   </a></li>
+   </ul>
   </body>
   <script src="../../public/js/menu.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
