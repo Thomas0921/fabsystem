@@ -33,29 +33,29 @@ $('#search_text').keyup(function(){
   }
  });
 });
-
+/*
 $(document).ready(function(){
   //Iterate through each of the rows
 $('tr').each(function(){
       //Check the value of the last <td> element in the row (trimmed to ignore white-space)
       if($(this).find('td').text().trim() === "1"){
           //Set the row to green
-          $(this).css('background','#ffe800');
+          $(this).css('background','#F0C810');
       }
       if ($(this).find('td').text().trim() === "2") {
-        $(this).css('background','#37d726');
+        $(this).css('background','#29CF69');
       }
       if ($(this).find('td').text().trim() === "3") {
-        $(this).css('background','#0775c8');
+        $(this).css('background','#4695C3');
       }
       if ($(this).find('td').text().trim() === "4") {
-        $(this).css('background','#a0a0a0');
+        $(this).css('background','#C3C4C5');
       }
       if ($(this).find('td').text().trim() === "5") {
-        $(this).css('background','gray');
+        $(this).css('background','#84908E');
       }
     });
-});
+});*/
 //subtotal
 var sum = 0;
 $('#first .nettSum').each(function()

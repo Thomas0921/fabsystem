@@ -16,21 +16,19 @@ $result = mysqli_query($conn, $query);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/css/monitor.css">
-
-  </head>
+    </head>
   <body>
-    <div  class="container" style="width:100% ;" >
+    <div  class="container" >
       <h3 align="center">MONITOR SCREEN</h3>
-      <div class="form-group">
+      <div>
         <div class="input-group">
           <span class="input-group-addon">Search</span>
           <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
         </div>
-      </div>
-      <form action="../controller/fetch.php">
-        Date:
-          <input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
-      </form>
+
+      <form>
+        Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
+      </form></div></div>
       <div id="result">
     </div>
   </body>
