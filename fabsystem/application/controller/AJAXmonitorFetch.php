@@ -99,7 +99,7 @@ $(document).ready(function(){
            $(this).find(".cells").css('background','#29CF69').css('text-align', 'center' );
          }
          if ($(this).find('.status').text().trim() === "delivering") {
-           $(this).find(".cells").css('background','#4695C3' ).css('text-align', 'center' );
+           $(this).find(".cells").css('background','#3366ff' ).css('text-align', 'center' );
          }
          if ($(this).find('.status').text().trim() === "closed") {
            $(this).find(".cells").css('background','#C3C4C5').css('text-align', 'center' );

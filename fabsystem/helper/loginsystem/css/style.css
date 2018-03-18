@@ -22,7 +22,7 @@ a:hover {
 }
 
 .form {
-  background: black;
+  background: white;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -161,6 +161,7 @@ textarea {
 .field-wrap {
   position: relative;
   margin-bottom: 40px;
+  color:black;
 }
 
 .top-row:after {
@@ -187,7 +188,7 @@ textarea {
   text-transform: uppercase;
   letter-spacing: .1em;
   background: #29CF69;
-  color: black;
+  color: white;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   -webkit-appearance: none;
