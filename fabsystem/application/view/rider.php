@@ -6,11 +6,11 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
-    <meta charset="utf-8"><meta http-equiv="refresh" content="5" >    
+    <meta charset="utf-8"><meta http-equiv="refresh" content="60" >
     <title>Rider</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../public/css/driver.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/rider.css">
 
 
   </head>
@@ -56,7 +56,7 @@ session_start();
 
     <div class="columns" id="col_<?php echo $row['order_id'];?>" data-id="<?php echo $row['order_id'];?>" >
       <ul class="price">
-        <li class="header"><?php echo $row['order_id'];?></li>
+        <li class="header"><?php echo $row['bill_no'];?></li>
         <li class="content">
           <div class="qr" data-id ="<?php echo $row['order_id'];?>" ><?php echo $row['customer_address']; ?></div>
         </li>
@@ -77,5 +77,5 @@ session_start();
   </body>
 </html>
 
-<script src ="../../public/js/driver.js"></script>
+<script src ="../../public/js/rider.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
