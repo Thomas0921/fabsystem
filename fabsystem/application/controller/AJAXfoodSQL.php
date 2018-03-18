@@ -13,8 +13,8 @@ if (isset($_POST['cat_id']) && isset($_POST['subcat_id']) && isset($_POST['name'
   VALUES (NULL, '$name', '$description', '$price', '$subcat_id');";
 
   $result = mysqli_query($conn, $sql);
-  header("Location: ../view/menu.php?food=added");
-  exit();
+
+  echo "New food added"
 }
 
 if (isset($_POST['update_food_id']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
@@ -32,8 +32,8 @@ if (isset($_POST['update_food_id']) && isset($_POST['name']) && isset($_POST['de
      ";
 
     $result = mysqli_query($conn, $sql);
-    header("Location: ../view/menu.php?food=updated");
-    exit();
+
+    echo "Food's detail updated"
 }
 
 if (isset($_POST['delete_food_id'])){
@@ -45,8 +45,8 @@ if (isset($_POST['delete_food_id'])){
   ";
 
   $result = mysqli_query($conn, $sql);
-  header("Location: ../view/menu.php?food=deleted");
-  exit();
+
+  echo "Food deleted"
 }
 
 
