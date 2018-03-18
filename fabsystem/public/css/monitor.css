@@ -14,6 +14,8 @@ tbody {
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-div.container{
-  float: right: ;
+div.input-group, span.input-group-addon, input.form-control{
+  float: right ;
+  clear: both;
+
 }
