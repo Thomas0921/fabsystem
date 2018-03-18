@@ -23,11 +23,12 @@ $result = mysqli_query($conn, $query);
         <div class="input-group">
           <span class="input-group-addon">Search</span>
           <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
+          </div></div>
         </div>
+        <form class="date">
+          Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
+        </form>
 
-      <form>
-        Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
-      </form></div></div>
       <div id="result">
     </div>
   </body>

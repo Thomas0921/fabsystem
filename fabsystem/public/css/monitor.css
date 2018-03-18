@@ -14,8 +14,12 @@ tbody {
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-div.input-group, span.input-group-addon, input.form-control{
+div.input-group, span.input-group-addon{
   float: right ;
   clear: both;
 
+}
+
+form.date{
+  float: left;
 }
