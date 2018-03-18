@@ -1,3 +1,33 @@
+//-------------------------------------------------------------------------------
+// Sound effect on load
+
+$(window).bind("beforeunload", function(){
+
+  var count = 0;
+  $(".columns").each(function(){
+    count ++;
+  });
+  localStorage.setItem("before", count);
+});
+
+$(window).on("load", function(){
+  var sound = new Audio("../../public/audio/Rider Sound Effect.mp3");
+  var before = localStorage.getItem("before");
+  var count = 0;
+  $(".columns").each(function(){
+    count ++;
+  });
+  var after = count;
+  // calculate how many new order came in
+  var different = after - before;
+
+  if(different > 0){
+    sound.play()
+  }
+});
+
+//-------------------------------------------------------------------------------
+
 $(".datalist-rider-id-input").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
   var rider_id = opt.attr("data-id");
@@ -12,8 +42,7 @@ $(".btn_delivery").on('click',function(){
   var order_id = $(this).attr('data-id');
   var rider_id = $(this).attr("rider-id");
   var status = "delivering";
-  console.log(rider_id);
-  console.log(order_id);
+
   if(rider_id == undefined) {
     alert("Please select a rider from the list");
   }else {
