@@ -29,15 +29,31 @@ function setContent(inside) {
   }
 }
 
-$("dt, dd").click(function(e) {
+$("dt, dd").click(function() {
     setContent(this);
-    var activeIndex = $(this).index();
-    localStorage.setItem("activeSelection", activeIndex);
 });
 
-var activeIndex = localStorage.getItem("activeSelection");
-if (isNaN(activeIndex)) {
-       console.log('nothing stored');
-   } else {
-       $('.columns dd:nth-child('+activeIndex+')').addClass('active');
-   }
+$(window).bind("beforeunload", function(){
+
+  var count = 0;
+  $(".columns").each(function(){
+    count ++;
+  });
+  localStorage.setItem("before", count);
+});
+
+$(window).on("load", function(){
+  var sound = new Audio("../../public/audio/Rider Sound Effect.mp3");
+  var before = localStorage.getItem("before");
+  var count = 0;
+  $(".columns").each(function(){
+    count ++;
+  });
+  var after = count;
+  // calculate how many new order came in
+  var different = after - before;
+
+  if(different > 0){
+    sound.play()
+  }
+});

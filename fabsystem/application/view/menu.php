@@ -28,6 +28,21 @@
           <button type="button" id="clear_addon_cart">Clear Add on Cart</button>
           <button type="submit" name="send_to_kitchen" id="send_to_kitchen" form="customer-form-id" >Send To Kitchen</button>
         </div>
+
+        <div class="cancelled-box" style="background-color: rgb(255, 111, 219)">
+          <h1>Cancel Ongoing Order</h1>
+          <div class="searchOrder_containter">
+
+            <h5>Search the order you want to cancel</h5>
+            <h6 class="notice"></h6>
+            <input class="searchOrder" list="datalist_search_order" type="datalist" id="datalist-order-id" name="" value="">
+            <datalist class="datalist_searchOrder" id="datalist_search_order">
+              <!-- Will get the options by ajax -->
+            </datalist>
+            <button id="btn-cancel-order" type="button" name="button">Cancel</button>
+          </div>
+
+        </div>
       </div>
       <div class="right_content">
         <div class="food-box" style="background-color: rgb(237, 236, 106);">
@@ -236,7 +251,9 @@
             </div>
           </div>
         </div>
+        <div class="right_lower_div">
 
+        </div>
         <div class="description-box" style="background-color: rgb(122, 180, 238);">
           <h1>Description</h1>
           <ul class="show-description">

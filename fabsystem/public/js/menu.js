@@ -47,6 +47,21 @@ $(".hover-condition").hover(function(){
 //---------------------------------------------------------------
 // search AJAX
 
+$(".searchOrder").keyup(function(){
+   var name = $(this).val();
+
+       $.ajax({
+           type: 'POST',
+           url: '../controller/AJAXmenuSearchOrder.php',
+           data: {name:name},
+           success: function (id) {
+               $('.datalist_searchOrder').html(id);
+           }
+       }, function(){
+         //This function is for unhover.
+      });
+});
+
 $(".searchFood").keyup(function(){
    var name = $(this).val();
 
@@ -161,6 +176,40 @@ $(".searchCondition").change(function(){
          }, function(){
            //This function is for unhover.
         });
+  }
+});
+//---------------------------------------------------------------
+//Cancel order
+$("#datalist-order-id").change(function(){
+  var customer_name = $(this).val();
+  var opt = $('option[value="'+ customer_name +'"]');
+  var order_id = opt.attr("data-id");
+  $("#btn-cancel-order").attr("order_id", order_id);
+  var status_name = opt.attr("status_name");
+  $("#btn-cancel-order").attr("status_name", status_name);
+});
+
+$("#btn-cancel-order").click(function(){
+
+  var order_id = $(this).attr("order_id");
+  var status_name = $(this).attr("status_name");
+  console.log(order_id);
+  console.log(status_name);
+
+  if(order_id == undefined) {
+    alert("Please select a previous order from the list");
+  }else {
+    $.ajax({
+    type: 'POST',
+    url: '../controller/AJAXorderStatusUpdate.php', // will change to other php when done
+    data: {
+      order_id:order_id
+    },
+    success: function (data) {
+      alert(data);
+      location.reload();
+      }
+    });
   }
 });
 
