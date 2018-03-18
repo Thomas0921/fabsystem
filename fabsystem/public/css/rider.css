@@ -155,7 +155,7 @@
 	animation: bot-to-top 2s ease-out;
 }
 
-ul{
+ul.icon{
 	position:fixed;
 	right:40px;
 	padding-bottom:20px;
@@ -163,12 +163,12 @@ ul{
 	z-index:100;
 }
 
-ul li{
+ul.icon li.btn{
 	list-style:none;
 	margin-bottom:10px;
 }
 
-ul li a{
+ul.icon li.btn a.btnlink{
 	background-color:#29CF69;
 	color:#FFF;
 	border-radius:50px;
@@ -179,7 +179,7 @@ ul li a{
 	display:block;
 }
 
-ul:hover{
+ul.icon:hover{
 	visibility:visible!important;
 	opacity:1!important;
 }
@@ -190,11 +190,11 @@ ul:hover{
 	margin-top:18px;
 }
 
-a#menu-share + ul{
+a#menu-share + ul.icon{
   visibility: hidden;
 }
 
-a#menu-share:hover + ul{
+a#menu-share:hover + ul.icon{
   visibility: visible;
   animation: scale-in 0.5s;
 }

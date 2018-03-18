@@ -90,20 +90,20 @@ else {
    <a href="#" class="float" id="menu-share">
   <i class="fa fa-navicon my-float" ><img src="../../public/image/home.png" width="5px" alt=""> </i>
   </a>
-  <ul>
-  <li><a href="monitor.php">
+  <ul class="icon">
+  <li class="btn"><a class="btnlink" href="monitor.php">
   <i class="fa fa-desktop my-float"></i>
   </a></li>
-  <li><a href="menu.php">
+  <li class="btn"><a class="btnlink" href="menu.php">
   <i class="fa fa-edit my-float"></i>
   </a></li>
-  <li><a href="kitchen.php">
+  <li class="btn"><a class="btnlink" href="kitchen.php">
   <i class="fa fa-cutlery my-float"></i>
   </a></li>
-  <li><a href="rider.php">
+  <li class="btn"><a class="btnlink" href="rider.php">
   <i class="fa fa-motorcycle my-float"></i>
   </a></li>
-  <li><a href="../../helper/loginsystem/logout.php">
+  <li class="btn"><a class="btnlink" href="../../helper/loginsystem/logout.php">
   <i class="fa fa-sign-out my-float"></i>
   </a></li>
   </ul>
