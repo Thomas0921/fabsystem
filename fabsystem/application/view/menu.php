@@ -3,6 +3,18 @@
   include '../framework/db.php';
   session_start();
 
+  if ( $_SESSION['logged_in'] != 1 ) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");
+  }
+  else {
+      // Makes it easier to read
+      $first_name = $_SESSION['first_name'];
+      $last_name = $_SESSION['last_name'];
+      $email = $_SESSION['email'];
+      $active = $_SESSION['active'];
+  }
+
  ?>
 
 <!DOCTYPE html>
@@ -15,6 +27,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
+    <a href="../../helper/loginsystem/logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
     <div class="container">
       <div class="left_content">
         <div class="order-box" style="background-color: rgb(255, 121, 121)">

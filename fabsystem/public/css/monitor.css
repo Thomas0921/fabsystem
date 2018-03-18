@@ -22,4 +22,5 @@ div.input-group, span.input-group-addon{
 
 form.date{
   float: left;
+  clear: both;
 }

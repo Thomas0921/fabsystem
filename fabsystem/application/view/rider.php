@@ -1,16 +1,24 @@
 <?php
 include '../framework/db.php';
 session_start();
+
+if ( $_SESSION['logged_in'] != 1 ) {
+  $_SESSION['message'] = "You must log in before viewing your profile page!";
+  header("location: error.php");
+}
+else {
+    // Makes it easier to read
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+    $email = $_SESSION['email'];
+    $active = $_SESSION['active'];
+}
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-<<<<<<< HEAD:fabsystem/application/view/driver.php
-    <meta charset="utf-8"><meta http-equiv="refresh" content="60" >    
-=======
     <meta charset="utf-8"><meta http-equiv="refresh" content="60" >
->>>>>>> 885cb58b923b1ecdc996c52e8ff3b70794cb7eef:fabsystem/application/view/rider.php
     <title>Rider</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,6 +27,7 @@ session_start();
 
   </head>
   <body>
+    <a href="../../helper/loginsystem/logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
     <h2 style="text-align:center">Rider View</h2>
 
     <button class="btn-edit" type="button" name="button">Pencil</button>
