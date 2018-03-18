@@ -68,14 +68,18 @@ $(".searchFood").change(function(){
   var food_id = opt.attr('data-id');
 
   if(food_id == undefined ){
-    $('.notice').html("* No record found");
+    alert("* No record found");
     $('#datalist-cat-id').prop("disabled", false);
     $('#datalist-subcat-id').prop("disabled", false);
+    $("#btn-add-food").show();
+    $("#btn-update-food").hide();
+    $("#btn-delete-food").hide();
   }else{
-    $('.notice').html("");
-    console.log(food_id);
     $('#datalist-cat-id').prop("disabled", true);
     $('#datalist-subcat-id').prop("disabled", true);
+    $("#btn-add-food").css("display", "none");
+    $("#btn-update-food").css("display", "block");
+    $("#btn-delete-food").css("display", "block");
 
          $.ajax({
              type: 'POST',
@@ -99,11 +103,16 @@ $(".searchAddon").change(function(){
   var add_on_id = opt.attr('data-id');
 
   if(add_on_id == undefined ){
-    $('.notice').html("* No record found");
+    alert("* No record found");
     $('#datalist-cat-id').prop("disabled", false);
+    $("#btn-add-addon").css("display", "block");
+    $("#btn-update-addon").css("display", "none");
+    $("#btn-delete-addon").css("display", "none");
   }else{
-    $('.notice').html("");
     $('#datalist-addon-cat-id').prop("disabled", true);
+    $("#btn-add-addon").css("display", "none");
+    $("#btn-update-addon").css("display", "block");
+    $("#btn-delete-addon").css("display", "block");
 
          $.ajax({
              type: 'POST',
@@ -128,9 +137,15 @@ $(".searchCondition").change(function(){
   var condition_id = opt.attr('data-id');
 
   if(condition_id == undefined ){
-    $('.notice').html("* No record found");
+    alert("* No record found");
+    $(".btn-add-condition").css("display", "block");
+    $(".btn-update-condition").css("display", "none");
+    $(".btn-delete-condition").css("display", "none");
   }else{
-    $('.notice').html("");
+    $(".btn-add-condition").css("display", "none");
+    $(".btn-update-condition").css("display", "block");
+    $(".btn-delete-condition").css("display", "block");
+
 
          $.ajax({
              type: 'POST',
