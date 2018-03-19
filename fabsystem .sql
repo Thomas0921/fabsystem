@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2018 at 04:41 PM
+-- Generation Time: Mar 19, 2018 at 03:54 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -195,17 +195,20 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `customer_name`, `customer_contact`, `customer_address`, `order_content`, `order_time`, `delivery_time`, `closed_time`, `order_gross`, `order_discount`, `order_delivery`, `bill_no`, `rider_id`, `status_id`) VALUES
-(1, '1', '', '', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-13 09:23:00', '2018-03-17 20:45:14', '2018-03-17 20:45:53', '50.00', '5.00', '10.00', '2', 1, 4),
-(2, '2', '', '', '', '2018-03-13 11:32:00', '2018-03-13 14:25:00', '0000-00-00 00:00:00', '50.00', '12.00', '5.00', '2', 2, 4),
-(3, '2', '', '', '', '2018-03-13 22:21:59', '2018-03-13 22:21:59', '0000-00-00 00:00:00', '100.00', '10.00', '50.00', '', 1, 4),
-(4, '2', '', '', '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '0000-00-00 00:00:00', '40.00', '12.00', '55.00', '', 2, 4),
-(5, '1', '', '', '', '2018-03-13 23:05:30', '2018-03-13 23:05:30', '0000-00-00 00:00:00', '50.00', '5.00', '10.00', '', 1, 5),
-(6, '1', '', '', '', '2018-03-14 11:42:23', '2018-03-14 11:42:23', '0000-00-00 00:00:00', '45.00', '5.00', '13.00', '', 2, 4),
-(7, '1', '', 'jalan permatang 35', '', '2018-03-14 11:49:06', '2018-03-14 11:49:06', '0000-00-00 00:00:00', '100.00', '5.00', '10.00', '', 1, 4),
-(8, 'thomas', '021-5523657', 'jalan joget 7', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>l', '2018-03-14 18:53:21', '2018-03-21 10:09:08', '0000-00-00 00:00:00', '56.50', '2.00', '4.00', 'JP4412', 1, 3),
-(9, 'thomas', '021-5523657', 'No lala, jalan jasa 3', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-14 18:56:51', '2018-03-21 10:09:08', '0000-00-00 00:00:00', '56.50', '2.00', '4.00', 'JP4412', 1, 3),
-(10, 'jason', '02155756', 'lala', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-14 23:04:24', '2018-03-17 20:29:19', '0000-00-00 00:00:00', '56.20', '2.00', '9999.99', 'JBlalala', 1, 3),
-(11, 'james', '0143144127', 'jalan ronggeng', '', '2018-03-17 20:55:10', '2018-03-17 21:00:39', '0000-00-00 00:00:00', '50.00', '5.00', '10.00', '20', 2, 3);
+(1, 'John', '0123654789', 'jalan nakhoda 15', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:36:59', '2018-03-19 14:58:34', '2018-03-17 20:45:53', '50.00', '5.00', '10.00', 'JP1', 3, 3),
+(2, '2', 'Sam', 'jalan tun aminah', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:37:21', '2018-03-13 14:25:00', '0000-00-00 00:00:00', '50.00', '12.00', '5.00', 'JP2', 1, 1),
+(3, 'Gilbert', '01257894632', 'jalan hang tuah 31', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:38:13', '2018-03-13 22:21:59', '0000-00-00 00:00:00', '100.00', '10.00', '50.00', 'JP3', 1, 2),
+(4, 'Yoga', '01354889456', 'jalan perwira 6', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:39:50', '2018-03-19 15:11:16', '0000-00-00 00:00:00', '40.00', '12.00', '55.00', 'JP4', 2, 3),
+(5, 'Kent', '012564987486', 'jalan mutiara 2/5', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:40:44', '2018-03-13 23:05:30', '0000-00-00 00:00:00', '50.00', '5.00', '10.00', 'JP5', 1, 1),
+(6, 'Ahmad', '0125896475', 'jalan utama 29', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:42:25', '2018-03-14 11:42:23', '0000-00-00 00:00:00', '45.00', '5.00', '13.00', 'JP6', 2, 2),
+(7, 'Tan', '0123456789', 'jalan bakti 48', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:43:06', '2018-03-14 11:49:06', '0000-00-00 00:00:00', '100.00', '5.00', '10.00', 'JP7', 1, 1),
+(8, 'thomas', '021-5523657', 'jalan perwira 16', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:43:25', '2018-03-21 10:09:08', '2018-03-18 00:23:26', '56.50', '2.00', '4.00', 'JP8', 1, 1),
+(9, 'thomas', '021-5523657', 'No lala, jalan jasa 3', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-14 18:56:51', '2018-03-21 10:09:08', '2018-03-18 21:57:38', '56.50', '2.00', '4.00', 'JP4412', 1, 1),
+(10, 'jason', '02155756', 'jalan bakti 4', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:44:07', '2018-03-17 20:29:19', '0000-00-00 00:00:00', '56.20', '2.00', '9999.99', 'JP10', 1, 1),
+(11, 'james', '0143144127', 'jalan sutera pulai 2/4', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:44:46', '2018-03-17 23:45:59', '2018-03-17 23:46:05', '50.00', '5.00', '10.00', 'JP11', 2, 1),
+(12, 'Kent', '014357889', 'jalan joget 7', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:44:58', '2018-03-18 00:23:31', '0000-00-00 00:00:00', '100.00', '5.00', '5.00', 'JP12', 2, 1),
+(13, 'jen', '456789123', 'jalan inang', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:45:21', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '100.00', '50.00', '55.00', 'JP13', 2, 1),
+(14, 'jan', '01288554679', 'jalan wira 9', '<dl><dt>1 Mamee Fish Rice<button class=\'delete-item\' data-id=\'3\'>X</button><dt>1 Curry Chicken Rice<button class=\'delete-item\' data-id=\'1\'>X</button><dd>1 Fish Fillet<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'2\'>X</button></dd><dd>1 Cocktail Sausage (3 pcs)<button class=\'delete-addon\' cat-id=\'1\' addon-id=\'3\'>X</button></dd></dl>', '2018-03-19 09:45:50', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '123.00', '456.00', '123.00', 'JP14', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -227,7 +230,7 @@ INSERT INTO `order_status` (`status_id`, `status_name`) VALUES
 (2, 'ready'),
 (3, 'delivering'),
 (4, 'closed'),
-(5, 'canceled');
+(5, 'cancelled');
 
 -- --------------------------------------------------------
 
@@ -246,7 +249,8 @@ CREATE TABLE `riders` (
 
 INSERT INTO `riders` (`rider_id`, `rider_name`) VALUES
 (1, 'not yet'),
-(2, 'James');
+(2, 'James'),
+(3, 'Kennyong');
 
 -- --------------------------------------------------------
 
@@ -270,8 +274,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_first`, `user_last`, `user_email`, `user_pwd`, `hash`, `active`) VALUES
 (3, 'Kim', 'kaka', 'lalala@gmail.com', '$2y$10$/OCTwztehDIHFlgFxXNIpuXdwzVG3Rl6nxs/vW8fzoM', '3871bd64012152bfb53fdf04b401193f', 0),
-(14, 'Kenny', 'Ong', 'kenny961127@hotmail.co.uk', '$2y$10$dxVjPK.l95wFOOOzQJOcneYGDT0o7CZgcRZ8o8z1o5b', 'a8c88a0055f636e4a163a5e3d16adab7', 0),
-(20, 'Thomas', 'Kim', 'thomaskim092150@gmail.com', '$2y$10$b6SoZywLFH4arV/aIfwwR.DpCzTTIh0RSnxm8wAScqWTe2kK1BNRW', '16a5cdae362b8d27a1d8f8c7b78b4330', 1);
+(20, 'Thomas', 'Kim', 'thomaskim092150@gmail.com', '$2y$10$b6SoZywLFH4arV/aIfwwR.DpCzTTIh0RSnxm8wAScqWTe2kK1BNRW', '16a5cdae362b8d27a1d8f8c7b78b4330', 1),
+(21, 'Kenny', 'Ong', 'kenny961127@hotmail.co.uk', '$2y$10$AzNrl9yw8aeP4ZaEn6loq.h7oQ2IIfS3hSvGxU/s85GI19WLk/ERW', '8c235f89a8143a28a1d6067e959dd858', 1);
 
 --
 -- Indexes for dumped tables
@@ -386,7 +390,7 @@ ALTER TABLE `food_subcategories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -398,13 +402,13 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `riders`
 --
 ALTER TABLE `riders`
-  MODIFY `rider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
