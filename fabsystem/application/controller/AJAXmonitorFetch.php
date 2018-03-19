@@ -91,22 +91,28 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
 
 $(document).ready(function(){
       //Iterate through each of the rows
-    $("tr").each(function(){
+    $(".status").each(function(){
+      console.log("hello");
          //Check the value of the last <td> element in the row (trimmed to ignore white-space)
-         if($(this).find('.status').text().trim() === "in progress"){
-           $(this).css('border-color','#F0C810' ).css('text-align', 'left' );
+         if($(this).text().trim() === "in progress"){
+           $(this).css('border-color','#F0C810' );
+           $(this).siblings().css('border-color','#F0C810' );
          }
-         if ($(this).find('.status').text().trim() === "ready") {
-           $(this).css('border-color','#29CF69').css('text-align', 'left' );
+         if ($(this).text().trim() === "ready") {
+           $(this).css('border-color','#29CF69');
+           $(this).siblings().css('border-color','#29CF69');
          }
-         if ($(this).find('.status').text().trim() === "delivering") {
-           $(this).css('border-color','#3366ff' ).css('text-align', 'left' );
+         if ($(this).text().trim() === "delivering") {
+           $(this).css('border-color','#3d61cf' );
+           $(this).siblings().css('border-color','#3d61cf' );
          }
-         if ($(this).find('.status').text().trim() === "closed") {
-           $(this).css('border-color','#C3C4C5').css('text-align', 'left' );
+         if ($(this).text().trim() === "closed") {
+           $(this).css('border-color','#C3C4C5');
+           $(this).siblings().css('border-color','#C3C4C5');
          }
-         if ($(this).find('.status').text().trim() === "cancelled") {
-           $(this).css('border-color','#84908E').css('text-align', 'left' );
+         if ($(this).text().trim() === "cancelled") {
+           $(this).css('border-color','#84908E');
+           $(this).siblings().css('border-color','#84908E');
          }
        });
    });

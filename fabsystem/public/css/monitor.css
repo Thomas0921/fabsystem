@@ -16,7 +16,7 @@ header {
 }
 
 footer{
-  height: 80px;
+  height: 60px;
   background-color: #FFF;
   box-shadow: 3px 0px 20px rgb(195, 195, 195);
 }
@@ -39,7 +39,7 @@ div#input-group{
 }
 
 p#subtotal_id, p#totalDelivery{
-  margin-top: 1%;
+  margin-top: 0.5%;
   font-size: 22px;
 }
 
@@ -73,9 +73,14 @@ tr th{
 tbody {
   display: block;
   height: 638px;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   width: 100%;
+}
+
+tbody:hover {
+    overflow-y: scroll;
+    width: 100%;
 }
 
 footer{

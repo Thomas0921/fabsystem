@@ -12,12 +12,24 @@ body{
   padding-top: 22px;
   padding-bottom: 22px;
   font-size: 16px;
-  border-top: 5px solid ;
+  border-top: 10px solid ;
+  vertical-align: middle !important;
+  outline-offset: 25px;
+}
+
+.table>tbody>tr{
+  box-shadow: 3px 0px 5px rgb(195, 195, 195);
+
+}
+
+.rows{
+
 }
 
 tr{
   padding: 20px;
   text-align: left;
+
 }
 
 th.ID{
@@ -26,7 +38,7 @@ th.ID{
 
 table {
   border-collapse:separate;
-  border-spacing:0 10px;
+  border-spacing:0 15px;
 }
 
 #result{
