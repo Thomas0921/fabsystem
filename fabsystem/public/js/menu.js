@@ -249,6 +249,7 @@ $("#btn_add_subcategory").click(function(){
             $("#food_name").val("");
             $("#food_description").val("");
             $("#food_price").val("");
+            location.reload();
           }
       }, function(){
         //This function is for unhover.
@@ -281,6 +282,7 @@ $("#btn_delete_subcategory").click(function(){
           $("#food_name").val("");
           $("#food_description").val("");
           $("#food_price").val("");
+          location.reload();
         }
     }, function(){
       //This function is for unhover.
@@ -319,6 +321,7 @@ $("#btn_add_category").click(function(){
             $("#food_name").val("");
             $("#food_description").val("");
             $("#food_price").val("");
+            location.reload();
           }
       }, function(){
 
@@ -351,6 +354,7 @@ $("#btn_delete_category").click(function(){
           $("#food_name").val("");
           $("#food_description").val("");
           $("#food_price").val("");
+          location.reload();
         }
     }, function(){
       //This function is for unhover.
@@ -392,6 +396,7 @@ $("#btn-add-food").click(function(){
           $("#food_name").val("");
           $("#food_description").val("");
           $("#food_price").val("");
+          location.reload();
         }
     }, function(){
       //This function is for unhover.
@@ -423,6 +428,7 @@ $("#btn-update-food").click(function(){
         $("#food_name").val("");
         $("#food_description").val("");
         $("#food_price").val("");
+        location.reload();
       }
   }, function(){
     //This function is for unhover.
@@ -448,6 +454,7 @@ $("#btn-delete-food").click(function(){
         $("#food_name").val("");
         $("#food_description").val("");
         $("#food_price").val("");
+        location.reload();
       }
   }, function(){
     //This function is for unhover.
@@ -485,6 +492,7 @@ $("#btn-add-addon").click(function(){
           $("#addon_name").val("");
           $("#addon_description").val("");
           $("#addon_price").val("");
+          location.reload();
         }
     }, function(){
       //This function is for unhover.
@@ -515,6 +523,7 @@ $("#btn-update-addon").click(function(){
         $("#addon_name").val("");
         $("#addon_description").val("");
         $("#addon_price").val("");
+        location.reload();
       }
   }, function(){
     //This function is for unhover.
@@ -539,6 +548,7 @@ $("#btn-delete-addon").click(function(){
         $("#addon_name").val("");
         $("#addon_description").val("");
         $("#addon_price").val("");
+        location.reload();
       }
   }, function(){
     //This function is for unhover.
@@ -572,6 +582,7 @@ $(".btn-add-condition").click(function(){
           $("#condition_name").val("");
           $("#condition_description").val("");
           $("#condition_price").val("");
+          location.reload();
         }
     }, function(){
       //This function is for unhover.
@@ -601,6 +612,7 @@ $(".btn-update-condition").click(function(){
         $("#condition_name").val("");
         $("#condition_description").val("");
         $("#condition_price").val("");
+        location.reload();
       }
   }, function(){
     //This function is for unhover.
@@ -624,6 +636,7 @@ $(".btn-delete-condition").click(function(){
         $("#condition_name").val("");
         $("#condition_description").val("");
         $("#condition_price").val("");
+        location.reload();
       }
   }, function(){
     //This function is for unhover.
@@ -862,7 +875,8 @@ function displayCart() {
     output +=
      "<dt>"
     + cartArray[i].count
-    + "   " + cartArray[i].name
+    + "     "
+    + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
 
     if(cartArray[i].array != null){

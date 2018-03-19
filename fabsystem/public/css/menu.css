@@ -123,19 +123,24 @@ header{
   padding: 1px;
 }
 
+header h1{
+  margin-top: 5px;
+  margin-left: 35px;
+}
+
 .left_content{
   float: left;
-  width: 24%;
+  width: 25%;
   height: 100%;
-  margin-left: 1%;
-  margin-top: 1%;
+  margin-left: 2%;
+  margin-top: 2%;
 
 }
 
 .right_content{
   float: right;
-  width: 73%;
-  margin: 1%;
+  width: 69%;
+  margin: 2%;
 }
 
 .right-lower_div{
@@ -143,36 +148,131 @@ header{
 }
 
 .order-box {
-  background-color: rgb(255, 121, 121);
-  height: 480px;
-  overflow-y: auto;
+  background-color: #FFF;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .cancelled-box {
-  background-color: rgb(255, 111, 219);
+  background-color: #FFF;
 }
 
 .food-box {
   background-color: #FFF;
-  height: 450px;
+  height: 430px;
   max-height: 43%;
   margin-bottom: 1%;
   overflow: hidden;
 }
 
 .customer-box{
-  background-color: rgb(122, 180, 238);
+  background-color: #FFF;
   float: right;
   width: 75%;
   margin-right: 1%;
+  height: 368px;
 }
 
 .description-box {
-  background-color: rgb(125, 213, 156);
+  background-color: #FFF;
   float: right;
   width: 24%;
-  height: 347px;
+  height: 368px;
 
+}
+/************************************************************************/
+/*order box style*/
+.order-box .order-food-area{
+
+  height: 450px;
+  overflow-y: auto;
+}
+
+.order-box .show-cart{
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.order-box dt {
+  margin-bottom: 6px;
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.order-box dd{
+  font-size: 20px;
+  margin-top: 2px;
+  margin-left: 20px;
+  margin-bottom: 2px;
+}
+
+.order-box .delete-item{
+  float: right;
+  border-style: none;
+  margin-right: 20px;
+  background-color: #fff;
+  color: rgb(215, 215, 215);
+  font-weight: normal;
+}
+
+.order-box .delete-addon{
+  float: right;
+  border-style: none;
+  margin-right: 50px;
+  background-color: #fff;
+  color: rgb(215, 215, 215);
+}
+
+.order-box .clear-buttons{
+ height: 10% ;
+ width: 100%;
+}
+.order-box .send-buttons{
+ height: 10%;
+ width: 100%;
+}
+
+#clear_cart{
+  border: none;
+  width: 47%;
+  margin-left: 10px;
+  padding: 5px;
+}
+#clear_addon_cart{
+  border: none;
+  width: 47%;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+#send_to_kitchen{
+  border: none;
+  background-color: #29CF69;
+  color: #FFF;
+  font-size: 22px;
+  font-weight: bold;
+  width: 95%;
+  height: 95%;
+  padding: 12px;
+  margin: 10px;
+}
+/************************************************************************/
+/*cancelled box style*/
+.cancelled-box{
+  padding-top: 10px;
+  padding-bottom: 22px;
+  margin-top: 24%;
+}
+
+.cancelled-box h1{
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.searchOrder_containter{
+  margin-left: 40px;
 }
 
 /************************************************************************/
@@ -181,6 +281,11 @@ header{
 .food-box .food-box-left{
   float:left;
   max-width: 80%;
+}
+
+.food-box .tabs{
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 .food-box .click-cat{
@@ -196,11 +301,15 @@ header{
 }
 
 .food-box .sub-tabs {
-  margin-left: 15px;
+  margin-top: 10px;
+  margin-left: 35px;
+  margin-bottom: 15px;
 }
 
 .food-box .content{
-  margin-left: 30px;
+  margin-left: 40px;
+  height: 300px;
+  overflow-y: auto;
 }
 
 .food-box .add-to-cart{
@@ -208,15 +317,31 @@ header{
   font-size: 16px;
   text-decoration: none;
   display: inline-block;
-  height: 60px;
-  width: 350px;
-  padding: 20px;
-  border: 2px solid rgb(180, 180, 180);
+  height: 80px;
+  width: 330px;
+  padding-left: 20px;
+  padding-top: 30px;
+  box-shadow: 1px 1px 5px rgb(182, 182, 182);
+  webkit-transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
   margin: 2px;
+
+
+}
+
+.food-box .add-to-cart:hover{
+  box-shadow: 3px 2px 7px #29CF69;
+}
+
+.addon_title {
+  margin-bottom: 10px;
+
 }
 
 .food-box .addon-tabs{
   float: right;
+  margin-top: 5%;
+  overflow-y: auto;
 }
 
 .food-box .addon-to-cart{
@@ -225,10 +350,17 @@ header{
   text-decoration: none;
   display: block;
   height: 60px;
-  width: 250px;
-  padding: 20px;
-  border: 2px solid rgb(180, 180, 180);
-  margin: 2px;
+  width: 200px;
+  padding-left: 20px;
+  padding-top: 18px;
+  box-shadow: 1px 1px 5px rgb(182, 182, 182);
+  webkit-transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
+  margin: 10px;
+}
+
+.food-box .addon-to-cart:hover{
+  box-shadow: 3px 2px 7px #29CF69;
 }
 
 .food-box .btn-edit{
@@ -239,49 +371,135 @@ header{
 /*customer box style*/
 
 .customer-box .customer-box-title{
-  margin-left: 2px;
-  margin-top: 0;
+  margin-left: 20px;
+  margin-top: 20px;;
+  margin-bottom: 20px;
+  font-size: 25px;
 }
+
+.customer-box #customer-form-id{
+  margin-left: 40px;
+  font-size:20px;
+
+}
+
+#input_name{
+  width: 40%;
+  margin-bottom: 15px;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+}
+
+#input_contact{
+  width: 40%;
+  margin-bottom: 15px;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+}
+
+#input_address{
+  width: 81%;
+  margin-bottom: 15px;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+}
+
+#discount{
+  margin-top: 10px;
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 3%;
+  width: 25%;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+}
+
+#delivery_cost{
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 3%;
+  width: 25%;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+}
+
+#bill_no{
+  margin-bottom: 15px;
+  margin-right: 3%;
+  width: 25%;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+}
+
+#customer-form-id h2{
+  position: relative;
+  left : 670px;
+  bottom: 50px;
+  margin: 0;
+  width: 30%;
+  margin-bottom: 10px;
+}
+
+#total-cart{
+  width: 30%;
+  border-style: none;
+
+}
+
+#total-cart:disabled{
+background: #FFF;
+}
+
+.checkbox-condition{
+  clear: both;
+
+}
+
+.hover-condition{
+  margin-right: 10px;
+}
+
+.total-add{
+  margin-top: 10px;
+
+}
+
+#others_cost{
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+  width: 13%;
+}
+
+.btn-edit-cus{
+  float: right;
+}
+
 
 /************************************************************************/
-/*order box style*/
-.order-box .show-cart{
-  padding: 0;
-}
+/*description box style*/
 
-.order-box dt {
-  margin-bottom: 6px;
-}
 
-.order-box dt .item-quantity{
-  font-size: 25px;
-  margin-right: 5px;
-}
-
-.order-box dt .item-name{
-  font-size: 25px;
-}
-
-.order-box dd{
-  font-size: 20px;
-  margin-top: 2px;
+.description-box h1{
   margin-left: 20px;
-  margin-bottom: 2px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
 }
 
-.order-box .delete-item{
-
+.description-box .show-description{
+  list-style: none;
 }
 
-.order-box .delete-addon{
 
+.description-box .description-content{
+  font-size: 35px;
+  margin-bottom: 85px;
 }
 
-.order-box .order-buttons{
-  position: absolute;
-  bottom: 35px;
-  left:45px;
+.description-box .price-content{
+  font-size: 35px;
 }
+
 
 /************************************************************************/
 /*floting button*/

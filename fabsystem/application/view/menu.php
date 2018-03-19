@@ -33,18 +33,21 @@
   <body>
       <div class="left_content">
         <div class="order-box">
-              
-          <div>
+
+          <div class="order-food-area">
             <ul class="show-cart">
 
             </ul>
           </div>
 
-          <div class="order-buttons">
+          <div class="clear-buttons">
             <button type="button" id="clear_cart">Clear Cart</button>
-            <button type="button" id="clear_addon_cart">Clear Add on Cart</button>
+            <button type="button" id="clear_addon_cart">Clear Add on</button><br>
+          </div>
+          <div class="send-button">
             <button type="submit" name="send_to_kitchen" id="send_to_kitchen" form="customer-form-id" >Send To Kitchen</button>
           </div>
+
         </div>
 
         <div class="cancelled-box">
@@ -159,7 +162,7 @@
 
                 $result = mysqli_query($conn, $sql);
 
-                $output .= "<h3 class='Addon Title'>Food's Add On</h3>";
+                $output .= "<h3 class='addon_title'>Food's Add On</h3>";
 
                 if($result ->num_rows > 0){
                   while($row = $result ->fetch_assoc()){
@@ -283,6 +286,9 @@
             </ul>
           </div>
           <div class="customer-box">
+            <button class="btn-edit-cus" type="button" name="button">
+              <i class="fa fa-edit"></i>
+            </button>
             <h1 class="customer-box-title" >Customer's Detail</h1>
             <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
               <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
@@ -302,7 +308,7 @@
 
                   if($result ->num_rows > 0){
                     while($row = $result ->fetch_assoc()){
-                      echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'">'.$row['condition_name'];
+                      echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'"> '.$row['condition_name'];
                     }
                   }
                  ?>
@@ -312,12 +318,10 @@
                 <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
                 <input id="hidden_order" type="hidden" name="order_content" required>
               </div>
-              <h2>Total: RM<input type="text" id="total-cart" name="total_cost" ></h2>
+              <h2>Total: RM<input type="text" id="total-cart" name="total_cost" disabled></h2>
             </form>
 
-            <button class="btn-edit-cus" type="button" name="button">
-              <i class="fa fa-edit"></i>
-            </button>
+
             <div class="popup-bg-cus">
               <div class="popup-main-cus">
                 <div class="close-popup-cus" title="Close this popup">
