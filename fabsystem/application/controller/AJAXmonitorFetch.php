@@ -30,7 +30,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
           if($result ->num_rows > 0)
           {
            $output .= '
-             <table id="first" class="table">
+             <table  id="first" class="table">
              <thead>
              <tr>
              <th class="ID" width="2.55%">ID</th>
@@ -90,19 +90,19 @@ $(document).ready(function(){
          //Check the value of the last <td> element in the row (trimmed to ignore white-space)
          if($(this).find('.status').text().trim() === "in progress"){
 
-             $(this).css('background','#F0C810' ).css('text-align', 'center' );
+           $(this).css('border-color','#F0C810' ).css('text-align', 'left' ).css('border-radius', '50%' );
          }
          if ($(this).find('.status').text().trim() === "ready") {
-           $(this).css('background','#29CF69').css('text-align', 'center' );
+           $(this).css('border-color','#29CF69').css('text-align', 'left' );
          }
          if ($(this).find('.status').text().trim() === "delivering") {
-           $(this).css('background','#3366ff' ).css('text-align', 'center' );
+           $(this).css('border-color','#3366ff' ).css('text-align', 'left' );
          }
          if ($(this).find('.status').text().trim() === "closed") {
-           $(this).css('background','#C3C4C5').css('text-align', 'center' );
+           $(this).css('border-color','#C3C4C5').css('text-align', 'left' );
          }
          if ($(this).find('.status').text().trim() === "cancelled") {
-           $(this).css('background','#84908E').css('text-align', 'center' );
+           $(this).css('border-color','#84908E').css('text-align', 'left' );
          }
        });
    });

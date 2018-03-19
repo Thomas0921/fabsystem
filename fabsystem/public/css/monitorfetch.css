@@ -13,13 +13,10 @@ body{
 
 
 th.ID{
-  text-align: center;
+  text-align: left;
 }
 
-td{
-  border-color: white;
 
-}
 .table>tbody>tr>td,
 .table>tbody>tr>th,
 .table>tfoot>tr>td,

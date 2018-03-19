@@ -17,10 +17,12 @@ h2.header{
 }
 
 div#input-group{
-  width: 40%;
+  width: 20%;
   float: left;
   clear: both;
   font-size: 22px;
+  margin-left: 95px;
+
 }
 
 .date{
@@ -53,10 +55,11 @@ thead {
   display: block;
   color: gray;
   width: 100%;
+  text-align: left;
 
 }
 tr th{
-  text-decoration: none;
+  text-align: left;
 
 }
 tbody {
@@ -69,6 +72,7 @@ tbody {
 
 footer{
   background: white;
+  margin-bottom: 0;
 }
 
 /************************************************************************/
