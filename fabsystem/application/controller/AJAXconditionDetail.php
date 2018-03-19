@@ -12,7 +12,7 @@ include '../framework/db.php';
         $output .= "<li class='description-content'>";
         $output .= $row['condition_description'];
         $output .= "</li>";
-        $output .= "<li>";
+        $output .= "<li class='price-title'>";
         $output .= "Price:";
         $output .= "</li>";
         $output .= "<li class='price-content'>";

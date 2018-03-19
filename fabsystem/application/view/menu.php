@@ -54,9 +54,8 @@
           <h1>Cancel Ongoing Order</h1>
           <div class="searchOrder_containter">
 
-            <h5>Search the order you want to cancel</h5>
             <h6 class="notice"></h6>
-            <input class="searchOrder" list="datalist_search_order" type="datalist" id="datalist-order-id" name="" value="">
+            <input class="searchOrder" list="datalist_search_order" type="datalist" id="datalist-order-id" placeholder="Search by customer's name">
             <datalist class="datalist_searchOrder" id="datalist_search_order">
               <!-- Will get the options by ajax -->
             </datalist>
@@ -292,8 +291,7 @@
             <h1 class="customer-box-title" >Customer's Detail</h1>
             <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
               <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
-              <input type="text" id="input_contact" name="contact" value="" placeholder="Contact" required><br>
-              <input type="text" id="input_address" name="address" value="" placeholder="Address" required><br>
+              <input type="text" id="input_contact" name="contact" value="" placeholder="Contact" required>
               <div class="total-minus">
                 <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount" required>
               </div>
@@ -301,6 +299,8 @@
                 <input id="delivery_cost" type="number" old-value="0" name="delivery_cost" placeholder="Delivery Cost" required>
               </div>
               <input type="text" id="bill_no" name="bill_no" value="" placeholder="Bill Number" required><br>
+              <input type="text" id="input_address" name="address" value="" placeholder="Address" required><br>
+
               <div class="checkbox-condition">
                 <?php
                   $sql = "SELECT * FROM food_condition";
@@ -308,7 +308,8 @@
 
                   if($result ->num_rows > 0){
                     while($row = $result ->fetch_assoc()){
-                      echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'"> '.$row['condition_name'];
+                      echo '<input class="hover-condition" type="checkbox" data-id="'.$row['condition_id'].'" condition-price="'.$row['condition_price'].'"> '.$row['condition_name'].' ';
+
                     }
                   }
                  ?>
