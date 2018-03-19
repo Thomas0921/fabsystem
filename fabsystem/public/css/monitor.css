@@ -1,28 +1,36 @@
-
-body{
-  background-color: #e9edf0;
-  margin-left: 10px;
+header h2{
+  background-color:#29CF69;
+  padding: 0.5%;
+  box-shadow: 3px 0px 20px rgb(195, 195, 195);
+  padding: 0.5%;
+  margin-top: 0;
+  color: #FFF;
+  text-align: left;
+  padding: 20px;
+  padding-left: 88px;
+  font-size: 35px;
 }
 
-h2.header{
-  background: #29CF69;
-  width: 100%;
-  clear: both;
-  margin: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: white;
-  margin-bottom: 10px;
+header {
+  margin-bottom: 20px;
+}
 
+footer{
+  height: 80px;
+  background-color: #FFF;
+  box-shadow: 3px 0px 20px rgb(195, 195, 195);
+}
+
+footer p {
+  float: left;
 }
 
 div#input-group{
   width: 20%;
   float: left;
-  clear: both;
   font-size: 22px;
   margin-left: 95px;
-
+  margin-right: 25px;
 }
 
 .date{
@@ -30,22 +38,22 @@ div#input-group{
   font-size: 20px;
 }
 
-p#subtotal_id p#totalDelivery{
-  font-size: 20px;
+p#subtotal_id, p#totalDelivery{
+  margin-top: 1%;
+  font-size: 22px;
 }
 
-arch_text{
-  margin-left: 10px;
-  margin-top: 30px;
-  width: 40%;
-  margin-bottom: 40px;
-  align-items: middle;
+p#totalDelivery{
+  margin-right: 3.5%;
+  margin-left: 71.5%;
 }
 
-.date{
-  margin-left: 10px;
-  margin-bottom: 40px;
+p#subtotal_id{
+
 }
+
+
+
 table{
   margin-left: 5%;
   padding: 0;
@@ -56,17 +64,17 @@ thead {
   color: gray;
   width: 100%;
   text-align: left;
-
 }
+
 tr th{
   text-align: left;
-
 }
+
 tbody {
   display: block;
-  height: 600px;       /* Just for the demo          */
-  overflow-y: auto;    /* Trigger vertical scroll    */
-  overflow-x: hidden;  /* Hide the horizontal scroll */
+  height: 638px;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
 }
 

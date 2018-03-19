@@ -53,16 +53,21 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
 
            while($row = mysqli_fetch_array($result))
            {
+             if ($row['closed_time'] == "0000-00-00 00:00:00"){
+               $time = "-";
+             } else {
+               $time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h h %i m');
+             }
             $output .= '
             <tr class="rows">
-              <td class="cells" width="2.55%">'.$row["order_id"].'</td>
+              <td class="" width="2.55%">'.$row["order_id"].'</td>
               <td width="5%">'.$row["bill_no"].'</td>
               <td width="5%">'.$row["customer_name"].'</td>
               <td width="18%">'.$row["customer_address"].'</td>
               <td width="5%">'.$row["order_time"].'</td>
               <td width="5%">'.$row["delivery_time"].'</td>
               <td width="5%">'.$row["closed_time"].'</td>
-              <td class="time" width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h hours and %i minutes').'</td>
+              <td class="time" width="5%">'.$time.'</td>
               <td width="5%">'.$row["order_gross"].'</td>
               <td width="5%">'.$row["order_discount"].'</td>
               <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
@@ -86,11 +91,10 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
 
 $(document).ready(function(){
       //Iterate through each of the rows
-       $('tr').each(function(){
+    $("tr").each(function(){
          //Check the value of the last <td> element in the row (trimmed to ignore white-space)
          if($(this).find('.status').text().trim() === "in progress"){
-
-           $(this).css('border-color','#F0C810' ).css('text-align', 'left' ).css('border-radius', '50%' );
+           $(this).css('border-color','#F0C810' ).css('text-align', 'left' );
          }
          if ($(this).find('.status').text().trim() === "ready") {
            $(this).css('border-color','#29CF69').css('text-align', 'left' );

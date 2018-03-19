@@ -1,30 +1,18 @@
-.rows{
-  padding : 10px;
-  background-color: #fff;
-  margin-bottom: 10px;
-
-}
-
-
-
 body{
   background-color: #e9edf0;
 }
 
-
-th.ID{
-  text-align: left;
+.rows{
+  padding : 10px;
+  background-color: #fff;
+  margin-bottom: 10px;
 }
 
-
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th{
-  padding-top: 25px;
-  padding-bottom: 25px;
+.table>tbody>tr>td{
+  padding-top: 22px;
+  padding-bottom: 22px;
+  font-size: 16px;
+  border-top: 5px solid ;
 }
 
 tr{
@@ -32,131 +20,19 @@ tr{
   text-align: left;
 }
 
+th.ID{
+  text-align: left;
+}
+
 table {
   border-collapse:separate;
   border-spacing:0 10px;
-
 }
 
 #result{
-
   width: 90%;
 }
 
 .record_bar {
   margin-bottom: 10px;
 }
-
-
-/*floting button*/
-.label-container{
-	position:fixed;
-	bottom:48px;
-	right:105px;
-	display:table;
-	visibility: hidden;
-}
-
-.label-text{
-	color:#FFF;
-	background:rgba(51,51,51,0.5);
-	display:table-cell;
-	vertical-align:middle;
-	padding:10px;
-	border-radius:3px;
-}
-
-.label-arrow{
-	display:table-cell;
-	vertical-align:middle;
-	color:#333;
-	opacity:0.5;
-}
-
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	background-color:#29CF69;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-	z-index:1000;
-	animation: bot-to-top 2s ease-out;
-}
-
-ul{
-	position:fixed;
-	right:40px;
-	padding-bottom:20px;
-	bottom:80px;
-	z-index:100;
-}
-
-ul li{
-	list-style:none;
-	margin-bottom:10px;
-}
-
-ul li a{
-	background-color:#29CF69;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-	width:60px;
-	height:60px;
-	display:block;
-}
-
-ul:hover{
-	visibility:visible!important;
-	opacity:1!important;
-}
-
-
-.my-float{
-	font-size:24px;
-	margin-top:18px;
-}
-
-a#menu-share + ul{
-  visibility: hidden;
-}
-
-a#menu-share:hover + ul{
-  visibility: visible;
-  animation: scale-in 0.5s;
-}
-
-a#menu-share i{
-	animation: rotate-in 0.5s;
-}
-
-a#menu-share:hover > i{
-	animation: rotate-out 0.5s;
-}
-
-@keyframes bot-to-top {
-    0%   {bottom:-40px}
-    50%  {bottom:40px}
-}
-
-@keyframes scale-in {
-    from {transform: scale(0);opacity: 0;}
-    to {transform: scale(1);opacity: 1;}
-}
-
-@keyframes rotate-in {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
-}
-
-@keyframes rotate-out {
-    from {transform: rotate(360deg);}
-    to {transform: rotate(0deg);}
-}29CF69
-/* floating button*/
