@@ -30,7 +30,6 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
           if($result ->num_rows > 0)
           {
            $output .= '
-            <div class="table-responsive">
              <table id="first" class="table">
              <thead>
              <tr>
@@ -56,25 +55,24 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
            {
             $output .= '
             <tr class="rows">
-             <td class="cells" width="2.55%">'.$row["order_id"].'</td>
-             <td width="5%">'.$row["bill_no"].'</td>
-             <td width="5%">'.$row["customer_name"].'</td>
-             <td width="20%">'.$row["customer_address"].'</td>
-             <td width="5%">'.$row["order_time"].'</td>
-             <td width="5%">'.$row["delivery_time"].'</td>
-             <td width="5%">'.$row["closed_time"].'</td>
-             <td class="time" width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h hours and %i minutes').'</td>
-             <td width="5%">'.$row["order_gross"].'</td>
-             <td width="5%">'.$row["order_discount"].'</td>
-             <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
-             <td class="nettSum2" width="5%">'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
-             <td width="5%">'.$row["rider_name"].'</td>
-             <td class="status" width="5%">'.$row["status_name"].'</td>
+              <td class="cells" width="2.55%">'.$row["order_id"].'</td>
+              <td width="5%">'.$row["bill_no"].'</td>
+              <td width="5%">'.$row["customer_name"].'</td>
+              <td width="20%">'.$row["customer_address"].'</td>
+              <td width="5%">'.$row["order_time"].'</td>
+              <td width="5%">'.$row["delivery_time"].'</td>
+              <td width="5%">'.$row["closed_time"].'</td>
+              <td class="time" width="5%">'.$time = date_diff(new DateTime($row['order_time']), new DateTime($row['closed_time']))->format('%h hours and %i minutes').'</td>
+              <td width="5%">'.$row["order_gross"].'</td>
+              <td width="5%">'.$row["order_discount"].'</td>
+              <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
+              <td class="nettSum2" width="5%">'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
+              <td width="5%">'.$row["rider_name"].'</td>
+              <td class="status" width="5%">'.$row["status_name"].'</td>
             </tr>
             ';
           }
-           $output .= '</tbody></table>
-                       </div>';
+           $output .= '</tbody></table>';
            echo $output;
           }
           else
@@ -92,19 +90,19 @@ $(document).ready(function(){
          //Check the value of the last <td> element in the row (trimmed to ignore white-space)
          if($(this).find('.status').text().trim() === "in progress"){
 
-             $(this).find(".cells").css('background','#F0C810' ).css('text-align', 'center' );
+             $(this).css('background','#F0C810' ).css('text-align', 'center' );
          }
          if ($(this).find('.status').text().trim() === "ready") {
-           $(this).find(".cells").css('background','#29CF69').css('text-align', 'center' );
+           $(this).css('background','#29CF69').css('text-align', 'center' );
          }
          if ($(this).find('.status').text().trim() === "delivering") {
-           $(this).find(".cells").css('background','#3366ff' ).css('text-align', 'center' );
+           $(this).css('background','#3366ff' ).css('text-align', 'center' );
          }
          if ($(this).find('.status').text().trim() === "closed") {
-           $(this).find(".cells").css('background','#C3C4C5').css('text-align', 'center' );
+           $(this).css('background','#C3C4C5').css('text-align', 'center' );
          }
          if ($(this).find('.status').text().trim() === "cancelled") {
-           $(this).find(".cells").css('background','#84908E').css('text-align', 'center' );
+           $(this).css('background','#84908E').css('text-align', 'center' );
          }
        });
    });

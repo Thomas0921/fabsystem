@@ -31,21 +31,20 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" type="text/css" href="../../public/css/monitor.css">
     </head>
   <body>
-    <div  id ="container" >
+
       <h2 class="header" align="center">MONITOR SCREEN</h2>
-      <div>
+
         <div id="input-group">
               <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
-              <form class="date">
-                Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
-              </form
-
-          </div></div>
         </div>
+        <form class="date">
+         &nbsp;&nbsp;&nbsp;  Date:<input id="date_picker" type="date" name="date" value="<?php echo date('Y-m-d');  ?>">
+        </form>
+
 
 
       <div id="result">
-    </div>
+      </div>
 
 
     <!--floating button -->
@@ -105,9 +104,43 @@ $result = mysqli_query($conn, $query);
 
   </body>
   <footer>
-  <div class="total">
-    TotalNett: <p id="subtotal_id"></p> 
-    TotalDelivery: <p id="totalDelivery"></p>
+  <table width="90%">
+    <thead hidden>
+      <th class="ID" width="2.55%">ID</th>
+      <th width="5%">BillNo</th>
+      <th width="5%">Name</th>
+      <th width="20%">Address</th>
+      <th width="5%">OrderTime</th>
+      <th width="5%">DeliveryTime</th>
+      <th width="5%">ClosedTime</th>
+      <th width="5%">Duration</th>
+      <th width="5%">Gross(RM)</th>
+      <th width="5%">Disc(RM)</th>
+      <th width="5%">Delivery(RM)</th>
+      <th width="5%">Nett(RM)</th>
+      <th width="5%">Rider</th>
+      <th width="5%">Status</th>
+    </tr>
+    </thead>
+
+  <tr>
+    <th width="2.55%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">TotalNett: <p id="subtotal_id"></p></th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">TotalDelivery: <p id="totalDelivery"></p></th>
+    <th width="5%">&nbsp;</th>
+    <th width="5%">&nbsp;</th>
+  </tr>
+  </table>
+
   </div>
 </footer>
 </html>

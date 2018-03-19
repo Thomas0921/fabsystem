@@ -12,13 +12,20 @@ h2.header{
   padding-top: 20px;
   padding-bottom: 20px;
   color: white;
+  margin-bottom: 10px;
 
 }
 
-div.input-group{
-  width: 40%
-  margin-top:20px;
-  margin-bottom: 20px;
+div#input-group{
+  width: 40%;
+  float: left;
+  clear: both;
+  font-size: 22px;
+}
+
+.date{
+  margin-left: 20px;
+  font-size: 20px;
 }
 
 p#subtotal_id p#totalDelivery{
@@ -37,22 +44,32 @@ arch_text{
   margin-left: 10px;
   margin-bottom: 40px;
 }
+table{
+  margin-left: 5%;
+  padding: 0;
+}
 
 thead {
   display: block;
   color: gray;
+  width: 100%;
 
 }
 tr th{
   text-decoration: none;
+
 }
 tbody {
   display: block;
-  height: 450px;       /* Just for the demo          */
+  height: 600px;       /* Just for the demo          */
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
+  width: 100%;
 }
 
+footer{
+  background: white;
+}
 
 /************************************************************************/
 /*floting button*/

@@ -1,12 +1,11 @@
 .rows{
   padding : 10px;
   background-color: #fff;
+  margin-bottom: 10px;
 
 }
 
-.cells{
-  border-radius: 100px;
-}
+
 
 body{
   background-color: #e9edf0;
@@ -18,10 +17,37 @@ th.ID{
 }
 
 td{
+  border-color: white;
 
-    border-color: white;
+}
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th{
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
+tr{
+  padding: 20px;
+}
+
+table {
+  border-collapse:separate;
+  border-spacing:0 10px;
+
+}
+
+#result{
+
+  width: 90%;
+}
+
+.record_bar {
+  margin-bottom: 10px;
+}
 
 
 /*floting button*/

@@ -39,6 +39,7 @@ else {
           </div>
           <div class="popup-content">
             <div class="add_rider_div" style="">
+              <h4>Customize rider list here</h4>
               <input list="datalist-rider" autocomplete="off" name ="datalist_rider" placeholder="Rider Name" id="datalist-rider-id">
               <datalist class="datalist_searchRider" id="datalist-rider">
                 <?php

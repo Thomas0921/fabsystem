@@ -36,7 +36,7 @@ button.btn-edit:hover{
 }
 
 div.add_rider_div{
-    margin-top: 60px;
+    margin-top: 18px;
 }
 
 #editRiderInput {
@@ -201,8 +201,16 @@ p#rider_name_p{
 }
 
 .popup-content {
-  top: 50px;
-  left: 30px;
+
+}
+
+.add_rider_div h4{
+  margin-left: 20px;
+  margin-bottom: 25px;
+}
+
+.add_rider_div #datalist-rider-id, .add_rider_div #editRiderInput{
+  margin-left: 40px;
 }
 
 
