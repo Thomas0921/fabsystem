@@ -34,7 +34,7 @@ h2{
 }
 
 .price .header {
-    background-color: #29a859;
+    background-color: #fed330;
     color: white;
     font-size: 25px;
 }
@@ -46,7 +46,7 @@ h2{
 
 
 .btn_ready {
-    background-color: #29CF69;
+    background-color: #fed330;
     border: none;
     color: white;
     width: 97%;
@@ -58,7 +58,7 @@ h2{
     padding: 16px;
 }
 .btn_ready:hover{
-    background-color: #43A047;
+    background-color: #fed330;
 
 }
 
@@ -85,13 +85,13 @@ dd{
 }
 
 dt:hover,dd:hover {
-  background: #C8E6C9;
+  background: #f9e6a2;
 }
 
 dt.active, dd.active{
 
-  background: #81C784;
-  color: #fff;
+  background: #ebebeb;
+  color: #acacac;
   text-decoration: line-through;
 }
 
