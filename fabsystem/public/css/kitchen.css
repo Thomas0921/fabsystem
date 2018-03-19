@@ -9,6 +9,8 @@ h2{
   margin: 0;
   margin-bottom: 20px;
   color: white;
+  padding-left: 25px;
+  font-size: 33px;
 }
 
 .columns {
@@ -24,14 +26,15 @@ h2{
     padding: 0;
     -webkit-transition: 0.3s;
     transition: 0.3s;
+    box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .price:hover {
-    box-shadow: 0 8px 12px 0 #C8E6C9
+    box-shadow: 0 8px 12px 0 rgba(204, 204, 204, 0.75);
 }
 
 .price .header {
-    background-color: #29CF69;
+    background-color: #fed330;
     color: white;
     font-size: 25px;
 }
@@ -43,19 +46,19 @@ h2{
 
 
 .btn_ready {
-    background-color: #29CF69;
+    background-color: #fed330;
     border: none;
     color: white;
-    width: 100%;
+    width: 97%;
     margin: 0;
     height: 100%;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
-    padding: 20px;
+    font-size: 25px;
+    padding: 16px;
 }
 .btn_ready:hover{
-    background-color: #43A047;
+    background-color: #fed330;
 
 }
 
@@ -74,15 +77,21 @@ dl, dt, dd {
   background: white;
   font-size: 18px;
   transition: 0.2s;
+  font-size: 25px;
 }
+
+dd{
+ margin-left: 20px;
+}
+
 dt:hover,dd:hover {
-  background: #C8E6C9;
+  background: #f9e6a2;
 }
 
 dt.active, dd.active{
 
-  background: #81C784;
-  color: #fff;
+  background: #ebebeb;
+  color: #acacac;
   text-decoration: line-through;
 }
 

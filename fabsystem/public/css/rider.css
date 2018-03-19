@@ -60,14 +60,15 @@ div.add_rider_div{
     padding: 0;
     -webkit-transition: 0.3s;
     transition: 0.3s;
+    box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .price:hover {
-    box-shadow: 0 8px 12px 0 #C8E6C9
+    box-shadow: 0 8px 12px 0 rgba(204, 204, 204, 0.75);
 }
 
 .price .header {
-    background-color: #29CF69;
+    background-color: #29a859;
     color: white;
     font-size: 25px;
 }
@@ -130,8 +131,8 @@ div.add_rider_div{
   height: 100%;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
-  padding: 20px;
+  font-size:  25px;
+  padding: 18px;
 }
 .btn_delivery:hover {
   background-color: #43A047;
@@ -148,7 +149,7 @@ div.add_rider_div{
 
 
 .btn_complete {
-  background-color: #ffe800;
+  background-color: #3d61cf;
   color: white;
   border: none;
   width: 100%;
@@ -156,19 +157,15 @@ div.add_rider_div{
   height: 100%;
   text-align: center;
   text-decoration: none;
-  font-size: 20px;
-  padding: 20px;
+  font-size: 25px;
+  padding: 18px;
   border-top: 2px solid;
 }
 #button-clicked{
-  background-color: #ffe800;
+  background-color: #3d61cf;
   font-size: 24px;
   color: white;
 
-}
-
-#button-clicked:hover{
-  background-color: ##FDD835;
 }
 
 p#rider_name_p{

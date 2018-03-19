@@ -27,7 +27,7 @@ else {
     <link rel="stylesheet" type="text/css" href="../../public/css/kitchen.css">
   </head>
 <body>
-  <h2 style="text-align:center">Kitchen View</h2>
+  <h2>Kitchen View</h2>
 
   <?php
   $query = "SELECT * FROM orders WHERE status_id = 1 order by order_id ASC";
