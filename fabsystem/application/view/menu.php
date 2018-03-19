@@ -162,7 +162,7 @@
 
                 $result = mysqli_query($conn, $sql);
 
-                $output .= "<h3 class='Addon Title'>Food's Add On</h3>";
+                $output .= "<h3 class='addon_title'>Food's Add On</h3>";
 
                 if($result ->num_rows > 0){
                   while($row = $result ->fetch_assoc()){
@@ -318,7 +318,7 @@
                 <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
                 <input id="hidden_order" type="hidden" name="order_content" required>
               </div>
-              <h2>Total: RM<input type="text" id="total-cart" name="total_cost" ></h2>
+              <h2>Total: RM<input type="text" id="total-cart" name="total_cost" disabled></h2>
             </form>
 
 
