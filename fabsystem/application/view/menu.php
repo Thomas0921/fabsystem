@@ -330,7 +330,7 @@
                 </div>
                 <div class="popup-content-cus">
                   <div class="add_condition_div" style="">
-                    <div class="search_containter">
+                    <div class="search_containter_condition">
 
                       <h5>Search the condition you want to change</h5>
                       <h6 class="notice"></h6>
