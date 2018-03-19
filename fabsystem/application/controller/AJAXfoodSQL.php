@@ -14,7 +14,7 @@ if (isset($_POST['cat_id']) && isset($_POST['subcat_id']) && isset($_POST['name'
 
   $result = mysqli_query($conn, $sql);
 
-  echo "New food added"
+  echo "New food added";
 }
 
 if (isset($_POST['update_food_id']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
@@ -33,7 +33,7 @@ if (isset($_POST['update_food_id']) && isset($_POST['name']) && isset($_POST['de
 
     $result = mysqli_query($conn, $sql);
 
-    echo "Food's detail updated"
+    echo "Food's detail updated";
 }
 
 if (isset($_POST['delete_food_id'])){
@@ -46,7 +46,7 @@ if (isset($_POST['delete_food_id'])){
 
   $result = mysqli_query($conn, $sql);
 
-  echo "Food deleted"
+  echo "Food deleted";
 }
 
 

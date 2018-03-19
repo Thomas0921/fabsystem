@@ -12,7 +12,7 @@
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
-        $output .= '<option value="'.$row['subcategory_name'].'" data-id="'.$row['subcategory_id'].'"></option>';
+        $output .= '<option value="'.$row['subcategory_name'].'" identifier="subcat" data-id="'.$row['subcategory_id'].'"></option>';
       }
     }
     echo $output;

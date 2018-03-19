@@ -120,26 +120,32 @@ html {
 
 header{
   background-color:#29CF69;
-  padding: 7px;
+  padding: 1px;
 }
 
 .left_content{
   float: left;
-  width: 25%;
+  width: 24%;
   height: 100%;
+  margin-left: 1%;
+  margin-top: 1%;
+
 }
 
 .right_content{
   float: right;
-  width: 75%;
+  width: 73%;
+  margin: 1%;
 }
 
 .right-lower_div{
-
+  margin: 1%;
 }
 
 .order-box {
   background-color: rgb(255, 121, 121);
+  height: 480px;
+  overflow-y: auto;
 }
 
 .cancelled-box {
@@ -148,19 +154,33 @@ header{
 
 .food-box {
   background-color: #FFF;
+  height: 450px;
+  max-height: 43%;
+  margin-bottom: 1%;
+  overflow: hidden;
 }
 
 .customer-box{
   background-color: rgb(122, 180, 238);
   float: right;
   width: 75%;
+  margin-right: 1%;
 }
 
 .description-box {
   background-color: rgb(125, 213, 156);
   float: right;
-  width: 25%;
+  width: 24%;
+  height: 347px;
 
+}
+
+/************************************************************************/
+/*food box style*/
+
+.food-box .food-box-left{
+  float:left;
+  max-width: 80%;
 }
 
 .food-box .click-cat{
@@ -193,6 +213,74 @@ header{
   padding: 20px;
   border: 2px solid rgb(180, 180, 180);
   margin: 2px;
+}
+
+.food-box .addon-tabs{
+  float: right;
+}
+
+.food-box .addon-to-cart{
+  background-color: #FFF;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  height: 60px;
+  width: 250px;
+  padding: 20px;
+  border: 2px solid rgb(180, 180, 180);
+  margin: 2px;
+}
+
+.food-box .btn-edit{
+  float:right;
+}
+
+/************************************************************************/
+/*customer box style*/
+
+.customer-box .customer-box-title{
+  margin-left: 2px;
+  margin-top: 0;
+}
+
+/************************************************************************/
+/*order box style*/
+.order-box .show-cart{
+  padding: 0;
+}
+
+.order-box dt {
+  margin-bottom: 6px;
+}
+
+.order-box dt .item-quantity{
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.order-box dt .item-name{
+  font-size: 25px;
+}
+
+.order-box dd{
+  font-size: 20px;
+  margin-top: 2px;
+  margin-left: 20px;
+  margin-bottom: 2px;
+}
+
+.order-box .delete-item{
+
+}
+
+.order-box .delete-addon{
+
+}
+
+.order-box .order-buttons{
+  position: absolute;
+  bottom: 35px;
+  left:45px;
 }
 
 /************************************************************************/

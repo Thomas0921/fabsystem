@@ -225,7 +225,7 @@ $("#btn_add_subcategory").click(function(){
   var status = "add";
 
   if(cat_id == undefined){
-    alert("Please choose main category")
+    alert("Please choose main category");
   } else{
 
     if(subcat_name === ""){
@@ -364,7 +364,7 @@ $("#btn_delete_category").click(function(){
 $("#btn-add-food").click(function(){
   var opt = $('option[value="'+$("#datalist-cat-id").val()+'"]');
   var cat_id = opt.attr('data-id');
-  var opt2 = $('option[value="'+$("#datalist-subcat-id").val()+'"]');
+  var opt2 = $('option[identifier="subcat"][value="'+$("#datalist-subcat-id").val()+'"]');
   var subcat_id = opt2.attr('data-id');
   alert(cat_id);
   alert(subcat_id);
@@ -862,7 +862,7 @@ function displayCart() {
     output +=
      "<dt>"
     + cartArray[i].count
-    + " " + cartArray[i].name
+    + "   " + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
 
     if(cartArray[i].array != null){

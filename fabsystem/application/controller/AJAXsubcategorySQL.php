@@ -18,20 +18,20 @@ if (isset($_POST['status']) && isset($_POST['cat_id']) && isset($_POST['subcat_i
 
     }else {
 
-      $sql = "INSERT INTO food_subcategories(subcategory_id, subcategory_name, category_id)
-      VALUES (NULL, '$subcat_name', '$cat_id');";
+        $sql = "INSERT INTO food_subcategories(subcategory_id, subcategory_name, category_id)
+        VALUES (NULL, '$subcat_name', '$cat_id');";
 
-      $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
 
-      echo "New subcategory created";
-    }
+        echo "New subcategory created";
+      }
   }
 }
 
 if (isset($_POST['status']) && isset($_POST['subcat_id'])){
 
   if($_POST['status'] == "delete"){
-    
+
     $subcat_id = mysqli_real_escape_string($conn, $_POST['subcat_id']);
 
     $sql = "SELECT * FROM foods WHERE subcategory_id= '.$subcat_id.'";
