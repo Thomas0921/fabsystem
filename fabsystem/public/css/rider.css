@@ -11,6 +11,24 @@ h2{
   color: white;
 }
 
+button.btn-edit{
+  background-color: #29CF69;
+  border: none;
+  color: white;
+  width: 20%;
+  margin: 0;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 20px;
+  clear: both;
+}
+
+button.btn-edit:hover{
+  background-color: #43A047
+}
+
 .columns {
     float: left;
     width: 24%;
@@ -62,6 +80,18 @@ h2{
   font-size: 18px;
   padding: 20px;
 }
+.btn_delivery:hover {
+  background-color: #43A047;
+  border: none;
+  color: white;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 20px;
+}
 
 .btn_complete {
   background-color: #ffe800;
@@ -77,6 +107,10 @@ h2{
 }
 #button-clicked{
   background-color: #ffe800;
+}
+
+#button-clicked:hover{
+  background-color: ##FDD835;
 }
 
 /**************************************************************/

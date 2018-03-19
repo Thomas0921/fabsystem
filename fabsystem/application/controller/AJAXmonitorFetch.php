@@ -69,7 +69,6 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
              <td class="netDelivery" width="5%">'.$row["order_delivery"].'</td>
              <td class="nettSum2" width="5%">'.$nett=$row["order_delivery"]+$row["order_gross"]-$row["order_discount"].'</td>
              <td width="5%">'.$row["rider_name"].'</td>
-             <th hidden>'.$row["status_id"].'</th>
              <td class="status" width="5%">'.$row["status_name"].'</td>
             </tr>
             ';

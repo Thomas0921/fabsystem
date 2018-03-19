@@ -31,7 +31,7 @@ else {
   <body>
     <h2 style="text-align:center">Rider View</h2>
 
-    <button class="btn-edit" type="button" name="button">Pencil</button>
+    <button class="btn-edit" type="button" name="button">Add New Rider</button>
     <div class="popup-bg">
       <div class="popup-main">
         <div class="close-popup" title="Close this popup">

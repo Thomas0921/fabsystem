@@ -12,10 +12,13 @@ h2.header{
   padding-top: 20px;
   padding-bottom: 20px;
   color: white;
-  
+
+}
+p#subtotal_id p#totalDelivery{
+  font-size: 20px;
 }
 
-#search_text{
+arch_text{
   margin-left: 10px;
   margin-top: 30px;
   width: 40%;

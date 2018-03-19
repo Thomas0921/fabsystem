@@ -104,10 +104,12 @@ $result = mysqli_query($conn, $query);
     </div>
 
   </body>
-  <div class="">
-    TotalNett: <span id="subtotal_id"></span> <br>
-    TotalDelivery: <span id="totalDelivery"></span>
+  <footer>
+  <div class="total">
+    TotalNett: <p id="subtotal_id"></p> 
+    TotalDelivery: <p id="totalDelivery"></p>
   </div>
+</footer>
 </html>
 
 <script src="../../public/js/monitor.js"></script>

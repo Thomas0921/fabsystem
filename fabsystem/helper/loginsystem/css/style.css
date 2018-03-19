@@ -6,6 +6,11 @@ html {
   overflow-y: scroll;
 }
 
+.emailinput .pwdinput{
+  text-decoration: none;
+  background: #9E9E9E;
+}
+
 body {
   background: #e9edf0; /* #c1bdba */
   font-family: 'Titillium Web', sans-serif;

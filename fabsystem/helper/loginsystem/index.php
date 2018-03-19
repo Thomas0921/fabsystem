@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"  autocomplete="off" name="email"/>
+            <input class="emailinput" type="email"  autocomplete="off" name="email"/>
           </div>
 
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"  autocomplete="off" name="password"/>
+            <input class="pwdinput" type="password"  autocomplete="off" name="password"/>
           </div>
 
           <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>
