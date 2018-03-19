@@ -97,9 +97,6 @@ div.add_rider_div{
   padding-bottom: 5px;
 }
 
-#editRiderButton:hover{
-  background-color: #43A047;
-}
 
 #btn_update_rider{
   background-color: #29CF69;
@@ -134,19 +131,6 @@ div.add_rider_div{
   font-size:  25px;
   padding: 18px;
 }
-.btn_delivery:hover {
-  background-color: #43A047;
-  border: none;
-  color: white;
-  width: 100%;
-  margin: 0;
-  height: 100%;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 20px;
-}
-
 
 .btn_complete {
   background-color: #3d61cf;
