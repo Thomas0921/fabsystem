@@ -36,7 +36,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
              <th class="ID" width="2.55%">ID</th>
              <th width="5%">BillNo</th>
              <th width="5%">Name</th>
-             <th width="20%">Address</th>
+             <th width="18%">Address</th>
              <th width="5%">OrderTime</th>
              <th width="5%">DeliveryTime</th>
              <th width="5%">ClosedTime</th>
@@ -58,7 +58,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
               <td class="cells" width="2.55%">'.$row["order_id"].'</td>
               <td width="5%">'.$row["bill_no"].'</td>
               <td width="5%">'.$row["customer_name"].'</td>
-              <td width="20%">'.$row["customer_address"].'</td>
+              <td width="18%">'.$row["customer_address"].'</td>
               <td width="5%">'.$row["order_time"].'</td>
               <td width="5%">'.$row["delivery_time"].'</td>
               <td width="5%">'.$row["closed_time"].'</td>

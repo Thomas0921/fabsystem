@@ -103,8 +103,8 @@ $result = mysqli_query($conn, $query);
     </div>
 
   </body>
-  <footer>
-  <table width="90%">
+<div>
+  <table id="tb" width="90%">
     <thead hidden>
       <th class="ID" width="2.55%">ID</th>
       <th width="5%">BillNo</th>
@@ -123,26 +123,26 @@ $result = mysqli_query($conn, $query);
     </tr>
     </thead>
 
-  <tr>
+  <td id="tbr">
     <th width="2.55%">&nbsp;</th>
     <th width="5%">&nbsp;</th>
     <th width="5%">&nbsp;</th>
     <th width="20%">&nbsp;</th>
     <th width="5%">&nbsp;</th>
     <th width="5%">&nbsp;</th>
-    <th width="5%">&nbsp;</th>
-    <th width="5%">&nbsp;</th>
+    <th width="5%"></th>
+    <th width="5%"></th>
+    <th width="5%"></th>
+    <th width="5%">TotalDelivery: <p id="totalDelivery"></p></th>
+    <th width="5%"></th>
     <th width="5%">TotalNett: <p id="subtotal_id"></p></th>
     <th width="5%">&nbsp;</th>
     <th width="5%">&nbsp;</th>
-    <th width="5%">TotalDelivery: <p id="totalDelivery"></p></th>
-    <th width="5%">&nbsp;</th>
-    <th width="5%">&nbsp;</th>
-  </tr>
+  </td>
   </table>
 
   </div>
-</footer>
+
 </html>
 
 <script src="../../public/js/monitor.js"></script>
