@@ -302,6 +302,10 @@ header h1{
 /************************************************************************/
 /*food box style*/
 
+.food-box a{
+  color: black;
+}
+
 .food-box .food-box-left{
   float:left;
   max-width: 80%;
@@ -343,18 +347,18 @@ header h1{
   display: inline-block;
   height: 80px;
   width: 330px;
-  padding-left: 20px;
-  padding-top: 30px;
   box-shadow: 1px 1px 5px rgb(182, 182, 182);
   webkit-transition: box-shadow 0.5s;
   transition: box-shadow 0.5s;
   margin: 2px;
-
+  vertical-align: middle;
+  line-height: 75px;
+  padding-left: 15px;
 
 }
 
 .food-box .add-to-cart:hover{
-  box-shadow: 3px 2px 7px #29CF69;
+  box-shadow: 3px 0px 7px #29CF69;
 }
 
 .addon_title {
@@ -426,10 +430,11 @@ header h1{
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
   float:left;
-  margin-right: 11%;
+  margin-right: 2%;
 }
 
 #input_address{
+  clear: both;
   margin-top: 6px;
   width: 95%;
   margin-bottom: 15px;
@@ -448,15 +453,16 @@ header h1{
 }
 
 #delivery_cost{
-  float: left;
+  clear: left;
   margin-bottom: 15px;
   margin-right: 2%;
-  width: 15%;
+  width: 200px;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
 }
 
 #bill_no{
+  clear: both;
   margin-bottom: 15px;
   margin-right: 3%;
   width: 20%;
@@ -466,9 +472,7 @@ header h1{
 }
 
 #customer-form-id h2{
-  position: relative;
-  left : 670px;
-  bottom: 30px;
+  float: right;
   margin: 0;
   width: 30%;
   margin-bottom: 10px;
@@ -501,6 +505,7 @@ background: #FFF;
 }
 
 .total-add{
+  float: left;
   margin-top: 10px;
 
 }
@@ -538,11 +543,16 @@ background: #FFF;
 
 .description-box .description-content{
   font-size: 35px;
-  margin-bottom: 85px;
+  margin-bottom: 50%;
+}
+
+.description-box .price-content{
+  font-size: 18px;
 }
 
 .description-box .price-content{
   font-size: 35px;
+
 }
 
 
