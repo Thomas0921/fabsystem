@@ -9,10 +9,13 @@ include '../framework/db.php';
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
-        $output .= "<li>";
+        $output .= "<li class='description-content'>";
         $output .= $row['food_description'];
         $output .= "</li>";
         $output .= "<li>";
+        $output .= "Price:";
+        $output .= "</li>";
+        $output .= "<li class='price-content'>";
         $output .= $row['food_price'];
         $output .= "</li>";
       }

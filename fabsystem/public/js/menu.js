@@ -862,7 +862,8 @@ function displayCart() {
     output +=
      "<dt>"
     + cartArray[i].count
-    + "   " + cartArray[i].name
+    + "     " 
+    + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
 
     if(cartArray[i].array != null){
