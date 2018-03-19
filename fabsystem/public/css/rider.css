@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+input, select, textarea{
+  width: 100%;
+  font-size: 22px;
+}
+
 h2{
   background : #29CF69;
   padding-top: 20px;
@@ -9,25 +14,38 @@ h2{
   margin: 0;
   margin-bottom: 20px;
   color: white;
+  list-style: none;
 }
 
 button.btn-edit{
+  position:absolute;
   background-color: #29CF69;
   border: none;
   color: white;
-  width: 20%;
   margin: 0;
-  height: 100%;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
-  padding: 20px;
-  clear: both;
+  font-size: 25px;
+  top: 16px;
+  right: 20px;
 }
 
 button.btn-edit:hover{
   background-color: #43A047
 }
+
+div.add_rider_div{
+    margin-top: 60px;
+}
+
+#editRiderInput {
+  margin-left:50px;
+  margin-top: 15px;
+  font-size: 18px;
+  width: 50%;
+}
+
 
 .columns {
     float: left;
@@ -55,7 +73,6 @@ button.btn-edit:hover{
 }
 
 .price li {
-    border-bottom: 1px solid #eee;
     padding: 20px;
     text-align: center;
 }
@@ -66,8 +83,40 @@ button.btn-edit:hover{
 }
 #datalist-rider-id{
   margin-left: 50px;
+  width: 50%;
+  font-size: 18px;
 }
 
+#editRiderButton{
+  width: 25%;
+  background-color: #29CF69;
+  color:white;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#btn_update_rider{
+  background-color: #29CF69;
+  color:white;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left:13px ;
+  padding-right: 13px ;
+}
+
+#btn_add_rider{
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#btn_delete_rider{
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 .btn_delivery {
   background-color: #29CF69;
   border: none;
@@ -93,26 +142,40 @@ button.btn-edit:hover{
   padding: 20px;
 }
 
+
 .btn_complete {
   background-color: #ffe800;
-  border: none;
   color: white;
+  border: none;
   width: 100%;
   margin: 0;
   height: 100%;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   padding: 20px;
+  border-top: 2px solid;
 }
 #button-clicked{
   background-color: #ffe800;
+  font-size: 24px;
+  color: white;
+
 }
 
 #button-clicked:hover{
   background-color: ##FDD835;
 }
 
+p#rider_name_p{
+  font-size: 19px;
+  padding: 0px;
+  }
+
+.border{
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+}
 /**************************************************************/
 /* Pop up form food-box */
 
@@ -128,7 +191,7 @@ button.btn-edit:hover{
 
 .popup-main {
   position: fixed;
-  width: 350px;
+  width: 380px;
   height: 200px;
   border-radius: 5px;
   background-color: white;

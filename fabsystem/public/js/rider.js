@@ -66,6 +66,7 @@ $(".columns").each(function(){
   var id_selected = $(this).attr("data-id");
   if ($("#col_" + id_selected + " p#value").text() == 3) {
     $("#col_" + id_selected + " li.header").removeClass('header').attr('id', 'button-clicked');
+    $("#col_" + id_selected + " li#line").addClass('border');
     $("#col_" + id_selected + " li button.btn_complete").css('display','block');
     $("#col_" + id_selected + " li button.btn_delivery").css('display','none');
     $("#col_" + id_selected + " li .datalist-rider-id-input").css('display','none');
@@ -73,6 +74,7 @@ $(".columns").each(function(){
 
 
   }else if ($("#col_" + id_selected + " p#value").text() == 2) {
+    $("#col_" + id_selected + " li#line").removeClass('border');
     $("#col_" + id_selected + " li button.btn_complete").css('display','none');
     $("#col_" + id_selected + " li button.btn_delivery").css('display','block');
     $("#col_" + id_selected + " li .datalist-rider-id-input").css('display','block');

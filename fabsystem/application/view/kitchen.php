@@ -40,7 +40,7 @@ else {
       <li class="header"><?php echo $row['bill_no'] ;?></li>
       <li class="content"><?php echo $row['order_content'] ;?></li>
       <p id="value">  <?php $row['status_id']; ?> </p>
-      <button class="btn_ready" data-id="<?php echo $row['order_id'] ?>">Ready</button>
+      <li><button class="btn_ready" data-id="<?php echo $row['order_id'] ?>">Ready</button></li>
     </ul>
   </div>
 <?php

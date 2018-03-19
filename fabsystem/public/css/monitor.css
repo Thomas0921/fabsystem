@@ -14,6 +14,13 @@ h2.header{
   color: white;
 
 }
+
+div.input-group{
+  width: 40%
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+
 p#subtotal_id p#totalDelivery{
   font-size: 20px;
 }
