@@ -32,7 +32,7 @@ button.btn-edit{
 }
 
 button.btn-edit:hover{
-  background-color: #43A047
+  background-color: #43A047;
 }
 
 div.add_rider_div{
@@ -95,6 +95,10 @@ div.add_rider_div{
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+#editRiderButton:hover{
+  background-color: #43A047;
 }
 
 #btn_update_rider{
