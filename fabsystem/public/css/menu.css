@@ -725,3 +725,200 @@ a#menu-share:hover > i{
     }
 }
 /* floating button*/
+
+/*edit-box */
+
+div.popup-main{
+  width: 400px;
+}
+
+button.btn-new-food, button.btn-new-addon{
+border: none;
+background: #29CF69;
+margin-top: 40px;
+padding: 10px;
+cursor: pointer;
+color: white;
+padding-left: 28px;
+padding-right: 28px;
+}
+
+button.btn-new-food{
+  margin-left: 50px;
+}
+
+button.btn-new-food:hover, button.btn-new-addon:hover{
+background: #43A047;
+}
+
+div.search_containter{
+  margin-top: 40px;
+}
+
+input.searchFood{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+form.form-add-food{
+  margin-top: 15px;
+}
+
+input#datalist-cat-id{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+button#btn_add_subcategory,
+button#btn_delete_subcategory,
+button#btn_add_category,
+button#btn_delete_category{
+  border: none;
+}
+
+input#datalist-subcat-id{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+input#food_name{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+textarea#food_description{
+  width:260px;
+  margin-bottom:10px;
+}
+
+input#food_price{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+button#btn-add-food{
+  border: none;
+  background: #29CF69;
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  padding-left: 115px;
+  padding-right: 115px;
+  }
+
+button#btn-add-food:hover{
+  background-color: #43A047;
+  }
+
+button#btn-update-food{
+  border: none;
+  background: #29CF69;
+  cursor: pointer;
+  color: white;
+  padding: 5px;
+  padding-left: 102px;
+  padding-right: 102px;
+  margin-bottom: 10px;
+  }
+
+button#btn-update-food:hover{
+  background-color: #43A047;
+}
+
+button#btn-delete-food{
+  border: none;
+  background: #29CF69;
+  cursor: pointer;
+  color: white;
+  padding: 5px;
+  padding-left: 105px;
+  padding-right: 105px;
+  margin-bottom: 10px;
+  }
+
+button#btn-delete-food:hover{
+  background-color: #43A047;
+  }
+
+input.searchAddon{
+  width: 260px;
+  margin-bottom: 15px;
+  margin-bottom: 15px;
+  }
+
+h6.form-notice-addon{
+  margin-bottom: 25px;
+}
+
+input#datalist-addon-cat-id{
+  width: 260px; /* categories button*/
+}
+
+input#addon_name{
+  width: 260px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+textarea#addon_description{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+input#addon_price{
+  width: 260px;
+  margin-bottom: 15px;
+}
+button#btn-add-addon{
+  border: none;
+  background: #29CF69;
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  padding-left: 115px;
+  padding-right: 115px;
+}
+
+button#btn-add-addon:hover{
+  background-color: #43A047;
+}
+
+/* popup-main-cus */
+div.popup-main-cus{
+  width: 400px;
+}
+
+input.searchCondition{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+input#condition_name{
+  margin-top: 10px;
+  width: 260px;
+}
+
+textarea#condition_description{
+  width: 260px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+input#condition_price{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+button.btn-add-condition{
+  border: none;
+  background: #29CF69;
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  padding-left: 115px;
+  padding-right: 115px;
+}
+
+button.btn-add-condition:hover{
+  background-color: #43A047;
+}
