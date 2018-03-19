@@ -120,12 +120,14 @@ html {
 
 header{
   background-color:#29CF69;
-  padding: 1px;
+  padding: 0.5%;
+  box-shadow: 3px 0px 20px rgb(195, 195, 195);
 }
 
 header h1{
   margin-top: 5px;
   margin-left: 35px;
+  color: #FFF;
 }
 
 .left_content{
@@ -133,14 +135,15 @@ header h1{
   width: 25%;
   height: 100%;
   margin-left: 2%;
-  margin-top: 2%;
+  margin-top: 1.5%;
 
 }
 
 .right_content{
   float: right;
   width: 69%;
-  margin: 2%;
+  margin-top: 1.5%;
+  margin-right: 2%;
 }
 
 .right-lower_div{
@@ -154,6 +157,7 @@ header h1{
 
 .cancelled-box {
   background-color: #FFF;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .food-box {
@@ -162,6 +166,7 @@ header h1{
   max-height: 43%;
   margin-bottom: 1%;
   overflow: hidden;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .customer-box{
@@ -170,6 +175,7 @@ header h1{
   width: 75%;
   margin-right: 1%;
   height: 368px;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .description-box {
@@ -177,12 +183,12 @@ header h1{
   float: right;
   width: 24%;
   height: 368px;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
 
 }
 /************************************************************************/
 /*order box style*/
 .order-box .order-food-area{
-
   height: 450px;
   overflow-y: auto;
 }
@@ -218,7 +224,7 @@ header h1{
 .order-box .delete-addon{
   float: right;
   border-style: none;
-  margin-right: 50px;
+  margin-right: 60px;
   background-color: #fff;
   color: rgb(215, 215, 215);
 }
@@ -235,14 +241,16 @@ header h1{
 #clear_cart{
   border: none;
   width: 47%;
+  margin-top: 5px;
   margin-left: 10px;
-  padding: 5px;
+  padding: 7px;
 }
 #clear_addon_cart{
   border: none;
   width: 47%;
+  margin-top: 5px;
   margin-right: 10px;
-  padding: 5px;
+  padding: 7px;
 }
 
 #send_to_kitchen{
@@ -260,8 +268,8 @@ header h1{
 /*cancelled box style*/
 .cancelled-box{
   padding-top: 10px;
-  padding-bottom: 22px;
-  margin-top: 24%;
+  padding-bottom: 27px;
+  margin-top: 26%;
 }
 
 .cancelled-box h1{
@@ -273,6 +281,22 @@ header h1{
 
 .searchOrder_containter{
   margin-left: 40px;
+}
+
+#datalist-order-id{
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 2%;
+  width: 72%;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+  font-size: 18px;
+}
+
+#btn-cancel-order{
+  border-style: none;
+  font-size: 18px;
+
 }
 
 /************************************************************************/
@@ -365,6 +389,11 @@ header h1{
 
 .food-box .btn-edit{
   float:right;
+  float: right;
+  border-style: none;
+  font-size: 22px;
+  background-color: rgb(232, 229, 229);
+  color: rgb(131, 131, 131);
 }
 
 /************************************************************************/
@@ -384,21 +413,25 @@ header h1{
 }
 
 #input_name{
-  width: 40%;
+  width: 41%;
   margin-bottom: 15px;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
 }
 
 #input_contact{
-  width: 40%;
+  margin-top: 8px;
+  width: 30%;
   margin-bottom: 15px;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
+  float:left;
+  margin-right: 11%;
 }
 
 #input_address{
-  width: 81%;
+  margin-top: 6px;
+  width: 95%;
   margin-bottom: 15px;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
@@ -408,8 +441,8 @@ header h1{
   margin-top: 10px;
   float: left;
   margin-bottom: 15px;
-  margin-right: 3%;
-  width: 25%;
+  margin-right: 2%;
+  width: 15%;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
 }
@@ -417,8 +450,8 @@ header h1{
 #delivery_cost{
   float: left;
   margin-bottom: 15px;
-  margin-right: 3%;
-  width: 25%;
+  margin-right: 2%;
+  width: 15%;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
 }
@@ -426,15 +459,16 @@ header h1{
 #bill_no{
   margin-bottom: 15px;
   margin-right: 3%;
-  width: 25%;
+  width: 20%;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
+
 }
 
 #customer-form-id h2{
   position: relative;
   left : 670px;
-  bottom: 50px;
+  bottom: 30px;
   margin: 0;
   width: 30%;
   margin-bottom: 10px;
@@ -452,11 +486,18 @@ background: #FFF;
 
 .checkbox-condition{
   clear: both;
-
+  margin-top: 4%;
 }
 
 .hover-condition{
   margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+#checkbox_others_cost{
+  width: 20px;
+  height: 20px;
 }
 
 .total-add{
@@ -472,6 +513,10 @@ background: #FFF;
 
 .btn-edit-cus{
   float: right;
+  border-style: none;
+  font-size: 22px;
+  color: rgb(131, 131, 131);
+  background-color: rgb(232, 229, 229);
 }
 
 
