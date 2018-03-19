@@ -35,7 +35,11 @@ div#input-group{
 
 .date{
   margin-left: 20px;
-  font-size: 20px;
+
+}
+
+#date_picker{
+    font-size: 16px;
 }
 
 p#subtotal_id, p#totalDelivery{
