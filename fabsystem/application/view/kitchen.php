@@ -27,7 +27,7 @@ else {
     <link rel="stylesheet" type="text/css" href="../../public/css/kitchen.css">
   </head>
 <body>
-  <h2>Kitchen View</h2>
+  <h2>Kitchen Page</h2>
 
   <?php
   $query = "SELECT * FROM orders WHERE status_id = 1 order by order_id ASC";
@@ -37,7 +37,7 @@ else {
 
   <div class="columns" id="col_<?php echo $row['order_id'] ;?>">
     <ul class="price">
-      <li class="header"><?php echo $row['bill_no'] ;?></li>
+      <li class="header"><?php echo $row['customer_name'] ;?> | <?php echo $row['bill_no'] ;?></li>
       <li class="content"><?php echo $row['order_content'] ;?></li>
       <p id="value">  <?php $row['status_id']; ?> </p>
       <li><button class="btn_ready" data-id="<?php echo $row['order_id'] ?>">Ready</button></li>

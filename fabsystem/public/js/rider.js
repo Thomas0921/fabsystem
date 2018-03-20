@@ -31,7 +31,6 @@ $(window).on("load", function(){
 $(".datalist-rider-id-input").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
   var rider_id = opt.attr("data-id");
-  console.log(rider_id);
   ($(this).parents("li").siblings().children(".btn_delivery")).attr("rider-id", rider_id);
 
 });

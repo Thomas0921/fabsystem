@@ -30,7 +30,7 @@ else {
   </head>
   <body>
     <header>
-          <h2>Rider View</h2></li>
+          <h2>Rider Page</h2></li>
           <button class="fa fa-edit btn-edit" type="button" name="button"></button>
       <div class="popup-bg">
         <div class="popup-main">
@@ -74,7 +74,7 @@ else {
 
     <div class="columns" id="col_<?php echo $row['order_id'];?>" data-id="<?php echo $row['order_id'];?>" >
       <ul class="price">
-        <li class="header"><?php echo $row['bill_no'];?></li>
+        <li class="header"><?php echo $row['customer_name'] ;?> | <?php echo $row['bill_no'] ;?></li>
         <li class="content">
           <div class="qr" data-id ="<?php echo $row['order_id'];?>" ><?php echo $row['customer_address']; ?></div>
         </li>
