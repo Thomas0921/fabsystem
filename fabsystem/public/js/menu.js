@@ -1,4 +1,12 @@
 //---------------------------------------------------------------
+// Inhibit user from chaning total cost manually
+
+$("#total-cart").focus(function(){
+  alert("Sorry, you can't change the cost manually");
+  $(this).blur();
+});
+
+//---------------------------------------------------------------
 // food menu AJAX
 
 $(".hover-detail").hover(function(){

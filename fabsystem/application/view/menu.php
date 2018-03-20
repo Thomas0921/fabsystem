@@ -319,7 +319,7 @@
                 <input id="others_cost" type="number" min="0" old-value="0" placeholder="Cost value" disabled>
                 <input id="hidden_order" type="hidden" name="order_content" required>
               </div>
-              <h2>Total: RM<input type="text" id="total-cart" name="total_cost" disabled></h2>
+              <h2>Total: RM<input type="text" id="total-cart" name="total_cost"></h2>
             </form>
 
 
