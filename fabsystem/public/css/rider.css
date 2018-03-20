@@ -3,6 +3,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html {
+    background-color: #e9edf0;
+}
+
 input, select, textarea{
   width: 100%;
   font-size: 22px;
@@ -55,6 +59,7 @@ div.add_rider_div{
     float: left;
     width: 24%;
     margin: 9px;
+    background-color: #FFF;
 }
 
 .price {

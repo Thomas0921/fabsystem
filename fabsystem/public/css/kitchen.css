@@ -3,6 +3,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+  background-color: #e9edf0;
+}
+
 h2{
   background : #29CF69;
   padding-top: 20px;
@@ -21,6 +25,7 @@ h2{
     float: left;
     width: 24%;
     margin: 9px;
+    background-color: #FFF;
 }
 
 .price {
@@ -31,6 +36,13 @@ h2{
     -webkit-transition: 0.3s;
     transition: 0.3s;
     box-shadow: 2px 0px 10px rgb(195, 195, 195);
+    height: 500px;
+}
+
+dl{
+  height: 240px;
+  max-height: 240px;
+  overflow-y: auto;
 }
 
 .price:hover {

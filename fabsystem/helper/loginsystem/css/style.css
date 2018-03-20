@@ -9,11 +9,12 @@ html {
 .emailinput .pwdinput{
   text-decoration: none;
   background: #9E9E9E;
+  color: black;
 }
 
 body {
   background: #e9edf0; /* #c1bdba */
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -113,7 +114,7 @@ label {
   -webkit-transform: translateY(6px);
           transform: translateY(6px);
   left: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(73, 73, 73, 0.5);
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
   -webkit-backface-visibility: hidden;

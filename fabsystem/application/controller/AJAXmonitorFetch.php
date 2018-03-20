@@ -122,12 +122,12 @@ $(document).ready(function(){
     {
       sum += parseFloat($(this).html());
     });
-    $('#subtotal_id').html(sum);
+    $('#subtotal_id').html(sum.toFixed(2));
 
     var sum = 0;
     $('#first .netDelivery').each(function()
      {
        sum += parseFloat($(this).html());
      });
-     $('#totalDelivery').html(sum);
+     $('#totalDelivery').html(sum.toFixed(2));
 </script>

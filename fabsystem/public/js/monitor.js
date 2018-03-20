@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   function load_data(query, date)
 {
   $.ajax({
@@ -17,45 +18,28 @@ $(document).ready(function(){
 
 
 $('#search_text').keyup(function(){
+
   var search = $(this).val();
-  var date = $("#date_picker").val();
-  console.log(search);
-  console.log(date);
-  if(search != '')
-  {
-    // load search result and hide table
-   load_data(search, date);
-  }
-  else
-  {
-    // when no search result and show table
-    $('#result').html("");
+  if(search == ""){
+    search = "";
+    var date = $("#date_picker").val();
+  }else {
+    var date = $("#date_picker").val();
+    if(search != '')
+    {
+      // load search result and hide table
+     load_data(search, date);
+    }
+    else
+    {
+      // when no search result and show table
+      $('#result').html("");
+    }
   }
  });
-});
-/*
-$(document).ready(function(){
-  //Iterate through each of the rows
-$('tr').each(function(){
-      //Check the value of the last <td> element in the row (trimmed to ignore white-space)
-      if($(this).find('td').text().trim() === "1"){
-          //Set the row to green
-          $(this).css('background','#F0C810');
-      }
-      if ($(this).find('td').text().trim() === "2") {
-        $(this).css('background','#29CF69');
-      }
-      if ($(this).find('td').text().trim() === "3") {
-        $(this).css('background','#4695C3');
-      }
-      if ($(this).find('td').text().trim() === "4") {
-        $(this).css('background','#C3C4C5');
-      }
-      if ($(this).find('td').text().trim() === "5") {
-        $(this).css('background','#84908E');
-      }
-    });
-});*/
+
+});// end of document ready
+
 //subtotal
 var sum = 0;
 $('#first .nettSum').each(function()
