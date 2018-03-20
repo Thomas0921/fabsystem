@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 input, select, textarea{
@@ -15,6 +16,10 @@ h2{
   margin-bottom: 20px;
   color: white;
   list-style: none;
+  font-size: 35px;
+  text-shadow: 2px 0px 1px rgb(139, 139, 139);
+  padding-left: 25px;
+  box-shadow: 3px 0px 10px rgb(195, 195, 195);
 }
 
 button.btn-edit{
@@ -45,7 +50,6 @@ div.add_rider_div{
   font-size: 18px;
   width: 50%;
 }
-
 
 .columns {
     float: left;
@@ -132,6 +136,10 @@ div.add_rider_div{
   padding: 18px;
 }
 
+.btn_delivery:hover {
+  background-color: #1daa53;
+}
+
 .btn_complete {
   background-color: #3d61cf;
   color: white;
@@ -145,6 +153,11 @@ div.add_rider_div{
   padding: 18px;
   border-top: 2px solid;
 }
+
+.btn_complete:hover {
+  background-color: #2c4caf;
+}
+
 #button-clicked{
   background-color: #3d61cf;
   font-size: 24px;

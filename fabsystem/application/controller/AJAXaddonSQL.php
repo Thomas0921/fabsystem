@@ -12,8 +12,8 @@ if (isset($_POST['add_addon_id']) && isset($_POST['name']) && isset($_POST['desc
   VALUES (NULL, '$addon_name', '$addon_description', '$addon_price', '$add_addon_id');";
 
   $result = mysqli_query($conn, $sql);
-  header("Location: ../view/menu.php?addon=added");
-  exit();
+
+  echo "New add on added";
 }
 
 if (isset($_POST['update_addon_id']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
@@ -31,8 +31,8 @@ if (isset($_POST['update_addon_id']) && isset($_POST['name']) && isset($_POST['d
      ";
 
     $result = mysqli_query($conn, $sql);
-    header("Location: ../view/menu.php?addon=updated");
-    exit();
+
+    echo "Add on's detail updated";
 }
 
 if (isset($_POST['delete_addon_id'])){
@@ -44,8 +44,8 @@ if (isset($_POST['delete_addon_id'])){
   ";
 
   $result = mysqli_query($conn, $sql);
-  header("Location: ../view/menu.php?addon=deleted");
-  exit();
+
+  echo "Add on deleted";
 }
 
 

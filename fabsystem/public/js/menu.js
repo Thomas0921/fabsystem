@@ -83,12 +83,15 @@ $(".searchFood").change(function(){
   var food_id = opt.attr('data-id');
 
   if(food_id == undefined ){
-    alert("* No record found");
+    alert("No record found");
     $('#datalist-cat-id').prop("disabled", false);
     $('#datalist-subcat-id').prop("disabled", false);
     $("#btn-add-food").show();
     $("#btn-update-food").hide();
     $("#btn-delete-food").hide();
+    $("#food_name").val("");
+    $("#food_description").val("");
+    $("#food_price").val("");
   }else{
     $('#datalist-cat-id').prop("disabled", true);
     $('#datalist-subcat-id').prop("disabled", true);
@@ -118,11 +121,14 @@ $(".searchAddon").change(function(){
   var add_on_id = opt.attr('data-id');
 
   if(add_on_id == undefined ){
-    alert("* No record found");
+    alert("No record found");
     $('#datalist-cat-id').prop("disabled", false);
     $("#btn-add-addon").css("display", "block");
     $("#btn-update-addon").css("display", "none");
     $("#btn-delete-addon").css("display", "none");
+    $("#addon_name").val("");
+    $("#addon_description").val("");
+    $("#addon_price").val("");
   }else{
     $('#datalist-addon-cat-id').prop("disabled", true);
     $("#btn-add-addon").css("display", "none");
@@ -152,10 +158,13 @@ $(".searchCondition").change(function(){
   var condition_id = opt.attr('data-id');
 
   if(condition_id == undefined ){
-    alert("* No record found");
+    alert("No record found");
     $(".btn-add-condition").css("display", "block");
     $(".btn-update-condition").css("display", "none");
     $(".btn-delete-condition").css("display", "none");
+    $("#condition_name").val("");
+    $("#condition_description").val("");
+    $("#condition_price").val("");
   }else{
     $(".btn-add-condition").css("display", "none");
     $(".btn-update-condition").css("display", "block");
@@ -193,8 +202,6 @@ $("#btn-cancel-order").click(function(){
 
   var order_id = $(this).attr("order_id");
   var status_name = $(this).attr("status_name");
-  console.log(order_id);
-  console.log(status_name);
 
   if(order_id == undefined) {
     alert("Please select a previous order from the list");
@@ -370,8 +377,6 @@ $("#btn-add-food").click(function(){
   var cat_id = opt.attr('data-id');
   var opt2 = $('option[identifier="subcat"][value="'+$("#datalist-subcat-id").val()+'"]');
   var subcat_id = opt2.attr('data-id');
-  alert(cat_id);
-  alert(subcat_id);
   var name = $("#food_name").val();
   var description = $("#food_description").val();
   var price = $("#food_price").val();
@@ -517,7 +522,7 @@ $("#btn-update-addon").click(function(){
         price:price
       },
       success: function (data) {
-        alert("Record updated");
+        alert(data);
         $(".searchAddon").val("")
         $("#datalist-addon-cat-id").val("")
         $("#addon_name").val("");
@@ -542,7 +547,7 @@ $("#btn-delete-addon").click(function(){
         delete_addon_id:delete_addon_id,
       },
       success: function (data) {
-        alert("Record deleted");
+        alert(data);
         $(".searchAddon").val("")
         $("#datalist-addon-cat-id").val("")
         $("#addon_name").val("");
@@ -577,7 +582,7 @@ $(".btn-add-condition").click(function(){
           price:price
         },
         success: function (data) {
-          alert("Record added");
+          alert(data);
           $(".searchCondition").val("")
           $("#condition_name").val("");
           $("#condition_description").val("");
@@ -607,7 +612,7 @@ $(".btn-update-condition").click(function(){
         price:price
       },
       success: function (data) {
-        alert("Record updated");
+        alert(data);
         $(".searchCondition").val("")
         $("#condition_name").val("");
         $("#condition_description").val("");
@@ -631,7 +636,7 @@ $(".btn-delete-condition").click(function(){
         delete_condition_id:delete_condition_id,
       },
       success: function (data) {
-        alert("Record deleted");
+        alert(data);
         $(".searchCondition").val("")
         $("#condition_name").val("");
         $("#condition_description").val("");
@@ -665,6 +670,8 @@ $(".close-popup-cus").click(function(){
 //---------------------------------------------------------------
 // pop up form change tab
 $('.btn-new-food').on("click", function(){
+  $(this).addClass("active");
+  $(".btn-new-addon").removeClass("active");
   $('.add_food_div').show();
   $('.add_addon_div').hide();
 
@@ -676,6 +683,8 @@ $('.btn-new-food').on("click", function(){
 });
 
 $('.btn-new-addon').on("click", function(){
+  $(this).addClass("active");
+  $(".btn-new-food").removeClass("active");
   $('.add_food_div').hide();
   $('.add_addon_div').show();
 

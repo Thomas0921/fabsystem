@@ -18,6 +18,7 @@ if (isset($_POST['send_to_kitchen'])){
       NOW(), '0000-00-00 00:00:00', '0000-00-00 00:00:00', '$total_cost', '$discount', '$delivery_cost', '$bill_no', '1', '1');";
 
   $result = mysqli_query($conn, $sql);
+  
   header("Location: ../view/menu.php?insert=success");
   exit();
 }

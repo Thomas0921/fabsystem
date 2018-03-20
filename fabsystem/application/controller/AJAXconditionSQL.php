@@ -11,8 +11,8 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price
   VALUES (NULL, '$condition_name', '$condition_description', '$condition_price');";
 
   $result = mysqli_query($conn, $sql);
-  header("Location: ../view/menu.php?newcondition=added");
-  exit();
+
+  echo "New condition added";
 }
 
 if (isset($_POST['update_condition_id']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
@@ -30,8 +30,9 @@ if (isset($_POST['update_condition_id']) && isset($_POST['name']) && isset($_POS
      ";
 
     $result = mysqli_query($conn, $sql);
-    header("Location: ../view/menu.php?condition=updated");
-    exit();
+
+    echo "Condition's detail updated";
+
 }
 
 if (isset($_POST['delete_condition_id'])){
@@ -43,8 +44,8 @@ if (isset($_POST['delete_condition_id'])){
   ";
 
   $result = mysqli_query($conn, $sql);
-  header("Location: ../view/menu.php?condition=deleted");
-  exit();
+
+  echo "Condition deleted";
 }
 
 

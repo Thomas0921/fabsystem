@@ -30,7 +30,7 @@ else {
   </head>
   <body>
     <header>
-          <h2 style="text-align:center">Rider View</h2></li>
+          <h2>Rider View</h2></li>
           <button class="fa fa-edit btn-edit" type="button" name="button"></button>
       <div class="popup-bg">
         <div class="popup-main">

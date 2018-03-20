@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 h2{
@@ -10,7 +11,10 @@ h2{
   margin-bottom: 20px;
   color: white;
   padding-left: 25px;
-  font-size: 33px;
+  font-size: 35px;
+  font-weight:bold;
+  text-shadow: 2px 0px 1px rgb(139, 139, 139);
+  box-shadow: 3px 0px 10px rgb(195, 195, 195);
 }
 
 .columns {
@@ -54,11 +58,11 @@ h2{
     height: 100%;
     text-align: center;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 30px;
     padding: 16px;
 }
 .btn_ready:hover{
-    background-color: #fed330;
+    background-color: #e0b925;
 
 }
 

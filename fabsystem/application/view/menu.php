@@ -188,7 +188,7 @@
                 <div class="popup-content">
 
                   <div class="edit-box">
-                    <button class="btn-new-food" type="button" name="button">New Food</button>
+                    <button class="btn-new-food active" type="button" name="button">New Food</button>
                     <button class="btn-new-addon" type="button" name="button">New Add On</button>
                   </div>
 
