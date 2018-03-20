@@ -70,6 +70,44 @@ $(".searchOrder").keyup(function(){
       });
 });
 
+$(".searchFoodId").keyup(function(){
+   var name = $(this).val();
+   if(name == ""){
+     console.log("Need data to search");
+   }else {
+     $.ajax({
+         type: 'POST',
+         url: '../controller/AJAXmenuSearchFoodId.php',
+         data: {name:name},
+         success: function (id) {
+             $('.datalist_searchFoodId').html(id);
+         }
+     }, function(){
+       //This function is for unhover.
+    });
+   }
+
+});
+
+$(".searchAddonId").keyup(function(){
+   var name = $(this).val();
+   if(name == ""){
+     console.log("Need data to search");
+   }else {
+     $.ajax({
+         type: 'POST',
+         url: '../controller/AJAXmenuSearchAddonId.php',
+         data: {name:name},
+         success: function (id) {
+             $('.datalist_searchAddonId').html(id);
+         }
+     }, function(){
+       //This function is for unhover.
+    });
+   }
+
+});
+
 $(".searchFood").keyup(function(){
    var name = $(this).val();
 
@@ -160,6 +198,40 @@ $(".searchAddon").change(function(){
   }
 });
 
+$(".searchMembership").change(function(){
+  var opt = $('option[value="'+$(this).val()+'"]');
+  var membership_id = opt.attr('data-id');
+
+  if(membership_id == undefined ){
+    alert("No record found");
+    $(".btn-add-membership").css("display", "block");
+    $(".btn-update-membership").css("display", "none");
+    $(".btn-delete-membership").css("display", "none");
+    $("#membership_name").val("");
+    $("#membership_address").val("");
+    $("#membership_contact").val("");
+  }else{
+    $(".btn-add-membership").css("display", "none");
+    $(".btn-update-membership").css("display", "block");
+    $(".btn-delete-membership").css("display", "block");
+
+
+         $.ajax({
+             type: 'POST',
+             url: '../controller/AJAXmenuFillMembership.php',
+             data: {membership_id:membership_id},
+             success: function (data) {
+               responseArray = data.split(",");
+
+               $("#membership_name").val(responseArray[0]);
+               $("#membership_address").val(responseArray[1]);
+               $("#membership_contact").val(responseArray[2]);
+             }
+         }, function(){
+           //This function is for unhover.
+        });
+  }
+});
 
 $(".searchCondition").change(function(){
   var opt = $('option[value="'+$(this).val()+'"]');
@@ -568,7 +640,92 @@ $("#btn-delete-addon").click(function(){
  });
 
 });
+//---------------------------------------------------------------
+// membership SQL AJAX
 
+$(".btn-add-membership").click(function(){
+  var name = $("#membership_name").val();
+  var address = $("#membership_address").val();
+  var contact = $("#membership_contact").val();
+
+  if(name === "" && address === "" || contact === ""){
+    alert("Please fill in all the field");
+  }else{
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXmembershipSQL.php',
+        data: {
+          name:name,
+          address:address,
+          contact:contact
+        },
+        success: function (data) {
+          alert(data);
+          $(".searchMembership").val("")
+          $("#membership_name").val("");
+          $("#membership_address").val("");
+          $("#membership_contact").val("");
+          location.reload();
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
+});
+
+$(".btn-update-membership").click(function(){
+  var opt = $('option[value="'+$(".searchMembership").val()+'"]');
+  var update_membership_id = opt.attr('data-id');
+  var name = $("#membership_name").val();
+  var address = $("#membership_address").val();
+  var contact = $("#membership_contact").val();
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXmembershipSQL.php',
+      data: {
+        update_membership_id:update_membership_id,
+        name:name,
+        address:address,
+        contact:contact
+      },
+      success: function (data) {
+        alert(data);
+        $(".searchMembership").val("")
+        $("#membership_name").val("");
+        $("#membership_address").val("");
+        $("#membership_contact").val("");
+        location.reload();
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
+
+$(".btn-delete-membership").click(function(){
+  var opt = $('option[value="'+$(".searchMembership").val()+'"]');
+  var delete_membership_id = opt.attr('data-id');
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXmembershipSQL.php',
+      data: {
+        delete_membership_id:delete_membership_id,
+      },
+      success: function (data) {
+        alert(data);
+        $(".searchMembership").val("")
+        $("#membership_name").val("");
+        $("#membership_address").val("");
+        $("#membership_contact").val("");
+        location.reload();
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+
+});
 //---------------------------------------------------------------
 // condition SQL AJAX
 
@@ -704,6 +861,30 @@ $('.btn-new-addon').on("click", function(){
   $("#food_price").val("");
 });
 
+$('.btn-new-membership').on("click", function(){
+  $(this).addClass("active");
+  $(".btn-new-condition").removeClass("active");
+  $('.add_membership_div').show();
+  $('.add_condition_div').hide();
+
+  $('.searchCondition').val("");
+  $("#condition_name").val("");
+  $("#condition_description").val("");
+  $("#condition_price").val("");
+});
+
+$('.btn-new-condition').on("click", function(){
+  $(this).addClass("active");
+  $(".btn-new-membership").removeClass("active");
+  $('.add_membership_div').hide();
+  $('.add_condition_div').show();
+
+  $('.searchMembership').val("");
+  $("#membership_name").val("");
+  $("#membership_description").val("");
+  $("#membership_contact").val("");
+});
+
 //---------------------------------------------------------------
 // add food form pop up
 
@@ -778,6 +959,166 @@ $(window).on('load', function(){
       $("#bill_no").val(bill_no);
     }
   }
+});
+//---------------------------------------------------------------
+// Search food by ID and add to cart
+
+$("#btn-add-food-id").click(function(){
+
+    var first = $("#datalist-food-id-id").val();
+    responseArray = first.split("-");
+    var input = responseArray[0].trim();
+    console.log(input);
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXmenuSearchFoodIdInsert.php',
+        data: {input:input},
+        success: function (id) {
+          responseArray = id.split(",");
+          console.log(responseArray[0]);
+          console.log(responseArray[1]);
+          addItemToCart(responseArray[0], responseArray[1], responseArray[2], 1, null, responseArray[3]);
+          displayCart();
+          saveCart();
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+});
+
+$("#datalist-food-id-id").on('keypress', function(e){
+  var key = e.which || e.keyCode;
+    if (key === 13) { // 13 is enter
+      var first = $("#datalist-food-id-id").val();
+      responseArray = first.split("-");
+      var input = responseArray[0].trim();
+      console.log(input);
+      $.ajax({
+          type: 'POST',
+          url: '../controller/AJAXmenuSearchFoodIdInsert.php',
+          data: {input:input},
+          success: function (id) {
+            responseArray = id.split(",");
+            console.log(responseArray[0]);
+            console.log(responseArray[1]);
+            addItemToCart(responseArray[0], responseArray[1], responseArray[2], 1, null, responseArray[3]);
+            displayCart();
+          }
+      }, function(){
+        //This function is for unhover.
+     });
+    }
+});
+
+//---------------------------------------------------------------
+// Search addon by ID and add to cart
+
+$("#btn-add-addon-id").click(function(){
+
+    var first = $("#datalist-addon-id-id").val();
+    array = first.split("-");
+    var lastItemIndex = cart.length - 1;
+    input = array[0];
+
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXmenuSearchAddonIdInsert.php',
+        data: {input:input},
+        success: function (id) {
+          if (cart.length == 0 ) {
+            addon = [];
+            saveAddonCart();
+            saveCart();
+            // doesnt allow add on from other food category
+          }else if (cart[lastItemIndex].catID != array[1]){
+            addon = [];
+            saveAddonCart();
+            saveCart();
+          }else {
+            responseArray = id.split(",");
+            addAddonToCart(responseArray[0], responseArray[1], responseArray[2], 1);
+            displayCart();
+            saveCart();
+          }
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+
+});
+
+$("#datalist-addon-id-id").on('keypress', function(e){
+  var key = e.which || e.keyCode;
+    if (key === 13) { // 13 is enter
+      var first = $("#datalist-addon-id-id").val();
+      array = first.split("-");
+      var lastItemIndex = cart.length - 1;
+      input = array[0];
+
+      $.ajax({
+          type: 'POST',
+          url: '../controller/AJAXmenuSearchAddonIdInsert.php',
+          data: {input:input},
+          success: function (id) {
+            if (cart.length == 0 ) {
+              addon = [];
+              saveAddonCart();
+              saveCart();
+              // doesnt allow add on from other food category
+            }else if (cart[lastItemIndex].catID != array[1]){
+              addon = [];
+              saveAddonCart();
+              saveCart();
+            }else {
+              responseArray = id.split(",");
+              console.log(responseArray[0]);
+              console.log(responseArray[1]);
+              addAddonToCart(responseArray[0], responseArray[1], responseArray[2], 1);
+              displayCart();
+              saveCart();
+            }
+          }
+      }, function(){
+        //This function is for unhover.
+      });
+    }
+});
+//---------------------------------------------------------------
+// Customer form auto fillin Javascript
+$("#input_contact").keyup(function(){
+  var input = $(this).val();
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXmenuSearchContact.php',
+      data: {
+        input:input
+      },
+      success: function (id) {
+        $(".ajax-contact").html(id);
+      }
+  }, function(){
+    //This function is for unhover.
+ });
+});
+
+$("#input_contact").change(function(){
+  var input = $(this).val();
+
+  $.ajax({
+      type: 'POST',
+      url: '../controller/AJAXmenuFillCustomer.php',
+      data: {
+        input:input
+      },
+      success: function (id) {
+        responseArray = id.split(",");
+        $("#input_name").val(responseArray[0]);
+        $("#input_address").val(responseArray[1]);
+      }
+  }, function(){
+    //This function is for unhover.
+ });
 });
 
 //---------------------------------------------------------------

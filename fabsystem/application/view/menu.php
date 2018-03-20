@@ -34,7 +34,6 @@
   <body>
       <div class="left_content">
         <div class="order-box">
-
           <div class="order-food-area">
             <ul class="show-cart">
 
@@ -48,7 +47,30 @@
           <div class="send-button">
             <button type="submit" name="send_to_kitchen" id="send_to_kitchen" form="customer-form-id" >Send To Kitchen</button>
           </div>
+        </div>
 
+        <div class="search-food-id-box">
+          <h1>Search food by ID</h1>
+          <div class="searchOrder_containter">
+
+            <input class="searchFoodId" list="datalist_search_food_id" type="datalist" id="datalist-food-id-id" placeholder="Eg. 601, 303">
+            <datalist class="datalist_searchFoodId" id="datalist_search_food_id">
+              <!-- Will get the options by ajax -->
+            </datalist>
+            <button id="btn-add-food-id" type="button" name="button">Add</button>
+          </div>
+        </div>
+
+        <div class="search-addon-id-box">
+          <h1>Search Addon by name</h1>
+          <div class="searchOrder_containter">
+
+            <input class="searchAddonId" list="datalist_search_addon_id" type="datalist" id="datalist-addon-id-id" placeholder="Eg. 601, 303">
+            <datalist class="datalist_searchAddonId" id="datalist_search_addon_id">
+              <!-- Will get the options by ajax -->
+            </datalist>
+            <button id="btn-add-addon-id" type="button" name="button">Add</button>
+          </div>
         </div>
 
         <div class="cancelled-box">
@@ -62,10 +84,12 @@
             </datalist>
             <button id="btn-cancel-order" type="button" name="button">Cancel</button>
           </div>
-
         </div>
+
       </div>
       <div class="right_content">
+
+
         <div class="food-box">
           <div class="wrapper">
             <button class="btn-edit" type="button" name="button">
@@ -291,8 +315,11 @@
             </button>
             <h1 class="customer-box-title" >Customer's Detail</h1>
             <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
-              <input type="text" id="input_name" name="name" value="" placeholder="Name" required><br>
-              <input type="text" id="input_contact" name="contact" value="" placeholder="Contact" required>
+              <input list="datalist-contact" id="input_contact"autocomplete="off" name="contact" value="" placeholder="Contact" required><br>
+              <datalist id="datalist-contact" class="ajax-contact">
+                <!-- will get from AJAXmenuSearchSubcategory.php -->
+              </datalist>
+              <input type="text" id="input_name" name="name" value="" placeholder="Name" required>
               <div class="total-minus">
                 <input id="discount" type="number" old-value="0" name="discount" placeholder="Discount" required>
               </div>
@@ -330,7 +357,43 @@
                   <p>X</p>
                 </div>
                 <div class="popup-content-cus">
-                  <div class="add_condition_div" style="">
+
+                  <div class="edit-box-cus">
+                    <button class="btn-new-membership active" type="button" name="button">New Membership</button>
+                    <button class="btn-new-condition" type="button" name="button">New Condition</button>
+                  </div>
+
+                  <div class="add_membership_div" style="">
+                    <div class="search_containter_condition">
+
+                      <h5>Search the membership you want to change</h5>
+                      <h6 class="notice"></h6>
+                      <input class="searchMembership" list="datalist_search_membership" type="datalist" name="" value="">
+                      <datalist class="datalist_searchMembership" id="datalist_search_membership">
+                        <?php
+                          $sql = "SELECT * FROM memberships";
+                          $result = mysqli_query($conn, $sql);
+
+                          if($result ->num_rows > 0){
+                            while($row = $result ->fetch_assoc()){
+                              echo '<option value="'.$row['membership_name'].'" data-id="'.$row['membership_id'].'"></option>';
+                            }
+                          }
+                         ?>
+                      </datalist>
+                    </div>
+
+                    <form class="form-add-membership" action="../controller/AJAXconditionSQL.php" method="post">
+                      <input id="membership_name" type="text" name="membership_name" value="" placeholder="Membership Name"><br>
+                      <textarea id="membership_address" name="membership_address" rows="5" cols="26" placeholder="Address"></textarea><br>
+                      <input id="membership_contact" type="text" name="membership_contact" value="" min="0" step="0.01" placeholder="Contact"><br>
+                      <button type="button" class="btn-add-membership" name="btn-add-membership">Add</button>
+                      <button style="display:none;" type="button" class="btn-update-membership" name="btn-update-membership">Update</button>
+                      <button style="display:none;" type="button" class="btn-delete-membership" name="btn-delete-membership">Delete</button><br>
+                    </form>
+                  </div>
+
+                  <div class="add_condition_div" hidden>
                     <div class="search_containter_condition">
 
                       <h5>Search the condition you want to change</h5>
@@ -360,6 +423,7 @@
                       <button style="display:none;" type="button" class="btn-delete-condition" name="btn-delete-condition">Delete</button><br>
                     </form>
                   </div><!-- add_condition_div -->
+
               </div><!-- popup-content-cus -->
             </div> <!-- popup-main-cus -->
           </div><!-- popup-bg-cus -->
@@ -422,7 +486,7 @@
      </ul>
     </div><!--floating button -->
 
-    <h4 class="origin">@Developed by kt</h4>
+    <h4 hidden class="origin">@Developed by kt</h4>
 
   </body>
   <script src="../../public/js/menu.js"></script>

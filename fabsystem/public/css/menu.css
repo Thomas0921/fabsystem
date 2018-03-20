@@ -79,7 +79,7 @@
 .popup-main-cus {
   position: fixed;
   width: 500px;
-  height: 490px;
+  height: 530px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, .25);
@@ -106,16 +106,16 @@
   top: 15px;
 }
 
-.form-add-condition {
+.form-add-condition, .form-add-membership  {
   position: absolute;
-  top: 110px;
+  top: 150px;
   left: 60px;
   font-size: 18px;
 }
 
 .search_containter_condition {
   position: absolute;
-  top: 45px;
+  top: 85px;
   left: 60px;
   font-size: 18px;
 }
@@ -165,12 +165,30 @@ header h1{
   box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
+
+.search-food-id-box {
+  margin-top: 3%;
+  background-color: #FFF;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
+  height: 120px;
+  padding: 1px;
+}
+
+.search-addon-id-box {
+  background-color: #FFF;
+  box-shadow: 2px 0px 10px rgb(195, 195, 195);
+  height: 120px;
+
+}
+
 .cancelled-box {
   background-color: #FFF;
   box-shadow: 2px 0px 10px rgb(195, 195, 195);
 }
 
 .food-box {
+  float: right;
+  width: 100%;
   background-color: #FFF;
   height: 430px;
   max-height: 43%;
@@ -189,6 +207,7 @@ header h1{
 }
 
 .description-box {
+  clear: both;
   background-color: #FFF;
   float: right;
   width: 24%;
@@ -199,7 +218,7 @@ header h1{
 /************************************************************************/
 /*order box style*/
 .order-box .order-food-area{
-  height: 450px;
+  height: 277px;
   overflow-y: auto;
 }
 
@@ -299,12 +318,77 @@ header h1{
   background-color: #26b55d;
 }
 
+
+/************************************************************************/
+/*seaerch food by ID box style*/
+
+.search-food-id-box h1{
+  margin-left: 20px;
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+
+#datalist-food-id-id{
+  margin-bottom: 15px;
+  margin-right: 2%;
+  width: 72%;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+  font-size: 18px;
+}
+
+#btn-add-food-id{
+  background-color: #29CF69;
+  border-style: none;
+  font-size: 19px;
+  padding: 3px;
+  color: #FFF;
+  width: 70px;
+}
+
+#btn-add-food-id:hover{
+  background-color: #26b55d;
+}
+
+/************************************************************************/
+/*seaerch addon by ID box style*/
+
+.search-addon-id-box h1{
+  padding-top: 20px;
+  margin-left: 20px;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+#datalist-addon-id-id{
+  margin-bottom: 15px;
+  margin-right: 2%;
+  width: 72%;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
+  font-size: 18px;
+}
+
+#btn-add-addon-id{
+  background-color: #29CF69;
+  border-style: none;
+  font-size: 19px;
+  padding: 3px;
+  color: #FFF;
+  width: 70px;
+}
+
+#btn-add-addon-id:hover{
+  background-color: #26b55d;
+}
+
 /************************************************************************/
 /*cancelled box style*/
 .cancelled-box{
   padding-top: 10px;
   padding-bottom: 27px;
-  margin-top: 26%;
+  margin-top: 4%;
 }
 
 .cancelled-box h1{
@@ -384,7 +468,7 @@ header h1{
   text-decoration: none;
   display: inline-block;
   height: 80px;
-  width: 330px;
+  width: 280px;
   box-shadow: 1px 1px 5px rgb(182, 182, 182);
   margin: 2px;
   vertical-align: middle;
@@ -466,19 +550,20 @@ header h1{
 }
 
 #input_name{
-  width: 41%;
-  margin-bottom: 15px;
-  border-style: none;
-  border-bottom: 2px solid rgb(208, 208, 208);
-}
-
-#input_contact{
-  margin-top: 8px;
   width: 30%;
   margin-bottom: 15px;
   border-style: none;
   border-bottom: 2px solid rgb(208, 208, 208);
   float:left;
+  margin-right: 7%;
+}
+
+#input_contact{
+  margin-top: 8px;
+  width: 30%;
+  margin-bottom: 25px;
+  border-style: none;
+  border-bottom: 2px solid rgb(208, 208, 208);
   margin-right: 7%;
 }
 
@@ -540,7 +625,7 @@ background: #FFF;
 
 .checkbox-condition{
   clear: both;
-  margin-top: 4%;
+  margin-top: 2%;
 }
 
 .hover-condition{
@@ -794,7 +879,29 @@ cursor: pointer;
 color: white;
 padding-left: 28px;
 padding-right: 28px;
+width: 50px;
 }
+
+button.btn-new-membership, button.btn-new-condition{
+border: none;
+background: #29CF69;
+margin-top: 40px;
+padding: 10px;
+cursor: pointer;
+color: white;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+button.btn-new-membership{
+  margin-left: 60px;
+}
+
+button.btn-new-condition{
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 
 button.btn-new-food{
   margin-left: 50px;
@@ -808,6 +915,10 @@ button.active {
   background: #43A047;
 }
 
+button.btn-new-membership:hover, button.btn-new-condition:hover{
+background: #43A047;
+}
+
 div.search_containter{
   margin-top: 40px;
 }
@@ -816,6 +927,7 @@ input.searchFood{
   width: 260px;
   margin-bottom: 15px;
 }
+
 
 form.form-add-food{
   margin-top: 15px;
@@ -1047,3 +1159,78 @@ button.btn-delete-condition:hover{
     color: rgb(217, 217, 217);
     font-weight:normal;
   }
+
+  /* membership pop up  */
+  input.searchMembership{
+    width: 260px;
+    margin-bottom: 25px;
+  }
+
+  input#membership_name{
+    margin-top: 20px;
+    width: 260px;
+  }
+
+  textarea#membership_address{
+    width: 260px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  input#membership_contact{
+    width: 260px;
+    margin-bottom: 15px;
+  }
+
+  button.btn-add-membership{
+    border: none;
+    background: #29CF69;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    padding-left: 115px;
+    padding-right: 115px;
+  }
+
+  button.btn-add-membership:hover{
+    background-color: #43A047;
+  }
+
+  button.btn-update-membership{
+    border: none;
+    background: #29CF69;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    padding-left: 102px;
+    padding-right: 102px;
+    margin-bottom: 10px;
+    }
+
+  button.btn-update-membership:hover{
+    background-color: #43A047;
+  }
+
+  button.btn-delete-membership{
+    border: none;
+    background: #EC644B ;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    padding-left: 105px;
+    padding-right: 105px;
+    margin-bottom: 10px;
+    }
+
+  button.btn-delete-membership:hover{
+    background-color: #EF4836;
+    }
+
+
+    .origin{
+      position: fixed;
+      bottom: 145px;
+      left: 37px;
+      color: rgb(217, 217, 217);
+      font-weight:normal;
+    }
