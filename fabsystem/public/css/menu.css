@@ -1039,3 +1039,11 @@ button.btn-delete-condition{
 button.btn-delete-condition:hover{
   background-color: #EF4836;
   }
+
+  .origin{
+    position: fixed;
+    bottom: 145px;
+    left: 37px;
+    color: rgb(217, 217, 217);
+    font-weight:normal;
+  }

@@ -35,6 +35,7 @@ $result = mysqli_query($conn, $query);
       <h2 class="header" align="center">Monitor Page</h2>
     </header>
   <body>
+
     <div id="input-group">
         <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
     </div>
@@ -104,6 +105,7 @@ $result = mysqli_query($conn, $query);
   </body>
 
   <footer>
+    <h4 class="origin">@Developed by kt</h4>
     <p id="totalDelivery"></p>
     <p id="subtotal_id"></p>
   </footer>

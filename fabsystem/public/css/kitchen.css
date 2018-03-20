@@ -269,3 +269,11 @@ a#menu-share:hover > i{
     }
 }
 /* floating button*/
+
+.origin{
+  position: fixed;
+  bottom: 10px;
+  left: 25px;
+  color: rgb(217, 217, 217);
+  font-weight:normal;
+}
