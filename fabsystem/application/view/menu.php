@@ -21,6 +21,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../public/image/kt.png">
     <title>Menu Page</title>
     <link rel="stylesheet" href="../../public/css/menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
