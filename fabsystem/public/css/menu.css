@@ -23,7 +23,7 @@
 .popup-main {
   position: fixed;
   width: 500px;
-  height: 600px;
+  height: 650px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, .25);
@@ -400,6 +400,7 @@ header h1{
 
 .searchOrder_containter{
   margin-left: 40px;
+
 }
 
 #datalist-order-id{
@@ -874,12 +875,12 @@ button.btn-new-food, button.btn-new-addon{
 border: none;
 background: #29CF69;
 margin-top: 40px;
-padding: 10px;
 cursor: pointer;
 color: white;
-padding-left: 28px;
-padding-right: 28px;
-width: 50px;
+padding-left: 25px;
+padding-right: 25px;
+width: 128px;
+height: 40px;
 }
 
 button.btn-new-membership, button.btn-new-condition{
@@ -945,7 +946,17 @@ button#btn_delete_category{
   border: none;
 }
 
+button#btn_delete_category, button#btn_delete_subcategory{
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 input#datalist-subcat-id{
+  width: 260px;
+  margin-bottom: 15px;
+}
+
+input#food_code{
   width: 260px;
   margin-bottom: 15px;
 }
@@ -1021,6 +1032,11 @@ h6.form-notice-addon{
 
 input#datalist-addon-cat-id{
   width: 260px; /* categories button*/
+}
+
+input#addon_code{
+  width: 260px;
+  margin-top: 15px;
 }
 
 input#addon_name{

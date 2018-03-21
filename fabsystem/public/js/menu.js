@@ -135,6 +135,7 @@ $(".searchFood").change(function(){
     $("#btn-add-food").show();
     $("#btn-update-food").hide();
     $("#btn-delete-food").hide();
+    $("#food_code").val("");
     $("#food_name").val("");
     $("#food_description").val("");
     $("#food_price").val("");
@@ -152,9 +153,10 @@ $(".searchFood").change(function(){
              success: function (data) {
                responseArray = data.split(",");
 
-               $("#food_name").val(responseArray[0]);
-               $("#food_description").val(responseArray[1]);
-               $("#food_price").val(responseArray[2]);
+               $("#food_code").val(responseArray[0]);
+               $("#food_name").val(responseArray[1]);
+               $("#food_description").val(responseArray[2]);
+               $("#food_price").val(responseArray[3]);
              }
          }, function(){
            //This function is for unhover.
@@ -172,6 +174,7 @@ $(".searchAddon").change(function(){
     $("#btn-add-addon").css("display", "block");
     $("#btn-update-addon").css("display", "none");
     $("#btn-delete-addon").css("display", "none");
+    $("#addon_code").val("");
     $("#addon_name").val("");
     $("#addon_description").val("");
     $("#addon_price").val("");
@@ -188,9 +191,10 @@ $(".searchAddon").change(function(){
              success: function (data) {
                responseArray = data.split(",");
 
-               $("#addon_name").val(responseArray[0]);
-               $("#addon_description").val(responseArray[1]);
-               $("#addon_price").val(responseArray[2]);
+               $("#addon_code").val(responseArray[0]);
+               $("#addon_name").val(responseArray[1]);
+               $("#addon_description").val(responseArray[2]);
+               $("#addon_price").val(responseArray[3]);
              }
          }, function(){
            //This function is for unhover.
@@ -458,10 +462,11 @@ $("#btn-add-food").click(function(){
   var cat_id = opt.attr('data-id');
   var opt2 = $('option[identifier="subcat"][value="'+$("#datalist-subcat-id").val()+'"]');
   var subcat_id = opt2.attr('data-id');
+  var code = $("#food_code").val();
   var name = $("#food_name").val();
   var description = $("#food_description").val();
   var price = $("#food_price").val();
-  if(cat_id === "" && subcat_id === "" || name === "" || description === "" || price === ""){
+  if(cat_id === "" && subcat_id === "" || code === "" || name === "" || description === "" || price === ""){
     alert("Please fill in all the field");
   }else {
     $.ajax({
@@ -470,6 +475,7 @@ $("#btn-add-food").click(function(){
         data: {
           cat_id:cat_id,
           subcat_id:subcat_id,
+          code:code,
           name:name,
           description:description,
           price:price
@@ -479,6 +485,7 @@ $("#btn-add-food").click(function(){
           $(".searchAddon").val("");
           $("#datalist-cat-id").val("");
           $("#datalist-subcat-id").val("");
+          $("#food_code").val("");
           $("#food_name").val("");
           $("#food_description").val("");
           $("#food_price").val("");
@@ -493,6 +500,7 @@ $("#btn-add-food").click(function(){
 $("#btn-update-food").click(function(){
   var opt = $('option[value="'+$(".searchFood").val()+'"]');
   var update_food_id = opt.attr('data-id');
+  var code = $("#food_code").val();
   var name = $("#food_name").val();
   var description = $("#food_description").val();
   var price = $("#food_price").val();
@@ -502,6 +510,7 @@ $("#btn-update-food").click(function(){
       url: '../controller/AJAXfoodSQL.php',
       data: {
         update_food_id:update_food_id,
+        code:code,
         name:name,
         description:description,
         price:price
@@ -511,6 +520,7 @@ $("#btn-update-food").click(function(){
         $(".searchFood").val("");
         $("#datalist-cat-id").val("");
         $("#datalist-subcat-id").val("");
+        $("#food_code").val("");
         $("#food_name").val("");
         $("#food_description").val("");
         $("#food_price").val("");
@@ -537,6 +547,7 @@ $("#btn-delete-food").click(function(){
         $(".searchFood").val("");
         $("#datalist-cat-id").val("");
         $("#datalist-subcat-id").val("");
+        $("#food_code").val("");
         $("#food_name").val("");
         $("#food_description").val("");
         $("#food_price").val("");
@@ -554,6 +565,7 @@ $("#btn-delete-food").click(function(){
 $("#btn-add-addon").click(function(){
   var opt = $('option[value="'+$("#datalist-addon-cat-id").val()+'"]');
   var add_addon_id = opt.attr('data-id');
+  var code = $("#addon_code").val();
   var name = $("#addon_name").val();
   var description = $("#addon_description").val();
   var price = $("#addon_price").val();
@@ -567,6 +579,7 @@ $("#btn-add-addon").click(function(){
         url: '../controller/AJAXaddonSQL.php',
         data: {
           add_addon_id:add_addon_id,
+          code:code,
           name:name,
           description:description,
           price:price
@@ -575,6 +588,7 @@ $("#btn-add-addon").click(function(){
           alert("Record added");
           $(".searchAddon").val("")
           $("#datalist-addon-cat-id").val("")
+          $("#addon_code").val("");
           $("#addon_name").val("");
           $("#addon_description").val("");
           $("#addon_price").val("");
@@ -589,6 +603,7 @@ $("#btn-add-addon").click(function(){
 $("#btn-update-addon").click(function(){
   var opt = $('option[value="'+$(".searchAddon").val()+'"]');
   var update_addon_id = opt.attr('data-id');
+  var code = $("#addon_code").val();
   var name = $("#addon_name").val();
   var description = $("#addon_description").val();
   var price = $("#addon_price").val();
@@ -598,6 +613,7 @@ $("#btn-update-addon").click(function(){
       url: '../controller/AJAXaddonSQL.php',
       data: {
         update_addon_id:update_addon_id,
+        code:code,
         name:name,
         description:description,
         price:price
@@ -606,6 +622,7 @@ $("#btn-update-addon").click(function(){
         alert(data);
         $(".searchAddon").val("")
         $("#datalist-addon-cat-id").val("")
+        $("#addon_code").val("");
         $("#addon_name").val("");
         $("#addon_description").val("");
         $("#addon_price").val("");
@@ -1060,7 +1077,7 @@ $("#datalist-addon-id-id").on('keypress', function(e){
       var first = $("#datalist-addon-id-id").val();
       array = first.split("-");
       var lastItemIndex = cart.length - 1;
-      input = array[0];
+      input = array[1];
 
       $.ajax({
           type: 'POST',
@@ -1072,14 +1089,12 @@ $("#datalist-addon-id-id").on('keypress', function(e){
               saveAddonCart();
               saveCart();
               // doesnt allow add on from other food category
-            }else if (cart[lastItemIndex].catID != array[1]){
+            }else if (cart[lastItemIndex].catID != array[2]){
               addon = [];
               saveAddonCart();
               saveCart();
             }else {
               responseArray = id.split(",");
-              console.log(responseArray[0]);
-              console.log(responseArray[1]);
               addAddonToCart(responseArray[0], responseArray[1], responseArray[2], 1);
               displayCart();
               saveCart();
@@ -1108,7 +1123,7 @@ $("#input_contact").keyup(function(){
       }
   }, function(){
     //This function is for unhover.
- });    
+ });
 
 });
 

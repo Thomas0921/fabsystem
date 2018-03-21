@@ -9,7 +9,7 @@
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
-         echo $row['food_name'].",".$row['food_description'].",".$row['food_price'];
+         echo $row['food_code'].",". $row['food_name'].",".$row['food_description'].",".$row['food_price'];
       }
     }
   }

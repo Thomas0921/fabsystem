@@ -15,18 +15,6 @@ $(".btn_ready").on('click',function(){
          alert(data);
          location.reload();
        }
-       // Print receipt
-       $.ajax({
-         type: 'POST',
-         url: '../controller/kitchenPrintTemplate.php', // will change to other php when done
-         data: {
-           order_id:order_id
-         },
-         success: function (data) {
-           alert("hello");
-           var w = window.open();
-           $(w.document.body).html(data);
-         }
    });
  }else {
    alert("Please tick the food done above before sending");

@@ -50,7 +50,7 @@
         </div>
 
         <div class="search-food-id-box">
-          <h1>Search food by ID</h1>
+          <h1>Search food by ID/Name</h1>
           <div class="searchOrder_containter">
 
             <input class="searchFoodId" list="datalist_search_food_id" type="datalist" id="datalist-food-id-id" placeholder="Eg. 601, 303">
@@ -62,7 +62,7 @@
         </div>
 
         <div class="search-addon-id-box">
-          <h1>Search Addon by name</h1>
+          <h1>Search Addon by ID/Name</h1>
           <div class="searchOrder_containter">
 
             <input class="searchAddonId" list="datalist_search_addon_id" type="datalist" id="datalist-addon-id-id" placeholder="Eg. 601, 303">
@@ -251,6 +251,7 @@
                       </datalist>
                       <button type="button" id="btn_add_subcategory" name="add_subcategory">+</button>
                       <button type="button" id="btn_delete_subcategory" name="minus_subcategory">-</button><br>
+                      <input id="food_code" type="text" name="food_code" value="" placeholder="Food Code"><br>
                       <input id="food_name" type="text" name="food_name" value="" placeholder="Food Name"><br>
                       <textarea id="food_description" name="food_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                       <input id="food_price" type="number" name="food_price" value="" min="0" step="0.01" placeholder="Price"><br>
@@ -287,6 +288,7 @@
                       <datalist id="datalist-cat">
                         <!-- this datalist will use the list from new food datalist -->
                       </datalist>
+                      <input id="addon_code" type="text" name="addon_code" value="" placeholder="Addon Code"><br>
                       <input id="addon_name" type="text" name="addon_name" value="" placeholder="Addon Name"><br>
                       <textarea id="addon_description" name="addon_description" rows="5" cols="26" placeholder="Description"></textarea><br>
                       <input id="addon_price" type="number" name="addon_price" value="" min="0" step="0.01" placeholder="Price"><br>
