@@ -1,7 +1,7 @@
 <?php
 include '../framework/db.php';
 
-  if(isset($_POST['btn_ready']) && isset($_POST['order_id']) ){
+  if(isset($_POST['btn_print']) && isset($_POST['order_id']) ){
 
 
     $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);;

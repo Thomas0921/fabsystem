@@ -66,7 +66,7 @@ dl{
     background-color: #fed330;
     border: none;
     color: white;
-    width: 97%;
+    width: 70%;
     margin: 0;
     height: 100%;
     text-align: center;
@@ -74,8 +74,27 @@ dl{
     font-size: 30px;
     padding: 16px;
 }
+
 .btn_ready:hover{
     background-color: #e0b925;
+
+}
+
+.btn_print {
+    background-color: #cbcbcb;
+    border: none;
+    color: white;
+    width: 25%;
+    margin: 0;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 16px;
+}
+
+.btn_print:hover{
+    background-color: #bebebe;
 
 }
 

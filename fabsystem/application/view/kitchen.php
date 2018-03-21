@@ -43,7 +43,10 @@ else {
          <li class="header"><?php echo $row['customer_name'] ;?> | <?php echo $row['bill_no'] ;?></li>
          <li class="content"><?php echo $row['order_content'] ;?></li>
          <p id="value">  <?php $row['status_id']; ?> </p>
-         <li><button class="btn_ready" name="btn_ready" type="submit" data-id="<?php echo $row['order_id'] ?>">Ready</button></li>
+         <li>
+           <button class="btn_ready" name="btn_ready" type="button" data-id="<?php echo $row['order_id'] ?>">Ready</button>
+           <button class="btn_print" type="submit" name="btn_print" data-id="<?php echo $row['order_id'] ?>"> <i class="fa fa-print"></i> </button>
+         </li>
        </ul>
      </div>
    </form>

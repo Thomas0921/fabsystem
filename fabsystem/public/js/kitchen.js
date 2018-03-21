@@ -5,7 +5,6 @@ $(".btn_ready").on('click',function(){
   var order_id = $(this).attr('data-id');
   var col_no = "col_" + order_id;
 
-
   if($("#"+ col_no + " dd").length == $("#"+ col_no + " dd.active").length && $("#"+ col_no + " dt").length == $("#"+ col_no + " dt.active").length)  {
 
      $.ajax({
