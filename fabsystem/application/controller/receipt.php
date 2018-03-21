@@ -33,6 +33,10 @@ include '../framework/db.php';
       transition: 0.2s;
       }
 
+      div.head{
+        font-size: 17px;
+      }
+
     dt button.delete-item dd button.delete-item{
       display: none;
     }
@@ -45,6 +49,14 @@ include '../framework/db.php';
       display: none;
     }
 
+    p{
+      font-size: 17px;
+    }
+
+    tfoot{
+      font-size: 17px;
+    }
+    
     </style>
 
   </head>
@@ -72,19 +84,18 @@ include '../framework/db.php';
                 <td>Description</td>
                 <td>Total</td>
             </thead>
-
-            <?php
-            <td>
+            <tr>
+              <?php
               echo $row['order_content'];
-            </td>
-             ?>
+               ?>
+            </tr>
 
 
 
 
             <center> ------------------------------------------<br></center>
             <p>DISCOUNT: <?php echo $row['order_discount']; ?><br>
-            TOTAL: <?php echo $row['order_gross']; ?></p>
+              TOTAL: <?php echo $row['order_gross']; ?></p>
             <tfoot>
               <?php echo $row['customer_address']; ?><br>
               <?php echo $row['customer_contact']; ?> <br>
