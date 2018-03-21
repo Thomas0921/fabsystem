@@ -49,7 +49,6 @@ include '../framework/db.php';
       display: none;
     }
 
-<<<<<<< HEAD
     #display_total_food{
       display: block;
       float:right;
@@ -59,16 +58,15 @@ include '../framework/db.php';
       float:right;
     }
 
-=======
-    p{
+    *{
       font-size: 17px;
     }
 
     tfoot{
       font-size: 17px;
     }
-    
->>>>>>> 2a2abaeaeb3362cf2a8fe77adabbd8fe99ae4b04
+
+
     </style>
 
   </head>
@@ -95,7 +93,7 @@ include '../framework/db.php';
             <thead class = "titlerow">
                 <td>Qty &nbsp; Descriptio <div style="float:right; padding-right: 5px;">Total</div></td>
             </thead>
-<<<<<<< HEAD
+
 
 
             <td>
@@ -104,40 +102,26 @@ include '../framework/db.php';
               ?>
             </td>
 
-=======
-            <tr>
-              <?php
-              echo $row['order_content'];
-               ?>
-            </tr>
->>>>>>> 2a2abaeaeb3362cf2a8fe77adabbd8fe99ae4b04
 
 
 
 
-            <center> ------------------------------------------<br></center>
-<<<<<<< HEAD
 
-
-=======
-            <p>DISCOUNT: <?php echo $row['order_discount']; ?><br>
-              TOTAL: <?php echo $row['order_gross']; ?></p>
-            <tfoot>
-              <?php echo $row['customer_address']; ?><br>
-              <?php echo $row['customer_contact']; ?> <br>
-            </tfoot>
->>>>>>> 2a2abaeaeb3362cf2a8fe77adabbd8fe99ae4b04
           </table>
-          <div class="">
+          <div class="" style="float:right; padding-right: 5px;">
             Discount: <?php echo $row['order_discount']; ?> <br>
+            Delivery: <?php echo $row['order_delivery']; ?> <br>
             Total: <?php echo $row['order_gross']; ?>
           </div>
+          <center style="clear:both;"> ------------------------------------------<br></center>
           <tfoot>
             Address: <?php echo $row['customer_address']; ?><br>
             Contact: <?php echo $row['customer_contact']; ?> <br>
           </tfoot>
+          <center> ------------------------------------------<br></center>
           <center><p>Thanks for supporting</p></center>
           <center>www.jiomakan.com</center>
+          <center> ------------------------------------------<br></center>
         </div>
       </body>
 
@@ -151,7 +135,6 @@ include '../framework/db.php';
 ?>
 
  <script type="text/javascript">
-   window.print();
 
    $("dt").each(function(){
      var total_food = $(this).attr("total_each_food");
@@ -161,4 +144,12 @@ include '../framework/db.php';
      var total_addon = $(this).attr("total_each_addon");
      $(this).children("#display_total_addon").text(total_addon);
    });
+
+   window.print();
+   window.setTimeout(function(){window.close()}, 10);
+
+   function closeMe(){
+     window.close();
+   }
+
  </script>

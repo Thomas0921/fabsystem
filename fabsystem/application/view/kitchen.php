@@ -36,7 +36,7 @@ else {
   while ($row = mysqli_fetch_assoc($result)) {
    ?>
 
-   <form class="" action="../controller/receipt.php" method="post">
+   <form class="" action="../controller/receipt.php" method="post" target="_blank">
      <input type="hidden" name="order_id" value="<?php echo $row['order_id'] ;?>">
      <div class="columns" id="col_<?php echo $row['order_id'] ;?>">
        <ul class="price">
