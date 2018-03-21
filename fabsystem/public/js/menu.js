@@ -1260,18 +1260,20 @@ function displayCart() {
   output += "<dl>";
   for(var i in cartArray) {
     output +=
-     "<dt>"
+     "<dt total_each_food="+ cartArray[i].count * cartArray[i].price +">"
     + cartArray[i].count
     + "     "
     + cartArray[i].name
     + "<button class='delete-item' data-id='"+cartArray[i].id+"'>X</button>"
+    + "<label id='display_total_food'>"
 
     if(cartArray[i].array != null){
       for(var p in cartArray[i].array){
-        output += "<dd>"
+        output += "<dd total_each_addon="+ (cartArray[i].array)[p].count * (cartArray[i].array)[p].price +">"
         + (cartArray[i].array)[p].count
         + " " + (cartArray[i].array)[p].name
         + "<button class='delete-addon' cat-id='"+cartArray[i].id+"' addon-id='"+ (cartArray[i].array)[p].id +"'>X</button>"
+        + "<label id='display_total_addon'>"
         + "</dd>";
       }
     }
