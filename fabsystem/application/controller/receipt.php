@@ -16,7 +16,11 @@ include '../framework/db.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <style media="screen">
+    <style media="all">
+
+    th.titlerow{
+      border: none;
+    }
 
     dl, dt, dd {
       cursor: pointer;
@@ -25,9 +29,12 @@ include '../framework/db.php';
       text-align: left;
       padding: 4px;
       background: white;
-      font-size: 18px;
+      font-size: 17px;
       transition: 0.2s;
-      font-size: 25px;
+      }
+
+    dt button.delete-item dd button.delete-item{
+      display: none;
     }
 
     dd{
@@ -59,28 +66,25 @@ include '../framework/db.php';
         </div>
         <center> ------------------------------------------<br> </center>
           <table class="table table-bordered">
-            <tbody>
-              <tr>
 
+            <thead class = "titlerow">
                 <td>Qty</td>
                 <td>Description</td>
                 <td>Total</td>
-              </tr>
-              <tr>
-                <?php
+            </thead>
 
-                echo  $row['order_content'];
-
-                 ?>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+            <?php
+            <td>
+              echo $row['order_content'];
+            </td>
+             ?>
 
 
-            </tbody>
+
+
             <center> ------------------------------------------<br></center>
-            TOTAL: <?php echo $row['order_gross']; ?>
+            <p>DISCOUNT: <?php echo $row['order_discount']; ?><br>
+            TOTAL: <?php echo $row['order_gross']; ?></p>
             <tfoot>
               <?php echo $row['customer_address']; ?><br>
               <?php echo $row['customer_contact']; ?> <br>
