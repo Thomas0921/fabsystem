@@ -45,6 +45,15 @@ include '../framework/db.php';
       display: none;
     }
 
+    #display_total_food{
+      display: block;
+      float:right;
+    }
+    #display_total_addon{
+      display: block;
+      float:right;
+    }
+
     </style>
 
   </head>
@@ -67,29 +76,36 @@ include '../framework/db.php';
         <center> ------------------------------------------<br> </center>
           <table class="table table-bordered">
 
+
             <thead class = "titlerow">
-                <td>Qty</td>
-                <td>Description</td>
-                <td>Total</td>
+                <td>Qty &nbsp; Descriptio <div style="float:right; padding-right: 5px;">Total</div></td>
             </thead>
 
-            <?php
+
             <td>
+              <?php
               echo $row['order_content'];
+              ?>
             </td>
-             ?>
+
 
 
 
 
             <center> ------------------------------------------<br></center>
-            <p>DISCOUNT: <?php echo $row['order_discount']; ?><br>
-            TOTAL: <?php echo $row['order_gross']; ?></p>
-            <tfoot>
-              <?php echo $row['customer_address']; ?><br>
-              <?php echo $row['customer_contact']; ?> <br>
-            </tfoot>
+
+
           </table>
+          <div class="">
+            Discount: <?php echo $row['order_discount']; ?> <br>
+            Total: <?php echo $row['order_gross']; ?>
+          </div>
+          <tfoot>
+            Address: <?php echo $row['customer_address']; ?><br>
+            Contact: <?php echo $row['customer_contact']; ?> <br>
+          </tfoot>
+          <center><p>Thanks for supporting</p></center>
+          <center>www.jiomakan.com</center>
         </div>
       </body>
 
@@ -104,4 +120,13 @@ include '../framework/db.php';
 
  <script type="text/javascript">
    window.print();
+
+   $("dt").each(function(){
+     var total_food = $(this).attr("total_each_food");
+     $(this).children("#display_total_food").text(total_food);
+   });
+   $("dd").each(function(){
+     var total_addon = $(this).attr("total_each_addon");
+     $(this).children("#display_total_addon").text(total_addon);
+   });
  </script>
