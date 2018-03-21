@@ -315,6 +315,7 @@
             </button>
             <h1 class="customer-box-title" >Customer's Detail</h1>
             <form id="customer-form-id" class="customer-form" action="../controller/menuSendOrder.php" method="post">
+              <input id="membership_id" type="text" name="membership_id" value="" hidden>
               <input list="datalist-contact" id="input_contact"autocomplete="off" name="contact" value="" placeholder="Contact" required><br>
               <datalist id="datalist-contact" class="ajax-contact">
                 <!-- will get from AJAXmenuSearchSubcategory.php -->
@@ -371,7 +372,7 @@
                       <input class="searchMembership" list="datalist_search_membership" type="datalist" name="" value="">
                       <datalist class="datalist_searchMembership" id="datalist_search_membership">
                         <?php
-                          $sql = "SELECT * FROM memberships";
+                          $sql = "SELECT * FROM memberships WHERE membership_id !=0";
                           $result = mysqli_query($conn, $sql);
 
                           if($result ->num_rows > 0){
@@ -384,6 +385,7 @@
                     </div>
 
                     <form class="form-add-membership" action="../controller/AJAXconditionSQL.php" method="post">
+
                       <input id="membership_name" type="text" name="membership_name" value="" placeholder="Membership Name"><br>
                       <textarea id="membership_address" name="membership_address" rows="5" cols="26" placeholder="Address"></textarea><br>
                       <input id="membership_contact" type="text" name="membership_contact" value="" min="0" step="0.01" placeholder="Contact"><br>

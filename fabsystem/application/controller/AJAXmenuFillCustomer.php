@@ -6,15 +6,15 @@
 
     $input = mysqli_real_escape_string($conn, $_POST['input']);
 
-    $sql = "SELECT * FROM orders
-    WHERE customer_contact LIKE '%".$input."%'";
+    $sql = "SELECT * FROM memberships
+    WHERE membership_contact =$input";
 
     $result = mysqli_query($conn, $sql);
 
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
 
-        echo $row['customer_name'].",".$row['customer_address'];
+        echo $row['membership_name'].",".$row['membership_contact'].",".$row['membership_id'];
 
       }
 

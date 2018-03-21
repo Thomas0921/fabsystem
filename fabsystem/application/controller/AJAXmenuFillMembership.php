@@ -4,7 +4,8 @@
 
   if(isset($_POST["membership_id"])){
 
-    $sql = "SELECT * FROM memberships WHERE membership_id =".$_POST["membership_id"];
+    $sql = "SELECT * FROM memberships
+    WHERE membership_id =".$_POST["membership_id"];
     $result = mysqli_query($conn, $sql);
 
     if($result ->num_rows > 0){

@@ -15,7 +15,7 @@ if (isset($_POST['name']) && isset($_POST['address']) && isset($_POST['contact']
   echo "New membership added";
 }
 
-if (isset($_POST['update_membership_id']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
+if (isset($_POST['update_membership_id']) && isset($_POST['name']) && isset($_POST['address']) && isset($_POST['contact'])){
 
     $update_membership_id = mysqli_real_escape_string($conn, $_POST['update_membership_id']);
     $name = mysqli_real_escape_string($conn, $_POST['name']);

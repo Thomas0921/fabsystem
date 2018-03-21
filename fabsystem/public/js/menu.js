@@ -226,6 +226,7 @@ $(".searchMembership").change(function(){
                $("#membership_name").val(responseArray[0]);
                $("#membership_address").val(responseArray[1]);
                $("#membership_contact").val(responseArray[2]);
+
              }
          }, function(){
            //This function is for unhover.
@@ -912,6 +913,7 @@ $(function() {
 // Customer form Javascript
 
 $(window).bind('beforeunload', function(){
+  localStorage.setItem("membership_id", $("#membership_id").val());
   localStorage.setItem("name", $("#input_name").val());
   localStorage.setItem("contact", $("#input_contact").val());
   localStorage.setItem("address", $("#input_address").val());
@@ -927,6 +929,7 @@ $(window).on('load', function(){
   if(window.location.href.indexOf("insert=success") > -1){
     clearCart();
     displayCart();
+    $("#membership_id").val("");
     $("#input_name").val("");
     $("#input_contact").val("");
     $("#input_address").val("");
@@ -934,6 +937,10 @@ $(window).on('load', function(){
     $("#delivery_cost").val("");
     $("#bill_no").val("");
   }else {
+    var membership_id = localStorage.getItem("membership_id");
+    if (membership_id !== null) {
+      $("#membership_id").val(membership_id);
+    }
     var name = localStorage.getItem("name");
     if (name !== null) {
       $("#input_name").val(name);
@@ -1088,7 +1095,9 @@ $("#datalist-addon-id-id").on('keypress', function(e){
 $("#input_contact").keyup(function(){
   var input = $(this).val();
 
-  $.ajax({
+  if(input == ""){
+    alert("Please insert to search for membership's detail");
+  }$.ajax({
       type: 'POST',
       url: '../controller/AJAXmenuSearchContact.php',
       data: {
@@ -1099,13 +1108,16 @@ $("#input_contact").keyup(function(){
       }
   }, function(){
     //This function is for unhover.
- });
+ });    
+
 });
 
 $("#input_contact").change(function(){
   var input = $(this).val();
 
-  $.ajax({
+  if(input == ""){
+    alert("Please insert to search for membership's detail");
+  }$.ajax({
       type: 'POST',
       url: '../controller/AJAXmenuFillCustomer.php',
       data: {
@@ -1115,10 +1127,12 @@ $("#input_contact").change(function(){
         responseArray = id.split(",");
         $("#input_name").val(responseArray[0]);
         $("#input_address").val(responseArray[1]);
+        $("#membership_id").val(responseArray[2]);
       }
   }, function(){
     //This function is for unhover.
  });
+
 });
 
 //---------------------------------------------------------------
