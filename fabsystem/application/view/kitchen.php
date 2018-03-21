@@ -3,7 +3,7 @@ include '../framework/db.php';
 session_start();
 
 if ( $_SESSION['logged_in'] != 1 ) {
-  $_SESSION['message'] = "You must log in before viewing your profile page!";
+  $_SESSION['message'] = "You must log in before viewing your profile page";
   header("location: error.php");
 }
 else {
@@ -36,14 +36,20 @@ else {
   while ($row = mysqli_fetch_assoc($result)) {
    ?>
 
-  <div class="columns" id="col_<?php echo $row['order_id'] ;?>">
-    <ul class="price">
-      <li class="header"><?php echo $row['customer_name'] ;?> | <?php echo $row['bill_no'] ;?></li>
-      <li class="content"><?php echo $row['order_content'] ;?></li>
-      <p id="value">  <?php $row['status_id']; ?> </p>
-      <li><button class="btn_ready" data-id="<?php echo $row['order_id'] ?>">Ready</button></li>
-    </ul>
-  </div>
+   <form class="" action="../controller/receipt.php" method="post">
+     <input type="hidden" name="order_id" value="<?php echo $row['order_id'] ;?>">
+     <div class="columns" id="col_<?php echo $row['order_id'] ;?>">
+       <ul class="price">
+         <li class="header"><?php echo $row['customer_name'] ;?> | <?php echo $row['bill_no'] ;?></li>
+         <li class="content"><?php echo $row['order_content'] ;?></li>
+         <p id="value">  <?php $row['status_id']; ?> </p>
+         <li><button class="btn_ready" name="btn_ready" type="submit" data-id="<?php echo $row['order_id'] ?>">Ready</button></li>
+       </ul>
+     </div>
+   </form>
+
+   </div>
+
 <?php
 }
  ?>
@@ -105,7 +111,6 @@ else {
  <h4 hidden class="origin">@Developed by kt</h4>
 
   </body>
+  <script src="../../public/js/kitchen.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
-
-<script src="../../public/js/kitchen.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -1,8 +1,12 @@
 
 
 $(".btn_ready").on('click',function(){
+
+
+
   var order_id = $(this).attr('data-id');
   var col_no = "col_" + order_id;
+
   if($("#"+ col_no + " dd").length == $("#"+ col_no + " dd.active").length && $("#"+ col_no + " dt").length == $("#"+ col_no + " dt.active").length)  {
 
      $.ajax({
@@ -12,10 +16,11 @@ $(".btn_ready").on('click',function(){
          order_id:order_id
        },
        success: function (data) {
-         alert(data);
-         location.reload();
+         console.log(data);
+
        }
    });
+
  }else {
    alert("Please tick the food done above before sending");
  }
