@@ -1111,43 +1111,47 @@ $("#input_contact").keyup(function(){
   var input = $(this).val();
 
   if(input == ""){
-    alert("Please insert to search for membership's detail");
-  }$.ajax({
-      type: 'POST',
-      url: '../controller/AJAXmenuSearchContact.php',
-      data: {
-        input:input
-      },
-      success: function (id) {
-        $(".ajax-contact").html(id);
-      }
-  }, function(){
-    //This function is for unhover.
- });
-
+    $("#input_name").val("");
+    $("#input_address").val("");
+  }else{
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXmenuSearchContact.php',
+        data: {
+          input:input
+        },
+        success: function (id) {
+          $(".ajax-contact").html(id);
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
 });
 
 $("#input_contact").change(function(){
   var input = $(this).val();
 
   if(input == ""){
-    alert("Please insert to search for membership's detail");
-  }$.ajax({
-      type: 'POST',
-      url: '../controller/AJAXmenuFillCustomer.php',
-      data: {
-        input:input
-      },
-      success: function (id) {
-        responseArray = id.split(",");
-        $("#input_name").val(responseArray[0]);
-        $("#input_address").val(responseArray[1]);
-        $("#membership_id").val(responseArray[2]);
-      }
-  }, function(){
-    //This function is for unhover.
- });
-
+    $("#input_name").val("");
+    $("#input_address").val("");
+  }else {
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXmenuFillCustomer.php',
+        data: {
+          input:input
+        },
+        success: function (id) {
+          responseArray = id.split(",");
+          $("#input_name").val(responseArray[0]);
+          $("#input_address").val(responseArray[1]);
+          $("#membership_id").val(responseArray[2]);
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
 });
 
 //---------------------------------------------------------------
