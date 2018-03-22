@@ -18,7 +18,7 @@ if (isset($_POST['cat_id']) && isset($_POST['subcat_id']) && isset($_POST['code'
   echo "New food added";
 }
 
-if (isset($_POST['update_food_id']) isset($_POST['code']) && && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
+if (isset($_POST['update_food_id']) && isset($_POST['code']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price'])){
 
     $update_food_id = mysqli_real_escape_string($conn, $_POST['update_food_id']);
     $code = mysqli_real_escape_string($conn, $_POST['code']);

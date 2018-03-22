@@ -466,7 +466,10 @@ $("#btn-add-food").click(function(){
   var name = $("#food_name").val();
   var description = $("#food_description").val();
   var price = $("#food_price").val();
-  if(cat_id === "" && subcat_id === "" || code === "" || name === "" || description === "" || price === ""){
+
+  if(name.length > 33) {
+    alert("Please choose a name not longer than 30 character.");
+  }else if(cat_id === "" && subcat_id === "" || code === "" || name === "" || description === "" || price === ""){
     alert("Please fill in all the field");
   }else {
     $.ajax({
@@ -505,31 +508,34 @@ $("#btn-update-food").click(function(){
   var description = $("#food_description").val();
   var price = $("#food_price").val();
 
-  $.ajax({
-      type: 'POST',
-      url: '../controller/AJAXfoodSQL.php',
-      data: {
-        update_food_id:update_food_id,
-        code:code,
-        name:name,
-        description:description,
-        price:price
-      },
-      success: function (data) {
-        alert(data);
-        $(".searchFood").val("");
-        $("#datalist-cat-id").val("");
-        $("#datalist-subcat-id").val("");
-        $("#food_code").val("");
-        $("#food_name").val("");
-        $("#food_description").val("");
-        $("#food_price").val("");
-        location.reload();
-      }
-  }, function(){
-    //This function is for unhover.
- });
-
+  if(name.length > 33) {
+    alert("Please choose a name not longer than 30 character.");
+  }else{
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXfoodSQL.php',
+        data: {
+          update_food_id:update_food_id,
+          code:code,
+          name:name,
+          description:description,
+          price:price
+        },
+        success: function (data) {
+          alert(data);
+          $(".searchFood").val("");
+          $("#datalist-cat-id").val("");
+          $("#datalist-subcat-id").val("");
+          $("#food_code").val("");
+          $("#food_name").val("");
+          $("#food_description").val("");
+          $("#food_price").val("");
+          location.reload();
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
 });
 
 $("#btn-delete-food").click(function(){
@@ -570,7 +576,9 @@ $("#btn-add-addon").click(function(){
   var description = $("#addon_description").val();
   var price = $("#addon_price").val();
 
-  if(add_addon_id === "" && name === "" || description === "" || price === ""){
+  if(name.length > 20) {
+    alert("Please choose a name not longer than 20 character.");
+  }else if(add_addon_id === "" && name === "" || description === "" || price === ""){
     $('.form-notice-addon').html("Please fill in all the field");
   }else{
     $('.form-notice-addon').html("");
@@ -608,30 +616,33 @@ $("#btn-update-addon").click(function(){
   var description = $("#addon_description").val();
   var price = $("#addon_price").val();
 
-  $.ajax({
-      type: 'POST',
-      url: '../controller/AJAXaddonSQL.php',
-      data: {
-        update_addon_id:update_addon_id,
-        code:code,
-        name:name,
-        description:description,
-        price:price
-      },
-      success: function (data) {
-        alert(data);
-        $(".searchAddon").val("")
-        $("#datalist-addon-cat-id").val("")
-        $("#addon_code").val("");
-        $("#addon_name").val("");
-        $("#addon_description").val("");
-        $("#addon_price").val("");
-        location.reload();
-      }
-  }, function(){
-    //This function is for unhover.
- });
-
+  if(name.length > 20) {
+    alert("Please choose a name not longer than 20 character.");
+  }else {
+    $.ajax({
+        type: 'POST',
+        url: '../controller/AJAXaddonSQL.php',
+        data: {
+          update_addon_id:update_addon_id,
+          code:code,
+          name:name,
+          description:description,
+          price:price
+        },
+        success: function (data) {
+          alert(data);
+          $(".searchAddon").val("")
+          $("#datalist-addon-cat-id").val("")
+          $("#addon_code").val("");
+          $("#addon_name").val("");
+          $("#addon_description").val("");
+          $("#addon_price").val("");
+          location.reload();
+        }
+    }, function(){
+      //This function is for unhover.
+   });
+  }
 });
 
 $("#btn-delete-addon").click(function(){
@@ -1109,8 +1120,13 @@ $("#datalist-addon-id-id").on('keypress', function(e){
 // Customer form auto fillin Javascript
 $("#input_contact").keyup(function(){
   var input = $(this).val();
+  var regex=/^[a-zA-Z]+$/;
 
   if(input == ""){
+    $("#input_name").val("");
+    $("#input_address").val("");
+  }else if(input.match(regex) && isNaN(input)){
+    alert("You have letters in your contact field");
     $("#input_name").val("");
     $("#input_address").val("");
   }else{
@@ -1133,6 +1149,10 @@ $("#input_contact").change(function(){
   var input = $(this).val();
 
   if(input == ""){
+    $("#input_name").val("");
+    $("#input_address").val("");
+  }else if(input.match(regex) && isNaN(input)){
+    alert("You have letters in your contact field");
     $("#input_name").val("");
     $("#input_address").val("");
   }else {
