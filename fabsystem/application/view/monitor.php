@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $query);
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="60" >
+    <meta http-equiv="refresh" content="30" >
     <link rel="shortcut icon" href="../../public/image/kt.png">
     <title>Monitor</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
