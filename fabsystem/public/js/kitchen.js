@@ -14,8 +14,8 @@ $(".btn_ready").on('click',function(){
          order_id:order_id
        },
        success: function (data) {
-         console.log(data);
-
+         alert(data);
+         location.reload();
        }
    });
 
