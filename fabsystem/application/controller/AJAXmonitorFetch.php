@@ -8,6 +8,7 @@ include '../framework/db.php';
 session_start();
 
 $output ='';
+
 if(isset($_POST["query"]) && isset($_POST["date"]))
 {
  $search = mysqli_real_escape_string($conn, $_POST["query"]);
@@ -27,6 +28,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
 
           }
           $result = mysqli_query($conn, $query);
+          $count = $result ->num_rows;
           if($result ->num_rows > 0)
           {
            $output .= '
@@ -60,7 +62,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
              }
             $output .= '
             <tr class="rows">
-              <td class="" width="2.55%">'.$row["order_id"].'</td>
+              <td class="" width="2.55%">'.$count.'</td>
               <td width="5%">'.$row["bill_no"].'</td>
               <td width="5%">'.$row["customer_name"].'</td>
               <td width="18%">'.$row["customer_address"].'</td>
@@ -76,6 +78,7 @@ if(isset($_POST["query"]) && isset($_POST["date"]))
               <td class="status" width="5%">'.$row["status_name"].'</td>
             </tr>
             ';
+            $count--;
           }
            $output .= '</tbody></table>';
            echo $output;
