@@ -79,7 +79,7 @@ include '../framework/db.php';
      ?>
 
     <div class="print_content">
-        <center><h3>Jio Makan</h3></center>
+        <center><h3>Company Name</h3></center>
         <center> ------------------------------------------<br> </center>
         <div class = "head" >
           Bill No. : <?php echo $row['bill_no']; ?>  <br>
@@ -120,7 +120,7 @@ include '../framework/db.php';
           </tfoot>
           <center> ------------------------------------------<br></center>
           <center><p>Thanks for supporting</p></center>
-          <center>www.jiomakan.com</center>
+          <center>www.companyname.com</center>
           <center> ------------------------------------------<br></center>
         </div>
       </body>
