@@ -1125,7 +1125,7 @@ $("#input_contact").keyup(function(){
   if(input == ""){
     $("#input_name").val("");
     $("#input_address").val("");
-  }else if(input.match(regex) && isNaN(input)){
+  }else if(input.match(regex)){
     alert("You have letters in your contact field");
     $("#input_name").val("");
     $("#input_address").val("");
@@ -1147,11 +1147,12 @@ $("#input_contact").keyup(function(){
 
 $("#input_contact").change(function(){
   var input = $(this).val();
+  var regex=/^[a-zA-Z]+$/;
 
   if(input == ""){
     $("#input_name").val("");
     $("#input_address").val("");
-  }else if(input.match(regex) && isNaN(input)){
+  }else if(input.match(regex)){
     alert("You have letters in your contact field");
     $("#input_name").val("");
     $("#input_address").val("");

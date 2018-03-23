@@ -14,7 +14,7 @@
     if($result ->num_rows > 0){
       while($row = $result ->fetch_assoc()){
 
-        echo $row['membership_name'].",".$row['membership_contact'].",".$row['membership_id'];
+        echo $row['membership_name'].",".$row['membership_address'].",".$row['membership_id'];
 
       }
 
