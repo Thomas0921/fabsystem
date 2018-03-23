@@ -7,6 +7,6 @@ if(isset($_POST['order_id'])){
   $sql  = "UPDATE orders SET status_id = 2 WHERE order_id = $order_id";
   $result = mysqli_query($conn, $sql);
 
-  echo "Status change to ready";
+  echo "Status change to 2";
 }
  ?>
